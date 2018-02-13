@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tran.report.mapper.NodeLoadMapper">
+<resultMap id="nodeLoadMap" type="com.tran.report.model.NodeLoad">
+		<id property="nodeId" column="node_id" />
+		<result property="nodeVoltage" column="node_voltage" />
+		<result property="nodeCurrent" column="node_current" />
+		<result property="createDate" column="create_date" />
+		<result property="createTime" column="create_time" />
+	</resultMap>
+    <select id="getNodeLoadInfo" resultMap="nodeLoadMap">
+    SELECT * FROM node_load
+    </select >
+   
+</mapper>

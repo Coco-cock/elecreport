@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tran.report.mapper.CustomBillMapper">
+  <resultMap id="dayBillMap" type="com.tran.report.model.CustomBill">
+		<id property="billId" column="day_bill_id" />
+		<result property="customId" column="custom_id" />
+		<result property="elecAmount" column="elec_amount" />
+		<result property="createTime" column="day_date" />
+	</resultMap>
+    <resultMap id="monthBillMap" type="com.tran.report.model.CustomBill">
+		<id property="billId" column="month_bill_id" />
+		<result property="customId" column="custom_id" />
+		<result property="elecAmount" column="elec_amount" />
+		<result property="createTime" column="month_date" />
+	</resultMap>
+	 <resultMap id="yearBillMap" type="com.tran.report.model.CustomBill">
+		<id property="billId" column="year_bill_id" />
+		<result property="customId" column="custom_id" />
+		<result property="elecAmount" column="elec_amount" />
+		<result property="createTime" column="year_date" />
+	</resultMap>
+
+
+    <select id="getDayBill" resultMap="dayBillMap">
+    SELECT * FROM load_day_bill;
+    </select >
+
+    <select id="getMonthBill" resultMap="monthBillMap">
+    SELECT * FROM load_month_bill;
+    </select >
+    
+
+    <select id="getYearBill" resultMap="yearBillMap">
+    SELECT * FROM load_year_bill;
+    </select >
+    
+    
+    
+   
+
+   
+</mapper>

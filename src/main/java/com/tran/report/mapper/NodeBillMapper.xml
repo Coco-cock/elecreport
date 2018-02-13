@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tran.report.mapper.NodeBillMapper">
+	<resultMap id="nodeBillMap" type="com.tran.report.model.NodeBill">
+		<id property="billId" column="billId" />
+		<result property="nodeId" column="nodeId" />
+		<result property="elecAmount" column="elecAmount" />
+		<result property="createTime" column="createTime" />
+	</resultMap>
+
+    <select id="getNodeBill" resultMap="nodeBillMap">
+    SELECT * FROM node_bill
+    </select >
+
+   
+</mapper>

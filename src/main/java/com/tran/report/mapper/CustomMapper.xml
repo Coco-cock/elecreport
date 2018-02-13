@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tran.report.mapper.CustomMapper">
+    <resultMap id="customMap" type="com.tran.report.model.Custom">
+		<id property="billId" column="bill_id" />
+		<result property="nodeId" column="node_id" />
+		<result property="elecAmount" column="elec_amount" />
+		<result property="createTime" column="create_time" />
+	</resultMap>
+    <select id="getCustomInfo" resultMap="customMap">
+    SELECT * FROM custom_info;
+    </select >
+   
+</mapper>
