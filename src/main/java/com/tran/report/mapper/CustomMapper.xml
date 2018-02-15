@@ -5,13 +5,20 @@
 
 <mapper namespace="com.tran.report.mapper.CustomMapper">
     <resultMap id="customMap" type="com.tran.report.model.Custom">
-		<id property="billId" column="bill_id" />
-		<result property="nodeId" column="node_id" />
-		<result property="elecAmount" column="elec_amount" />
-		<result property="createTime" column="create_time" />
+		<id property="customId" column="custom_Id" />
+		<result property="customName" column="custom_Name" />
+		<result property="customIphone" column="custom_Iphone" />
+		<result property="customAddress" column="custom_Address" />
+		<result property="customStatus" column="custom_Status" />
+		<result property="registerTime" column="register_Time" />
+		<result property="editTime" column="edit_Time" />
 	</resultMap>
     <select id="getCustomInfo" resultMap="customMap">
-    SELECT * FROM custom_info;
+      SELECT * FROM custom_info;
+    </select >
+    
+    <select id="getCustomById" resultMap="customMap">
+    SELECT * FROM custom_info WHERE custom_id=#{customId};
     </select >
    
 </mapper>

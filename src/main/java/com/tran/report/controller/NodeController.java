@@ -19,14 +19,14 @@ import com.tran.report.service.NodeService;
 @Controller
 public class NodeController {
 	
-	@Autowired
-	NodeService nodeService;
+	//@Autowired
+	//NodeService nodeService;
 	
 	@RequestMapping(value="getnodelist")
 	public ModelAndView getNodeInfo() {	
 		ModelAndView mav =new ModelAndView("nodeinfo");
-		nodeService.getNodeInfo();
-		mav.addObject("nodeinfo", nodeService.getNodeInfo());	
+		//nodeService.getNodeInfo();
+		//mav.addObject("nodeinfo", );	
 		return mav;
 		
 	}

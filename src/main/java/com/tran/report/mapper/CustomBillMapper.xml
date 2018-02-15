@@ -30,6 +30,7 @@
 
     <select id="getMonthBill" resultMap="monthBillMap">
     SELECT * FROM load_month_bill;
+   <!--  SELECT  *  FROM load_month_billcustom_info WHERE  month_date<'2018'AND month_date>'2017'; -->
     </select >
     
 
@@ -38,8 +39,18 @@
     </select >
     
     
+     <select id="getDayBillByCustomId" resultMap="dayBillMap">
+    <!--   SELECT l.elec_amount,l.day_date  FROM load_day_bill l WHERE custom_id=#{CustomId} AND month_date<#{startTime}AND month_date>#{endTime}; -->
+    </select >
     
-   
+     <select id="getMonthBillByCustomId" parameterType="int" resultMap="monthBillMap">
+      SELECT  l.elec_amount,l.month_date  FROM load_month_bill l
+      WHERE custom_id='#{CustomId}';
+    </select >
+ <!--    <select id="getYearBillByCustomId" resultMap="yearBillMap">
+      SELECT  l.elec_amount,l.year_date  FROM load_year_bill l
+      WHERE custom_id='#{CustomId}' AND month_date<#{startTime}AND month_date>#{endTime};
+    </select > -->
 
    
 </mapper>

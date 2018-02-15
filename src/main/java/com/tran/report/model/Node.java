@@ -14,43 +14,54 @@ public class Node {
 	 * node_id  custom_id  node_address  node_status(状态 是否正常 1 or 0)
 	 */
 	private int nodeId;
-	private int customId;
+	private String customName;
 	private String nodeAddress;
 	private String nodeStatus;
+
+	
 	public int getNodeId() {
 		return nodeId;
 	}
+
+
 	public void setNodeId(int nodeId) {
 		this.nodeId = nodeId;
 	}
-	public int getCustomId() {
-		return customId;
+
+
+	public String getCustomName() {
+		return customName;
 	}
-	public void setCustomId(int customId) {
-		this.customId = customId;
+
+
+	public void setCustomName(String customName) {
+		this.customName = customName;
 	}
+
+
 	public String getNodeAddress() {
 		return nodeAddress;
 	}
+
+
 	public void setNodeAddress(String nodeAddress) {
 		this.nodeAddress = nodeAddress;
 	}
+
+
 	public String getNodeStatus() {
 		return nodeStatus;
 	}
+
+
 	public void setNodeStatus(String nodeStatus) {
 		this.nodeStatus = nodeStatus;
 	}
-	
+
+
 	public Node() {
 	}
-	public Node(int nodeId, int customId, String nodeAddress, String nodeStatus) {
-		super();
-		this.nodeId = nodeId;
-		this.customId = customId;
-		this.nodeAddress = nodeAddress;
-		this.nodeStatus = nodeStatus;
-	}
+
 	
 	
 }

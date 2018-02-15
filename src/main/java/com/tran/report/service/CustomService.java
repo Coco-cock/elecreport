@@ -1,6 +1,10 @@
 package com.tran.report.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
+
+import com.tran.report.model.Custom;
 
 /**   
 * @version 1.0   
@@ -13,5 +17,6 @@ import org.springframework.stereotype.Service;
 */
 @Service
 public interface CustomService {
-
+	List<Custom> getCustomInfo();
+	Custom getCustomInfoById(String customid);
 }

@@ -4,11 +4,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <meta charset="utf-8" />
+	 <c:set var="baseUrl" value="${pageContext.request.contextPath}"></c:set>
+   <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta content="" name="description" />
     <meta content="webthemez" name="author" />
-    <title>电力负荷报表系统</title>
+    <title>BRILLIANT Free Bootstrap Admin Template</title>
     <!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FontAwesome Styles-->
@@ -20,7 +21,7 @@
     <!-- Google Fonts-->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     <link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css"> 
-      <script type="text/javascript" src="assets/js/echarts.js"></script>  
+      <script type="text/javascript" src="${baseUrl}/assets/js/echarts.js"></script>  
 </head>
 
 <body>
@@ -718,9 +719,6 @@ myChart.setOption(option);
         </div>
         <!-- /. PAGE WRAPPER  -->
     </div>
-    <!-- /. WRAPPER  -->
-    <!-- JS Scripts-->
-    <!-- jQuery Js -->
     <script src="assets/js/jquery-1.10.2.js"></script>
     <!-- Bootstrap Js -->
     <script src="assets/js/bootstrap.min.js"></script>
@@ -730,20 +728,15 @@ myChart.setOption(option);
     <!-- Morris Chart Js -->
     <script src="assets/js/morris/raphael-2.1.0.min.js"></script>
     <script src="assets/js/morris/morris.js"></script>
-	
-	
 	<script src="assets/js/easypiechart.js"></script>
 	<script src="assets/js/easypiechart-data.js"></script>
-	
 	 <script src="assets/js/Lightweight-Chart/jquery.chart.js"></script>
-	
     <!-- Custom Js -->
     <script src="assets/js/custom-scripts.js"></script>
 
-      
     <!-- Chart Js -->
-  
-    <script type="text/javascript" src="assets/js/chart.min.js"></script> 
+    <script type="text/javascript" src="assets/js/Chart.min.js"></script>  
+    <script type="text/javascript" src="assets/js/chartjs.js"></script> 
 
 </body>
 

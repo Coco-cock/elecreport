@@ -2,6 +2,9 @@ package com.tran.report.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
+
 import com.tran.report.model.CustomBill;
 
 /**   
@@ -13,10 +16,13 @@ import com.tran.report.model.CustomBill;
 *
 *@param     
 */
-
+@Repository
 public interface CustomBillMapper {
 	List<CustomBill> getDayBill();
 	List<CustomBill> getMonthBill();
 	List<CustomBill> getYearBill();
+	List<CustomBill> getDayBillByCustomId(@Param("CustomId")int CustomId,@Param("startTime")String startTime,@Param("endTime")String endTime);
+	List<CustomBill> getMonthBillByCustomId(@Param("CustomId")int CustomId,@Param("startTime")String startTime,@Param("endTime")String endTime);
+	List<CustomBill> getYearBillByCustomId(@Param("CustomId")int CustomId,@Param("startTime")String startTime,@Param("endTime")String endTime);
 
 }

@@ -6,13 +6,13 @@
 <mapper namespace="com.tran.report.mapper.NodeMapper">
 	<resultMap id="nodeMap" type="com.tran.report.model.Node">
 		<id property="nodeId" column="node_id" />
-		<result property="customId" column="custom_id" />
+		<result property="customName" column="custom_name" />
 		<result property="nodeAddress" column="node_address" />
 		<result property="nodeStatus" column="node_status" />
 	</resultMap>
 
     <select id="getNodeInfo" resultMap="nodeMap">
-    SELECT * FROM node_info
+    SELECT n.node_id ,c.custom_name,n.node_address,n.node_status FROM node_info n,custom_info c WHERE c.Custom_id=n.custom_id;
     </select >
    
 </mapper>

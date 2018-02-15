@@ -1,4 +1,12 @@
 package com.tran.report.mapper;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
+
+import com.tran.report.model.Custom;
+
 /**   
 * @version 1.0   
 * @author TianMengJun
@@ -8,7 +16,10 @@ package com.tran.report.mapper;
 *
 *@param     
 */
-
+@Repository
 public interface CustomMapper {
+	List<Custom> getCustomInfo();
+	
+	Custom getCustomById(@Param("customId") String customId);
 
 }

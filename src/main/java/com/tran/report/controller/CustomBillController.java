@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tran.report.dao.RedisDao;
 import com.tran.report.model.CustomBill;
 import com.tran.report.service.CustomBillService;
 
@@ -53,7 +54,8 @@ public class CustomBillController {
 			yeardata.add(customBill.getElecAmount());
 		}
 		mav.addObject("yeardata", yeardata);
-			
+		RedisDao r=new RedisDao();
+		System.out.println(r.get("studentid"));	
 		
 		
 		return mav;		
@@ -80,6 +82,10 @@ public class CustomBillController {
 		return customBillService.getYearBill();
 		
 	}
-	
+	@RequestMapping(value="getmonthbillbycustomId")
+	public @ResponseBody List<CustomBill> getmonthBillByCustomId(){
+		return customBillService.getMonthBillByCustomId(1, "2017", "2018");
+		
+	}
 
 }
