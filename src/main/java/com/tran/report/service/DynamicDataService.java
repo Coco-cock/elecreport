@@ -2,6 +2,8 @@ package com.tran.report.service;
 
 import java.util.List;
 
+import com.tran.report.model.NodeLoad;
+
 /**   
 * @version 1.0   
 * @author TianMengJun
@@ -13,7 +15,7 @@ import java.util.List;
 */
 
 public interface DynamicDataService {
-		 String getAllLoadData();
-	      List  getCustomLoadData();
+	List<NodeLoad> getAllLoadData();
+	     List  getCustomLoadData(String customId);
 
 }

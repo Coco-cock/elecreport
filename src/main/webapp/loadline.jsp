@@ -251,13 +251,12 @@ timeChart.setOption({
     },
     xAxis:  {
         type: 'category',
-        name:'time/s',
-        boundaryGap: false,
-        data: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
+        name:'时间/minute'
+    
     },
     yAxis: {
         type: 'value',
-        name:'P/kw·h'
+        name:'电压/V'
     }, dataZoom: [
         {
             show: true,
@@ -275,9 +274,9 @@ timeChart.setOption({
        
     series: [
         {
-            name:'日期',
+            name:'电压',
             type:'line',
-            data:[11, 11, 15, 13, 12, 13, 10],
+            data:[],
             markPoint: {
                 data: [
                     {type: 'max', name: '最大值'},
@@ -298,32 +297,30 @@ timeChart.setOption({
 timeChart.showLoading();  
 
 
-//var i=self.setInterval("timedata()",3000);
+var i=self.setInterval("timedata()",1000);
 function timedata()
 {
 var daybilldata=[];
 $.ajax({
     type: "post",
     async: true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
-    url: "${pageContext.request.contextPath}/getPoint",    //请求发送到TestServlet处
+    url: "${pageContext.request.contextPath}/getdynamicdata",    //请求发送到TestServlet处
     data: {},
     dataType: "json",        //返回数据形式为json
     success: function (result) {
         //请求成功时执行该函数内容，result即为服务器返回的json对象
         if (result) {
-            for (var i = 0; i < result.length; i++) {
+            	//alert(result["time"][0]);
+            for (var i = 0; i < result["time"].length; i++) {
             	var point = []; 
-            	point.push(result[i].x);
-            	point.push(result[i].y);
+            	point.push(result["time"][i]);
+            	point.push(result["dydata"][i]);
             	daybilldata.push(point);
-            }
+            };
             
-            
-          
-            	//alert(pointdata);
+            //alert(daybilldata);
              timeChart.hideLoading();    //隐藏加载动画
-            timeChart.setOption({        //加载数据图表
-              
+            timeChart.setOption({        //加载数据图表             
                 series: [{
                     data: daybilldata
                 }]

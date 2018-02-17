@@ -1,5 +1,6 @@
 package com.tran.report.dao;
 
+import org.springframework.stereotype.Repository;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
@@ -13,8 +14,8 @@ import redis.clients.jedis.JedisPoolConfig;
 *
 *@param     
 */
-
-public class DB {
+@Repository
+public class RedisDB {
 	  
 	     //Redis服务器IP  
 	     private static final String HOST = "120.79.59.72";  

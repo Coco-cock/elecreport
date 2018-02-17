@@ -3,8 +3,10 @@ package com.tran.report.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.tran.report.dao.RedisDao;
+import com.tran.report.model.NodeLoad;
 import com.tran.report.service.DynamicDataService;
 
 /**   
@@ -16,19 +18,19 @@ import com.tran.report.service.DynamicDataService;
 *
 *@param     
 */
-
+@Service
 public class DynamicDataServiceImpl implements DynamicDataService {
 	@Autowired
 	RedisDao redisDao;
 	@Override
-	public String getAllLoadData() {
-		
-		return redisDao.get("studentid");
+	public List<NodeLoad> getAllLoadData() {
+		return redisDao.getAllData();		
 	}
 
 	@Override
-	public List getCustomLoadData() {
-		return null;
+	public List getCustomLoadData(String customId) {
+		return redisDao.getDataById(customId);
+
 	}
 
 }

@@ -15,9 +15,8 @@ public class NodeLoad {
 	 */
 	
 	private int nodeId;
-	private double nodeVoltage;
-	private double nodeCurrent;
-	private String createDate;
+	private String customId;
+	private Load load;
 	private String createTime;
 	public int getNodeId() {
 		return nodeId;
@@ -25,23 +24,17 @@ public class NodeLoad {
 	public void setNodeId(int nodeId) {
 		this.nodeId = nodeId;
 	}
-	public double getNodeVoltage() {
-		return nodeVoltage;
+	public String getCustomId() {
+		return customId;
 	}
-	public void setNodeVoltage(double nodeVoltage) {
-		this.nodeVoltage = nodeVoltage;
+	public void setCustomId(String customId) {
+		this.customId = customId;
 	}
-	public double getNodeCurrent() {
-		return nodeCurrent;
+	public Load getLoad() {
+		return load;
 	}
-	public void setNodeCurrent(double nodeCurrent) {
-		this.nodeCurrent = nodeCurrent;
-	}
-	public String getCreateDate() {
-		return createDate;
-	}
-	public void setCreateDate(String createDate) {
-		this.createDate = createDate;
+	public void setLoad(Load load) {
+		this.load = load;
 	}
 	public String getCreateTime() {
 		return createTime;
@@ -49,16 +42,21 @@ public class NodeLoad {
 	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
 	}
-	
 	public NodeLoad() {
+		super();
 	}
-	public NodeLoad(int nodeId, double nodeVoltage, double nodeCurrent, String createDate, String createTime) {
+	public NodeLoad(int nodeId, String customId, Load load, String createTime) {
 		super();
 		this.nodeId = nodeId;
-		this.nodeVoltage = nodeVoltage;
-		this.nodeCurrent = nodeCurrent;
-		this.createDate = createDate;
+		this.customId = customId;
+		this.load = load;
 		this.createTime = createTime;
 	}
+	@Override
+	public String toString() {
+		return "NodeLoad [nodeId=" + nodeId + ", customId=" + customId + ", load=" + load + ", createTime=" + createTime
+				+ "]";
+	}
+
 	
 }

@@ -25,6 +25,6 @@
 	</bean>
 
 	<!-- 配置单机版工具类 -->
-	<bean class="com.tran.report.dao.RedisDao" />
+	<!-- <bean class="com.tran.report.dao.Redis" /> -->
 
 </beans>

@@ -1,7 +1,9 @@
 package com.tran.report.controller;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,9 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.tran.report.dao.RedisDao;
 import com.tran.report.model.CustomBill;
+import com.tran.report.model.NodeLoad;
 import com.tran.report.service.CustomBillService;
+import com.tran.report.service.DynamicDataService;
 
 /**   
 * @version 1.0   
@@ -27,6 +30,8 @@ import com.tran.report.service.CustomBillService;
 public class CustomBillController {
 	@Autowired
 	CustomBillService customBillService;
+	@Autowired
+	DynamicDataService DynamicDataService;
 	@RequestMapping(value="loadline")
 	public ModelAndView loadLine() {
 		ModelAndView mav = new ModelAndView("loadline");
@@ -34,7 +39,7 @@ public class CustomBillController {
 		List<CustomBill> daybill =customBillService.getDayBill();
 		List<CustomBill> monthbill =customBillService.getMonthBill();
 		List<CustomBill> yearbill = customBillService.getYearBill();
-		
+	
 		List<Double> daydata = new LinkedList<>();
 		List<Double> monthdata = new LinkedList<>();
 		List<Double> yeardata = new LinkedList<>();
@@ -54,13 +59,26 @@ public class CustomBillController {
 			yeardata.add(customBill.getElecAmount());
 		}
 		mav.addObject("yeardata", yeardata);
-		RedisDao r=new RedisDao();
-		System.out.println(r.get("studentid"));	
-		
 		
 		return mav;		
 	}
-	
+	@RequestMapping(value="getdynamicdata")
+	public @ResponseBody Map<String,List<?>> getDynamicData(){
+		List<NodeLoad> datalist=DynamicDataService.getCustomLoadData("1");
+		Map<String,List<?>>map= new HashMap<>();
+		List<String> time = new LinkedList<>();
+		List<Double> dydata = new LinkedList<>();
+     for(NodeLoad node:datalist) {
+			
+			time.add(node.getCreateTime().substring(10, 19));
+			dydata.add(node.getLoad().getVoltage());
+		}
+     map.put("time", time);
+     map.put("dydata", dydata);
+		
+		return map;
+		
+	}
 	@RequestMapping(value="getdaybill")
 	public @ResponseBody List<CustomBill> getDayBill(){
 		return customBillService.getDayBill();
