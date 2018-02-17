@@ -32,7 +32,7 @@ public class CustomBillController {
 	CustomBillService customBillService;
 	@Autowired
 	DynamicDataService DynamicDataService;
-	@RequestMapping(value="loadline")
+	@RequestMapping(value="index")
 	public ModelAndView loadLine() {
 		ModelAndView mav = new ModelAndView("loadline");
 		
@@ -67,15 +67,20 @@ public class CustomBillController {
 		List<NodeLoad> datalist=DynamicDataService.getCustomLoadData("1");
 		Map<String,List<?>>map= new HashMap<>();
 		List<String> time = new LinkedList<>();
-		List<Double> dydata = new LinkedList<>();
+		List<Double> Vdata = new LinkedList<>();
+		List<Double> Adata = new LinkedList<>();
+		List<Double> Pdata = new LinkedList<>();
      for(NodeLoad node:datalist) {
 			
 			time.add(node.getCreateTime().substring(10, 19));
-			dydata.add(node.getLoad().getVoltage());
+			Vdata.add(node.getLoad().getVoltage());
+			Adata.add(node.getLoad().getCurrent());
+			Pdata.add(node.getLoad().getPower());
 		}
-     map.put("time", time);
-     map.put("dydata", dydata);
-		
+	     map.put("time", time);
+	     map.put("Vdata", Vdata);
+		 map.put("Adata", Adata);
+		 map.put("Pdata", Pdata);
 		return map;
 		
 	}

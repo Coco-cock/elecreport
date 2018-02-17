@@ -31,6 +31,9 @@ public class User {
 	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
 	}
+	
+	public User() {
+	}
 	public User(int userId, String userName, String userPassword) {
 		super();
 		this.userId = userId;
