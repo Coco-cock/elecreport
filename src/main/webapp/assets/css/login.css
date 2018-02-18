@@ -25,7 +25,7 @@ img{max-width:100%;}
 /*end reset*/
 /*--login start here--*/
 body{
-   background: url(../images/banner.jpg)repeat;
+   background: url(../img/loginbg.jpg)repeat;
    padding:100px 0px 30px 0px;
    font-family: 'Roboto', sans-serif;
    font-size: 100%;

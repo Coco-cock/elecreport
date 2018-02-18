@@ -27,14 +27,15 @@ import com.tran.report.service.DynamicDataService;
 */
 
 @Controller
-public class CustomBillController {
+public class HistoryDataController {
 	@Autowired
 	CustomBillService customBillService;
 	@Autowired
 	DynamicDataService DynamicDataService;
-	@RequestMapping(value="index")
+	
+	@RequestMapping(value="historyload")
 	public ModelAndView loadLine() {
-		ModelAndView mav = new ModelAndView("loadline");
+		ModelAndView mav = new ModelAndView("historydata");
 		
 		List<CustomBill> daybill =customBillService.getDayBill();
 		List<CustomBill> monthbill =customBillService.getMonthBill();
@@ -45,7 +46,7 @@ public class CustomBillController {
 		List<Double> yeardata = new LinkedList<>();
 		
 		for(CustomBill customBill:daybill) {
-			System.out.println(customBill.getCreateTime().substring(5, 7));
+			//System.out.println(customBill.getCreateTime().substring(5, 7));
 			daydata.add(customBill.getElecAmount());
 		}
 		mav.addObject("daydata", daydata);
@@ -62,28 +63,7 @@ public class CustomBillController {
 		
 		return mav;		
 	}
-	@RequestMapping(value="getdynamicdata")
-	public @ResponseBody Map<String,List<?>> getDynamicData(){
-		List<NodeLoad> datalist=DynamicDataService.getCustomLoadData("1");
-		Map<String,List<?>>map= new HashMap<>();
-		List<String> time = new LinkedList<>();
-		List<Double> Vdata = new LinkedList<>();
-		List<Double> Adata = new LinkedList<>();
-		List<Double> Pdata = new LinkedList<>();
-     for(NodeLoad node:datalist) {
-			
-			time.add(node.getCreateTime().substring(10, 19));
-			Vdata.add(node.getLoad().getVoltage());
-			Adata.add(node.getLoad().getCurrent());
-			Pdata.add(node.getLoad().getPower());
-		}
-	     map.put("time", time);
-	     map.put("Vdata", Vdata);
-		 map.put("Adata", Adata);
-		 map.put("Pdata", Pdata);
-		return map;
-		
-	}
+	
 	@RequestMapping(value="getdaybill")
 	public @ResponseBody List<CustomBill> getDayBill(){
 		return customBillService.getDayBill();
