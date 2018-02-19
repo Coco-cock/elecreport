@@ -112,16 +112,17 @@
 					</li>
 					<li><a  href="${baseUrl}/historyload"><i class="glyphicon glyphicon-signal"></i>历史负荷曲线</a>
 					</li>
-						<li><a href="#"><i class="fa fa-table"></i>历史负荷数据表<span
+					<li><a href="#"><i class="fa fa-table"></i>历史负荷数据表<span
 							class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
-						    <li><a href="${baseUrl}/"><i class="glyphicon glyphicon-list-alt"></i>实时负荷数据记录表</a></li>
-							<li><a href="${baseUrl}/dayloadtable"><i class="glyphicon glyphicon-list-alt"></i>日负荷数据记录表</a></li>
+						   <li><a class="list-group-item" href="${baseUrl}/"><i class="glyphicon glyphicon-list-alt"></i>实时负荷数据记录表</a></li>
+							<li><a  href="${baseUrl}/dayloadtable"><i class="glyphicon glyphicon-list-alt"></i>日负荷数据记录表</a></li>
 							<li><a href="${baseUrl}/monthloadtable"><i class="glyphicon glyphicon-list-alt"></i>月负荷数据记录表</a></li>
 							<li><a href="${baseUrl}/yearloadtable"><i class="glyphicon glyphicon-list-alt"></i>年负荷数据记录表</a></li>
 						</ul>
 					</li>
-					<li><a class="active-menu" href="${baseUrl}/getallcustom"><i class="glyphicon glyphicon-align-center"></i>用户信息管理</a>
+				
+					<li><a  href="${baseUrl}/getallcustom"><i class="glyphicon glyphicon-align-center"></i>用户信息管理</a>
 					</li>
 					<li><a href=""><i class="glyphicon glyphicon-user"></i>用户信息</a>
 					</li>
@@ -142,13 +143,12 @@
         </div>
         
             <div id="page-inner"> 
-               
-            <div class="row">
+              <div class="row">
                 <div class="col-md-12">
                     <!-- Advanced Tables -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                                                                                         用户信息表
+                                                                                  日负荷数据记录表
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
@@ -162,8 +162,7 @@
                                             <th>状态</th>
                                             <th>注册时间</th>
                                             <th>最近编辑时间</th>
-                                            <th>负荷情况</th>
-                                            <th>操  作</th>
+                                            <th>操作</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -176,9 +175,105 @@
                                             <td>${custom.customStatus}</td>
                                             <td>${custom.registerTime}</td>
                                             <td>${custom.editTime}</td>
-                                            <td><a href="${baseUrl}/historyloadbyid/${custom.customId}" ><button class="btn btn-primary"><i class="glyphicon glyphicon-signal"></i> 查看</button></a></td>
+                                            
                                             <td 
-                                            <a href=""><button class="btn btn-primary"><i class="fa fa-edit "></i>修改</button></a>
+                                            <button class="btn btn-primary"><i class="fa fa-edit "></i>修改</button>
+                                            </td>
+                                        </tr>
+                                         </c:forEach>                                
+                                       
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <!--End Advanced Tables -->
+                </div>
+            </div>
+              <div class="row">
+                <div class="col-md-12">
+                    <!-- Advanced Tables -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                                                                                  实时数据记录
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th>用户ID</th>
+                                            <th>姓名</th>
+                                            <th>联系电话</th>
+                                            <th>地址</th>
+                                            <th>状态</th>
+                                            <th>注册时间</th>
+                                            <th>最近编辑时间</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach var="custom" items="${customList}">
+                                        <tr class="odd gradeX">
+                                            <td>${custom.customId}</td>
+                                            <td>${custom.customName}</td>
+                                            <td>${custom.customIphone}</td>
+                                            <td>${custom.customAddress}</td>
+                                            <td>${custom.customStatus}</td>
+                                            <td>${custom.registerTime}</td>
+                                            <td>${custom.editTime}</td>
+                                            
+                                            <td 
+                                            <button class="btn btn-primary"><i class="fa fa-edit "></i>修改</button>
+                                            </td>
+                                        </tr>
+                                         </c:forEach>                                
+                                       
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <!--End Advanced Tables -->
+                </div>
+            </div> 
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Advanced Tables -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                                                                                  实时数据记录
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th>用户ID</th>
+                                            <th>姓名</th>
+                                            <th>联系电话</th>
+                                            <th>地址</th>
+                                            <th>状态</th>
+                                            <th>注册时间</th>
+                                            <th>最近编辑时间</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach var="custom" items="${customList}">
+                                        <tr class="odd gradeX">
+                                            <td>${custom.customId}</td>
+                                            <td>${custom.customName}</td>
+                                            <td>${custom.customIphone}</td>
+                                            <td>${custom.customAddress}</td>
+                                            <td>${custom.customStatus}</td>
+                                            <td>${custom.registerTime}</td>
+                                            <td>${custom.editTime}</td>
+                                            
+                                            <td 
+                                            <button class="btn btn-primary"><i class="fa fa-edit "></i>修改</button>
                                             </td>
                                         </tr>
                                          </c:forEach>                                

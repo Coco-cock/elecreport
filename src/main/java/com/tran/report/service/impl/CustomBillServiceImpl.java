@@ -53,4 +53,19 @@ public class CustomBillServiceImpl implements CustomBillService {
 		return customBillMapper.getYearBillByCustomId(CustomId, startTime, endTime);
 	}
 
+	@Override
+	public List<CustomBill> getDayLoadByCustomId(String customId) {
+		return customBillMapper.getDayLoadByCustomId(customId);
+	}
+
+	@Override
+	public List<CustomBill> getMonthLoadByCustomId(String customId) {
+		return customBillMapper.getMonthLoadByCustomId(customId);
+	}
+
+	@Override
+	public List<CustomBill> getYearLoadByCustomId(String customId) {
+		return customBillMapper.getYearLoadByCustomId(customId);
+	}
+
 }

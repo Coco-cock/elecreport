@@ -24,6 +24,8 @@ public interface CustomBillService {
 	List<CustomBill> getDayBillByCustomId(int CustomId,String startTime,String endTime);
 	List<CustomBill> getMonthBillByCustomId(int CustomId,String startTime,String endTime);
 	List<CustomBill> getYearBillByCustomId(int CustomId,String startTime,String endTime);
-
+	List<CustomBill> getDayLoadByCustomId(String customId);
+	List<CustomBill> getMonthLoadByCustomId(String customId);
+	List<CustomBill> getYearLoadByCustomId(String customId);
 
 }

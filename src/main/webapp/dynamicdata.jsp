@@ -11,15 +11,34 @@
 <meta content="" name="description" />
 <meta content="webthemez" name="author" />
 <title>实时数据</title>
-<link href="assets/css/bootstrap.css" rel="stylesheet" />
-<link href="assets/css/font-awesome.css" rel="stylesheet" />
-<link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
-<link href="assets/css/custom-styles.css" rel="stylesheet" />
+<link rel="shortcut icon" href="${baseUrl}/assets/img/favicon.gif" />
+<link href="${baseUrl}/assets/css/bootstrap.css" rel="stylesheet" />
+<link href="${baseUrl}/assets/css/font-awesome.css" rel="stylesheet" />
+<link href="${baseUrl}/assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+<link href="${baseUrl}/assets/css/custom-styles.css" rel="stylesheet" />
 <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
  <script src="${baseUrl}/assets/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="${baseUrl}/assets/js/echarts.js"></script>
 </head>
+<script type="text/javascript">
+$(document).ready(function () {
+    mainApp.initFunction(); 
+	$("#sideNav").click(function(){
+		if($(this).hasClass('closed')){
+			$('.navbar-side').animate({left: '0px'});
+			$(this).removeClass('closed');
+			$('#page-wrapper').animate({'margin-left' : '260px'});
+			
+		}
+		else{
+		    $(this).addClass('closed');
+			$('.navbar-side').animate({left: '-260px'});
+			$('#page-wrapper').animate({'margin-left' : '0px'}); 
+		}
+	});
+});
 
+</script>
 <body>
 	<div id="wrapper">
 		<nav class="navbar navbar-default top-navbar" role="navigation">
@@ -32,10 +51,10 @@
 				</button>
 				<a class="navbar-brand" href="${baseUrl}/index"><strong><i
 						class="icon glyphicon glyphicon-stats"></i> 数据报表</strong></a>
-
-				<div id="sideNav" href="">
+				 <div id="sideNav" href="">			
 					<i class="fa fa-bars icon"></i>
-				</div>
+				</div> 
+				
 			</div>
 
 			<ul class="nav navbar-top-links navbar-right">
@@ -90,8 +109,7 @@
 				<!-- /.dropdown -->
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#" aria-expanded="false"> <i
-						class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
-				</a>
+						class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i></a>
 					<ul class="dropdown-menu dropdown-user">
 						<li><a href="#"><i class="fa fa-user fa-fw"></i>${sessionScope.sessionVo.getUserName()}</a>
 						</li>
@@ -99,11 +117,13 @@
 						<li class="divider"></li>
 						<li><a href="${baseUrl}/logout"><i
 								class="fa fa-sign-out fa-fw"></i> 退出</a></li>
-					</ul> <!-- /.dropdown-user --></li>
-				<!-- /.dropdown -->
+					</ul> 
+				</li>
+			
 			</ul>
 		</nav>
-		<!--/. NAV TOP  -->
+	
+	
 		<nav class="navbar-default navbar-side" role="navigation">
 			<div class="sidebar-collapse">
 				<ul class="nav" id="main-menu">
@@ -111,7 +131,14 @@
 					</li>
 					<li><a  href="${baseUrl}/historyload"><i class="glyphicon glyphicon-signal"></i>历史负荷曲线</a>
 					</li>
-					<li><a href=""><i class="fa fa-table"></i>负荷数据表</a>
+					<li><a href="#"><i class="fa fa-table"></i>历史负荷数据表<span
+							class="fa arrow"></span></a>
+						<ul class="nav nav-second-level">
+						    <li><a href="#"><i class="glyphicon glyphicon-list-alt"></i>实时负荷数据记录表</a></li>
+							<li><a href="${baseUrl}/dayloadtable"><i class="glyphicon glyphicon-list-alt"></i>日负荷数据记录表</a></li>
+							<li><a href="${baseUrl}/monthloadtable"><i class="glyphicon glyphicon-list-alt"></i>月负荷数据记录表</a></li>
+							<li><a href="${baseUrl}/yearloadtable"><i class="glyphicon glyphicon-list-alt"></i>年负荷数据记录表</a></li>
+						</ul>
 					</li>
 					<li><a href="${baseUrl}/getallcustom"><i class="glyphicon glyphicon-align-center"></i>用户信息管理</a>
 					</li>
@@ -624,9 +651,9 @@ $.ajax({
 		<!-- /. PAGE WRAPPER  -->
 	</div>
    
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/jquery.metisMenu.js"></script>
-    <script src="assets/js/custom-scripts.js"></script>
+    <script src="${baseUrl}/assets/js/bootstrap.min.js"></script>
+    <script src="${baseUrl}/assets/js/jquery.metisMenu.js"></script>
+    <script src="${baseUrl}/assets/js/custom-scripts.js"></script>
 
 
 

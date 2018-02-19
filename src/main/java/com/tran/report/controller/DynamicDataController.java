@@ -31,6 +31,7 @@ public class DynamicDataController {
 	}
 	@RequestMapping(value="getdynamicdata")
 	public @ResponseBody Map<String,List<?>> getDynamicData(){
+		
 		List<NodeLoad> datalist=DynamicDataService.getCustomLoadData("1");
 		Map<String,List<?>>map= new HashMap<>();
 		List<String> time = new LinkedList<>();

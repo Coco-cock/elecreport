@@ -1,7 +1,8 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8" isELIgnored="false"
-%><%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"
+	isELIgnored="false"%><%@ taglib uri="http://java.sun.com/jsp/jstl/core"
+	prefix="c"%>
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
 <c:set var="baseUrl" value="${pageContext.request.contextPath}"></c:set>
@@ -9,18 +10,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta content="" name="description" />
 <meta content="webthemez" name="author" />
-<title>BRILLIANT Free Bootstrap Admin Template</title>
-<!-- Bootstrap Styles-->
+<title>实时数据</title>
 <link href="${baseUrl}/assets/css/bootstrap.css" rel="stylesheet" />
-<!-- FontAwesome Styles-->
 <link href="${baseUrl}/assets/css/font-awesome.css" rel="stylesheet" />
-<!-- Morris Chart Styles-->
-<link href="${baseUrl}/assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
-<!-- Custom Styles-->
+<link href="${baseUrl}/assets/js/morris/morris-0.4.3.min.css"
+	rel="stylesheet" />
 <link href="${baseUrl}/assets/css/custom-styles.css" rel="stylesheet" />
-<!-- Google Fonts-->
 <link href='https://fonts.googleapis.com/css?family=Open+Sans'
 	rel='stylesheet' type='text/css' />
+<script src="${baseUrl}/assets/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="${baseUrl}/assets/js/echarts.js"></script>
 </head>
 
@@ -38,7 +36,7 @@
 						class="icon glyphicon glyphicon-stats"></i>数据报表</strong></a>
 
 				<div id="sideNav" href="">
-						<i class="fa fa-bars icon"></i>
+					<i class="fa fa-bars icon"></i>
 				</div>
 			</div>
 
@@ -111,40 +109,26 @@
 		<nav class="navbar-default navbar-side" role="navigation">
 			<div class="sidebar-collapse">
 				<ul class="nav" id="main-menu">
-
-					<li><a class="active-menu" href="${baseUrl}/index"><i
-							class="glyphicon glyphicon-signal"></i> 负荷走势</a></li>
-
-					<li><a href="#"><i class="fa fa-sitemap"></i> Charts<span
+					<li><a href="${baseUrl}/index"><i
+							class="glyphicon glyphicon-flash"></i>实时负荷曲线</a></li>
+					<li><a class="active-menu" href="${baseUrl}/historyload"><i
+							class="glyphicon glyphicon-signal"></i>历史负荷曲线</a></li>
+					<li><a href="#"><i class="fa fa-table"></i>历史负荷数据表<span
 							class="fa arrow"></span></a>
-						<ul class="nav nav-second-level">
-							<li><a href="chart.html">Charts JS</a></li>
-							<li><a href="morris-chart.html">Morris Chart</a></li>
-						</ul></li>
-
-					<li><a href="table.html"><i class="fa fa-table"></i> 数据管理</a>
+					    <ul class="nav nav-second-level">
+						    <li><a  href="${baseUrl}/"><i class="glyphicon glyphicon-list-alt"></i>实时负荷数据记录表</a></li>
+							<li><a  href="${baseUrl}/dayloadtable"><i class="glyphicon glyphicon-list-alt"></i>日负荷数据记录表</a></li>
+							<li><a href="${baseUrl}/monthloadtable"><i class="glyphicon glyphicon-list-alt"></i>月负荷数据记录表</a></li>
+							<li><a href="${baseUrl}/yearloadtable"><i class="glyphicon glyphicon-list-alt"></i>年负荷数据记录表</a></li>
+						</ul>
+						</li>
+					<li><a href="${baseUrl}/getallcustom"><i
+							class="glyphicon glyphicon-align-center"></i>用户信息管理</a></li>
+					<li><a href=""><i class="glyphicon glyphicon-user"></i>用户信息</a>
 					</li>
-					<li><a href="form.html"><i class="fa fa-edit"></i> Forms </a>
-					</li>
-
-
-					<li><a href="#"><i class="fa fa-sitemap"></i>负荷节点<span
-							class="fa arrow"></span></a>
-						<ul class="nav nav-second-level">
-							<li><a href="#">Second Level Link</a></li>
-							<li><a href="#">Second Level Link</a></li>
-							<li><a href="#">Second Level Link<span class="fa arrow"></span></a>
-								<ul class="nav nav-third-level">
-									<li><a href="#">Third Level Link</a></li>
-									<li><a href="#">Third Level Link</a></li>
-									<li><a href="#">Third Level Link</a></li>
-
-								</ul></li>
-						</ul></li>
-					<li><a href="empty.html"><i class="fa fa-fw fa-file"></i>
-							Empty Page</a></li>
+					<li><a href=""><i
+							class="glyphicon glyphicon-copyright-mark"></i>关于</a></li>
 				</ul>
-
 			</div>
 
 		</nav>
@@ -397,7 +381,7 @@ yearChart.setOption(option);
 				</div>
 
 
-			
+
 				<div class="row">
 					<div class="col-md-12 col-sm-12 col-xs-12">
 						<div class="panel panel-default">
@@ -406,7 +390,8 @@ yearChart.setOption(option);
 							</div>
 						</div>
 					</div>
-					
+
+				</div>
 					<script>
 var yearOldChart = echarts.init(domInit("year-year",350,200));
 
@@ -477,87 +462,14 @@ window.onresize = function () {
     yearOldChart.resize();
 };
 
-
   </script>
-
-			
-					<div class="col-md-6 col-sm-12 col-xs-12">
-
-						<div class="panel panel-default">
-							<div class="panel-heading">Responsive Table Example</div>
-							<div class="panel-body">
-								<div class="table-responsive">
-									<table class="table table-striped table-bordered table-hover">
-										<thead>
-											<tr>
-												<th>S No.</th>
-												<th>First Name</th>
-												<th>Last Name</th>
-												<th>User Name</th>
-												<th>Email ID.</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>1</td>
-												<td>John</td>
-												<td>Doe</td>
-												<td>John15482</td>
-												<td>name@site.com</td>
-											</tr>
-											<tr>
-												<td>2</td>
-												<td>Kimsila</td>
-												<td>Marriye</td>
-												<td>Kim1425</td>
-												<td>name@site.com</td>
-											</tr>
-											<tr>
-												<td>3</td>
-												<td>Rossye</td>
-												<td>Nermal</td>
-												<td>Rossy1245</td>
-												<td>name@site.com</td>
-											</tr>
-											<tr>
-												<td>4</td>
-												<td>Richard</td>
-												<td>Orieal</td>
-												<td>Rich5685</td>
-												<td>name@site.com</td>
-											</tr>
-											<tr>
-												<td>5</td>
-												<td>Jacob</td>
-												<td>Hielsar</td>
-												<td>Jac4587</td>
-												<td>name@site.com</td>
-											</tr>
-
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-
-					</div>
-			</div>
-				<!-- /. ROW  -->
-
-
-				<footer>
-				
-
-				</footer>
-			</div>
-			<!-- /. PAGE INNER  -->
+			</div>		
 		</div>
-		<!-- /. PAGE WRAPPER  -->
 	</div>
-	<script src="assets/js/jquery-3.3.1.min.js"></script>
-	<script src="assets/js/bootstrap.min.js"></script>
-	<script src="assets/js/jquery.metisMenu.js"></script>
-	<script src="assets/js/custom-scripts.js"></script>
+
+	<script src="${baseUrl}/assets/js/bootstrap.min.js"></script>
+	<script src="${baseUrl}/assets/js/jquery.metisMenu.js"></script>
+	<script src="${baseUrl}/assets/js/custom-scripts.js"></script>
 
 
 </body>

@@ -24,5 +24,7 @@ public interface CustomBillMapper {
 	List<CustomBill> getDayBillByCustomId(@Param("CustomId")int CustomId,@Param("startTime")String startTime,@Param("endTime")String endTime);
 	List<CustomBill> getMonthBillByCustomId(@Param("CustomId")int CustomId,@Param("startTime")String startTime,@Param("endTime")String endTime);
 	List<CustomBill> getYearBillByCustomId(@Param("CustomId")int CustomId,@Param("startTime")String startTime,@Param("endTime")String endTime);
-
+	List<CustomBill> getDayLoadByCustomId(@Param("customId")String customId);
+	List<CustomBill> getMonthLoadByCustomId(@Param("customId")String customId);
+	List<CustomBill> getYearLoadByCustomId(@Param("customId")String customId);
 }
