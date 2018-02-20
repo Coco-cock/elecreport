@@ -12,15 +12,15 @@
 	<resultMap type="com.tran.report.model.Custom" id="customMap">
 		<id column="custom_id" property="customId" />
 		<result column="custom_name" property="customName" />
-		<result column="custom_Iphone" property="customIphone" />
-		<result column="custom_Address" property="customAddress" />
-		<result column="custom_Status" property="customStatus" />
-		<result column="register_Time" property="registerTime" />
-		<result column="edit_Time" property="editTime" />
+		<result column="custom_iphone" property="customIphone" />
+		<result column="custom_address" property="customAddress" />
+		<result column="custom_status" property="customStatus" />
+		<result column="register_time" property="registerTime" />
+		<result column="edit_time" property="editTime" />
 	</resultMap>
 
 	<select id="findUserByName" parameterType="String" resultMap="userMap">
-		SELECT * FROM USER WHERE user_name=#{userName}
+		SELECT * FROM user WHERE user_name=#{userName}
 	</select>
 
 	<select id="getCustomByuserId" parameterType="String" resultMap="customMap">

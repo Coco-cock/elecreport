@@ -3,9 +3,6 @@ package com.tran.report.test;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Timer;
-
-import org.junit.Test;
-
 import com.tran.report.util.CreateData;
 
 /**   
@@ -22,7 +19,7 @@ public class CreateDataTest {
 	public static void main(String[] args) {
 	    Calendar calendar = Calendar.getInstance();
 	    calendar.set(Calendar.HOUR_OF_DAY, 21); // 控制时
-	    calendar.set(Calendar.MINUTE, 0);    // 控制分
+	    calendar.set(Calendar.MINUTE, 45);    // 控制分
 	    calendar.set(Calendar.SECOND, 0);    // 控制秒
 	    Date time = calendar.getTime();     // 得出执行任务的时间,此处为今天的12：00：00
 	    CreateData cd=new CreateData();
