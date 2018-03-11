@@ -2,11 +2,13 @@ package com.tran.report.service.impl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tran.report.dao.RedisDao;
-import com.tran.report.model.NodeLoad;
+import com.tran.report.model.LoadToRedis;
 import com.tran.report.service.DynamicDataService;
 
 /**   
@@ -23,7 +25,7 @@ public class DynamicDataServiceImpl implements DynamicDataService {
 	@Autowired
 	RedisDao redisDao;
 	@Override
-	public List<NodeLoad> getAllLoadData() {
+	public List<LoadToRedis> getAllLoadData() {
 		return redisDao.getAllData();		
 	}
 

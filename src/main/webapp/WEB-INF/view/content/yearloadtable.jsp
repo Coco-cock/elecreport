@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8" isELIgnored="false"
 %><%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"
-%><%@ include file="menu.jsp" %>
+%><%@ include file="../main/menu.jsp"%>
 				<!-- 主要内容 -->
 			<div id="main-content" class="main-content">
 				<div  class="main-content-inner">
@@ -54,7 +54,7 @@
 document.getElementById('navleft3').className = 'active'; 
  document.getElementById('navleft3-4').className = 'active'; 
 </script>
-		<%@ include file="footer.jsp" %>
+		<%@ include file="../main/footer.jsp" %>
 		</div><!-- /.main-container -->
 		<!--[if !IE]> -->
 		<script src="${baseUrl}/assets/js/jquery-2.1.4.min.js"></script>

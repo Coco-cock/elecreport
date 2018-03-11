@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8" isELIgnored="false"
 %><%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"
-%><%@ include file="menu.jsp"%>
+%><%@ include file="../main/menu.jsp"%>
 			<!-- 主要内容 -->
 			<div id="main-content" class="main-content">
 				<div  class="main-content-inner">
@@ -171,13 +171,10 @@
 								<!-- PAGE CONTENT ENDS -->
 							</div><!-- /.col -->
 						</div><!-- /.row -->
+						<div class="hr hr32 hr-dotted"></div>
 					</div><!-- /.page-content -->
 				</div>
 			</div><!-- /.main-content -->
-
-
-
-
 	<script>
 function domInit(id,widthDom,heightDom){
 var chartDom =document.getElementById(id);
@@ -499,7 +496,7 @@ window.onresize = function () {
 	 currentChart.resize();
 	 powerChart.resize();
 };
-var i=self.setInterval("timedata()",1000);
+var i=self.setInterval("timedata()",5000);
 function timedata(){
 var Vdata=[];
 var Adata=[];
@@ -532,7 +529,7 @@ $.ajax({
             	Pdata.push(P);
             };
             
-            //alert(daybilldata); 
+           // alert(daybilldata); 
              voltageG.hideLoading(); 
              voltageG.setOption({                  
                 series: [{
@@ -585,37 +582,25 @@ $.ajax({
 document.getElementById('navleft1').className = 'active'; 
 </script>  
 		
-		<%@ include file="footer.jsp" %>
+		<%@ include file="../main/footer.jsp" %>
 		</div><!-- /.main-container -->
 
-		<!-- basic scripts -->
-
-		<!--[if !IE]> -->
-		<script src="assets/js/jquery-2.1.4.min.js"></script>
-
-		<!-- <![endif]-->
-
-		<!--[if IE]>
-<script src="assets/js/jquery-1.11.3.min.js"></script>
-<![endif]-->
 		<script type="text/javascript">
 			if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 		</script>
-		<script src="assets/js/bootstrap.min.js"></script>
+		<script src="${baseUrl}/assets/js/bootstrap.min.js"></script>
 
 		<!-- page specific plugin scripts -->
-		  <script src="assets/js/excanvas.min.js"></script>
-		<script src="assets/js/jquery-ui.custom.min.js"></script>
-		<script src="assets/js/jquery.ui.touch-punch.min.js"></script>
-		<script src="assets/js/jquery.sparkline.index.min.js"></script>
-		<script src="assets/js/jquery.flot.min.js"></script>
-		<script src="assets/js/jquery.flot.resize.min.js"></script>
+		  <script src="${baseUrl}/assets/js/excanvas.min.js"></script>
+		<script src="${baseUrl}/assets/js/jquery-ui.custom.min.js"></script>
+		<script src="${baseUrl}/assets/js/jquery.ui.touch-punch.min.js"></script>
+		<script src="${baseUrl}/assets/js/jquery.sparkline.index.min.js"></script>
+		<script src="${baseUrl}/assets/js/jquery.flot.min.js"></script>
+		<script src="${baseUrl}/assets/js/jquery.flot.resize.min.js"></script>
 
 		<!-- ace scripts -->
-		<script src="assets/js/ace-elements.min.js"></script>
-		<script src="assets/js/ace.min.js"></script>
-
-		
+		<script src="${baseUrl}/assets/js/ace-elements.min.js"></script>
+		<script src="${baseUrl}/assets/js/ace.min.js"></script>	
 	</body>
 </html>
 	

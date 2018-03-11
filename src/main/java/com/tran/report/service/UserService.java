@@ -1,7 +1,10 @@
 package com.tran.report.service;
 
-import com.tran.report.model.Custom;
-import com.tran.report.model.User;
+import java.util.List;
+
+import com.tran.report.entity.Custom;
+import com.tran.report.entity.User;
+import com.tran.report.vo.UserAndCustomVO;
 
 /**   
 * @version 1.0   
@@ -14,7 +17,11 @@ import com.tran.report.model.User;
 */
 
 public interface UserService {
-	Custom getCustomByuserId(String userId);
-	String findUser(User user);
+	List<UserAndCustomVO> getAllUserAndCustom();
+	boolean findUser(User user);
+	UserAndCustomVO getUser(String userName,String password);
+	boolean saveUser(User user);
+	boolean editUser(User user);
+	boolean deleteUser(String userId);
 
 }

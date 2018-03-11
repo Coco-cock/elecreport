@@ -10,7 +10,7 @@ import org.springframework.util.StringUtils;
 
 import com.alibaba.fastjson.JSON;
 import com.tran.report.model.Load;
-import com.tran.report.model.NodeLoad;
+import com.tran.report.model.LoadToRedis;
 
 import redis.clients.jedis.Jedis;
 
@@ -47,15 +47,15 @@ public class RedisDao {
     }
     
     
-	public List<NodeLoad> getAllData() {
+	public List<LoadToRedis> getAllData() {
 		Jedis jedis = redisDB.getJedis();
-		List<NodeLoad> loadData= new LinkedList<>();
+		List<LoadToRedis> loadData= new LinkedList<>();
 		List<String> timeList=jedis.lrange(TIMEDATA, 0, -1);		
 		Set<String> idList=jedis.zrange(CUSTOMID, 0, -1);
 		
 		for(String id:idList) {
 			for(String time:timeList) {
-				NodeLoad nodeLoad=new NodeLoad();
+				LoadToRedis nodeLoad=new LoadToRedis();
 				nodeLoad.setCustomId(id);
 				nodeLoad.setCreateTime(time);
 				String loadJson=jedis.hget(id,time);
@@ -70,9 +70,9 @@ public class RedisDao {
 	
 	
 	
-	public List<NodeLoad> getDataById(String customId) {
+	public List<LoadToRedis> getDataById(String customId) {
 		Jedis jedis = redisDB.getJedis();
-		List<NodeLoad> loadData= new LinkedList<>();
+		List<LoadToRedis> loadData= new LinkedList<>();
 		List<String> timeList=jedis.lrange(TIMEDATA, 0, -1);
 		String[] times=new String[timeList.size()];
 		List<String> jsonList = jedis.hmget(customId,timeList.toArray(times));
@@ -89,7 +89,7 @@ public class RedisDao {
 		
 		int i=0;
 		for(String loadJson:jsonList) {
-			NodeLoad nodeLoad=new NodeLoad();
+			LoadToRedis nodeLoad=new LoadToRedis();
 			nodeLoad.setCustomId(customId);
 			nodeLoad.setCreateTime(times[i++]);
 			Load load=JSON.parseObject(loadJson, Load.class);
@@ -106,7 +106,7 @@ public class RedisDao {
 	 * @param TimeData
 	 * @return
 	 */
-	public boolean  saveData(NodeLoad nodeLoad) {
+	public boolean  saveData(LoadToRedis nodeLoad) {
 		Jedis jedis = redisDB.getJedis();
 		String ID=nodeLoad.getCustomId();
 		String creatTime=nodeLoad.getCreateTime();

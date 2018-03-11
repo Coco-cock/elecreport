@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8" isELIgnored="false"
 %><%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"
-%><%@ include file="menu.jsp" %>
+%><%@ include file="../main/menu.jsp"%>
 				<!-- 主要内容 -->
 			<div id="main-content" class="main-content">
 				<div  class="main-content-inner">

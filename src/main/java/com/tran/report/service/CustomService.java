@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.tran.report.model.Custom;
+import com.tran.report.entity.Custom;
+import com.tran.report.vo.CustomVO;
+
 
 /**   
 * @version 1.0   
@@ -17,6 +19,10 @@ import com.tran.report.model.Custom;
 */
 @Service
 public interface CustomService {
-	List<Custom> getCustomInfo();
-	Custom getCustomInfoById(String customid);
+	List<CustomVO> getCustomInfo();
+	CustomVO getCustomVoById(String customid);
+	Custom getCustomByUserId(String userId);
+	boolean saveCustom(CustomVO customVO);
+	boolean editCustom(CustomVO customVO);
+	boolean deleteCustom(String customId);
 }

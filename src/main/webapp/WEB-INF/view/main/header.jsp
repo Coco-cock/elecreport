@@ -6,6 +6,7 @@
 		<c:set var="baseUrl" value="${pageContext.request.contextPath}"></c:set>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+		<link rel="icon" href="${baseUrl}/assets/images/favicon.gif" type="image/gif" >
 		<!-- bootstrap & fontawesome -->
 		<link rel="stylesheet" href="${baseUrl}/assets/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="${baseUrl}/assets/font-awesome/4.5.0/css/font-awesome.min.css" />
@@ -16,6 +17,7 @@
 		<link rel="stylesheet" href="${baseUrl}/assets/css/ace-skins.min.css" />
 		<link rel="stylesheet" href="${baseUrl}/assets/css/ace-rtl.min.css" />
 		<script src="${baseUrl}/assets/js/ace-extra.min.js"></script>	
+		<script src="${baseUrl}/assets/js/jquery-2.1.4.min.js"></script>
 		<script type="text/javascript" src="${baseUrl}/assets/js/echarts.js"></script>  	
 	</head>
 	<body class="no-skin">
@@ -38,7 +40,7 @@
 								<img class="nav-user-photo" src="assets/images/avatars/user.jpg" alt="Jason's Photo" />
 								<span class="user-info">
 									<small>Welcome</small>
-									${sessionScope.sessionVo.getUserName()}
+									${sessionScope.sessionVo.getUserVO().getUser().getUserName()}
 								</span>
 
 								<i class="ace-icon fa fa-caret-down"></i>

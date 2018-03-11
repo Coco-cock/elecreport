@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 import com.tran.report.dao.RedisDao;
 import com.tran.report.model.Load;
-import com.tran.report.model.NodeLoad;
+import com.tran.report.model.LoadToRedis;
 
 /**   
 * @version 1.0   
@@ -38,7 +38,7 @@ public class CreateData extends TimerTask {
 	    Load load =new Load(voltage, current, current*voltage);
 		SimpleDateFormat sdf =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String createTime= sdf.format(new Date());		   
-		NodeLoad nodeLoad =new NodeLoad(1, "1", load, createTime);		
+		LoadToRedis nodeLoad =new LoadToRedis(1, "1", load, createTime);		
 		boolean flag=redisDao.saveData(nodeLoad);
 		System.out.println(flag);
 	}

@@ -12,10 +12,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.tran.report.model.Custom;
-import com.tran.report.model.User;
+import com.tran.report.service.CustomService;
 import com.tran.report.service.UserService;
+import com.tran.report.vo.CustomVO;
 import com.tran.report.vo.SessionVo;
+import com.tran.report.vo.UserAndCustomVO;
 
 /**
  * @version 1.0
@@ -29,32 +30,29 @@ import com.tran.report.vo.SessionVo;
 public class UserController {
 	@Autowired
 	UserService userService;
-
+	@Autowired
+	CustomService customService;
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public ModelAndView login(@RequestParam("userName") String userName,
-			@RequestParam("userPassword") String userPassword, ModelMap modelMap) {
-		ModelAndView mav = new ModelAndView();
+			@RequestParam("userPassword") String password, ModelMap modelMap) {
 		String flag = "登陆失败！";
-		if (StringUtils.isNotEmpty(userName) && StringUtils.isNotEmpty(userPassword)) {
-			User user = new User();
-			user.setUserName(userName);
-			user.setUserPassword(userPassword);
-			String userId = userService.findUser(user);
-			if (StringUtils.isNotEmpty(userId)) {
+		String url="redirect:/login";
+		if (StringUtils.isNotBlank(userName) && StringUtils.isNotBlank(password)) {
+			UserAndCustomVO userVO = userService.getUser(userName, password);		
+			if (userVO.getUser()!=null) {
+				/*CustomVO customVO=customService.getCustomInfoById(userVO.getUser().getID());
+				System.out.println(customVO+"#############################################");
+				if(customVO!=null) {
+					userVO.setCustomVO(customVO);	
+				}*/
 				SessionVo sessionVo = new SessionVo();
-				//未完成
-				Custom custom = userService.getCustomByuserId(userId);
-				sessionVo.setUserName(userName);
-				sessionVo.setCustomId(custom.getCustomId());
+				sessionVo.setUserVO(userVO);
 				modelMap.addAttribute("sessionVo", sessionVo);
 				flag = "登陆成功！";
-				mav.setViewName("redirect:/index");
-			} else {
-				mav.setViewName("redirect:/login");
-			}
+				url="redirect:/index";
+			} 
 		}
-		mav.addObject("flag", flag);
-		return mav;
+		return new ModelAndView(url).addObject("flag", flag);
 	}
 
 	@RequestMapping(value = "logout", method = RequestMethod.GET)
@@ -62,6 +60,12 @@ public class UserController {
 		modelMap.remove("sessionVo");
 		session.invalidate();
 		return "login";
+	}
+	@RequestMapping(value = "getuserinfo", method = RequestMethod.GET)
+	public ModelAndView getUserInfo(HttpSession session) {
+		SessionVo sessionVo =(SessionVo) session.getAttribute("sessionVo");
+		return new ModelAndView("profile").addObject("user");
+		
 	}
 		
 }

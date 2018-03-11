@@ -1,7 +1,7 @@
 package com.tran.report.test;
 
-import com.tran.report.service.CustomBillService;
-import com.tran.report.service.impl.CustomBillServiceImpl;
+import com.tran.report.service.LoadBillService;
+import com.tran.report.service.impl.LoadBillServiceImpl;
 
 /**   
 * @version 1.0   
@@ -16,7 +16,7 @@ import com.tran.report.service.impl.CustomBillServiceImpl;
 public class Test {
 
 	void testone(){
-		CustomBillService customBillService=new CustomBillServiceImpl();
+		LoadBillService customBillService=new LoadBillServiceImpl();
 		System.out.println(customBillService.getDayBill());
 		
 	}

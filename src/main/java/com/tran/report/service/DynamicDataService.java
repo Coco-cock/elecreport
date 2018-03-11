@@ -2,7 +2,7 @@ package com.tran.report.service;
 
 import java.util.List;
 
-import com.tran.report.model.NodeLoad;
+import com.tran.report.model.LoadToRedis;
 
 /**   
 * @version 1.0   
@@ -15,7 +15,7 @@ import com.tran.report.model.NodeLoad;
 */
 
 public interface DynamicDataService {
-	List<NodeLoad> getAllLoadData();
-	     List  getCustomLoadData(String customId);
+	List<LoadToRedis> getAllLoadData();
+	List  getCustomLoadData(String customId);
 
 }

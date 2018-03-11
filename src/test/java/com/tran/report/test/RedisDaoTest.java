@@ -2,7 +2,7 @@ package com.tran.report.test;
 
 import com.tran.report.dao.RedisDao;
 import com.tran.report.model.Load;
-import com.tran.report.model.NodeLoad;
+import com.tran.report.model.LoadToRedis;
 
 /**   
 * @version 1.0   
@@ -17,7 +17,7 @@ import com.tran.report.model.NodeLoad;
 public class RedisDaoTest {
 	public static void main(String[] args) {
 		Load load=new Load(220.0, 10, 2200);
-		NodeLoad node =new NodeLoad(1, "1", load, "2018-02-15");
+		LoadToRedis node =new LoadToRedis(1, "1", load, "2018-02-15");
 		RedisDao r=new RedisDao();
 		//System.out.println(r.saveData(node));
 		System.out.println(r.getAllData());

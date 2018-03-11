@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.tran.report.model.NodeLoad;
+import com.tran.report.model.LoadToRedis;
 import com.tran.report.service.DynamicDataService;
 
 /**   
@@ -32,13 +32,13 @@ public class DynamicDataController {
 	@RequestMapping(value="getdynamicdata")
 	public @ResponseBody Map<String,List<?>> getDynamicData(){
 		
-		List<NodeLoad> datalist=DynamicDataService.getCustomLoadData("1");
+		List<LoadToRedis> datalist=DynamicDataService.getCustomLoadData("1");
 		Map<String,List<?>>map= new HashMap<>();
 		List<String> time = new LinkedList<>();
 		List<Double> Vdata = new LinkedList<>();
 		List<Double> Adata = new LinkedList<>();
 		List<Double> Pdata = new LinkedList<>();
-     for(NodeLoad node:datalist) {
+     for(LoadToRedis node:datalist) {
 			
 			time.add(node.getCreateTime().substring(10, 19));
 			Vdata.add(node.getLoad().getVoltage());

@@ -14,7 +14,7 @@
 			
 				<ul class="nav nav-list">
 					<li id="navleft1">
-						<a href="index.html">
+						<a href="index">
 							<i class="menu-icon glyphicon glyphicon-flash"></i>
 							<span class="menu-text"> 实时负荷曲线</span>
 						</a>

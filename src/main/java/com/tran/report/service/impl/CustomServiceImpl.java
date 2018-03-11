@@ -11,26 +11,70 @@ package com.tran.report.service.impl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.tran.report.mapper.CustomMapper;
-import com.tran.report.model.Custom;
+import com.google.common.base.Function;
+import com.google.common.collect.Lists;
+import com.tran.report.entity.Custom;
+import com.tran.report.repository.CustomRepository;
 import com.tran.report.service.CustomService;
+import com.tran.report.util.Status;
+import com.tran.report.vo.CustomVO;
 @Service
+@Transactional
 public class CustomServiceImpl implements CustomService{
 	@Autowired
-	CustomMapper customMapper;
+	CustomRepository customRepository;
 	@Override
-	public List<Custom> getCustomInfo() {
-		
-		return customMapper.getCustomInfo();
+	public List<CustomVO> getCustomInfo() {
+		List<Custom> customList=customRepository.findAll();
+		List<CustomVO> voList = Lists.transform(customList, new Function<Custom, CustomVO>() {
+			@Override
+			public CustomVO apply(Custom custom) {
+				CustomVO vo = new CustomVO();		
+				BeanUtils.copyProperties(custom, vo);		
+				vo.setCustomStatus(Status.getName(custom.isCustomStatus()));
+				return vo;
+			}
+		});
+		return voList;
 	}
 
 	@Override
-	public Custom getCustomInfoById(String customid) {
-		
-		return customMapper.getCustomById(customid);
+	public CustomVO getCustomVoById(String customid) {
+		Custom custom =customRepository.findOne(customid);
+		if(custom==null)
+			return null;
+		CustomVO vo = new CustomVO();
+		BeanUtils.copyProperties(custom, vo);
+		vo.setCustomStatus(Status.getName(custom.isCustomStatus()));
+		return vo;
+	}
+
+	@Override
+	public Custom getCustomByUserId(String userId) {
+		Custom custom=customRepository.findOne(userId);
+		return custom;
+	}
+
+	@Override
+	public boolean saveCustom(CustomVO customVO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean editCustom(CustomVO customVO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean deleteCustom(String customId) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

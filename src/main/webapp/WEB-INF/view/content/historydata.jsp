@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8" isELIgnored="false"
 %><%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"
-%><%@ include file="menu.jsp"%>
+%><%@ include file="../main/menu.jsp"%>
 			<!-- 主要内容 -->
 			<div id="main-content" class="main-content">
 				<div  class="main-content-inner">
@@ -32,7 +32,7 @@
 											<div class="widget-header widget-header-flat widget-header-small">
 												<h5 class="widget-title">
 													<i class="ace-icon fa fa-signal"></i>
-													电压数据
+													日负荷数据走势
 												</h5>				
 											</div>
 											<div class="widget-body" id="month-chart">
@@ -51,7 +51,7 @@ function domInit(id,widthDom,heightDom) {
 var monthChart = echarts.init(domInit("month-chart",350,200));
 monthChart.setOption({
     title: {
-        text: '月负荷数据',
+        text: '日负荷数据',
         subtext: '纯属虚构'
     },
     tooltip: {
@@ -115,7 +115,7 @@ monthChart.setOption({
 											<div class="widget-header widget-header-flat widget-header-small">
 												<h5 class="widget-title">
 													<i class="ace-icon fa fa-signal"></i>
-													电流数据
+													月负荷数据走势
 												</h5>
 
 											
@@ -237,7 +237,7 @@ yearChart.setOption(option);
 											<div class="widget-header widget-header-flat widget-header-small">
 												<h5 class="widget-title">
 													<i class="ace-icon fa fa-signal"></i>
-													功率数据
+													年负荷数据走势
 												</h5>
 
 											
@@ -257,7 +257,7 @@ var yearOldChart = echarts.init(domInit("year-year",350,200));
 
 yearOldChart.setOption({
     title: {
-        text: '三年总负荷走势',
+        text: '近三年总负荷走势',
         //subtext: '纯属虚构'
     },
     tooltip: {
@@ -325,12 +325,7 @@ window.onresize = function () {
   </script>
 									</div><!-- /.col -->
 								</div><!-- /.row -->
-
-
 								<div class="hr hr32 hr-dotted"></div>
-
-								
-
 								<!-- PAGE CONTENT ENDS -->
 							</div><!-- /.col -->
 						</div><!-- /.row -->
@@ -341,21 +336,21 @@ window.onresize = function () {
 var div = document.getElementById('navleft2'); 
 div.className = 'active'; 
 </script>
-		<%@ include file="footer.jsp" %>
+		<%@ include file="../main/footer.jsp" %>
 		</div><!-- /.main-container -->
-		<script src="assets/js/jquery-2.1.4.min.js"></script>
+		<script src="${baseUrl}/assets/js/jquery-2.1.4.min.js"></script>
 		<script type="text/javascript">
 			if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 		</script>
-		<script src="assets/js/bootstrap.min.js"></script>
-		<script src="assets/js/jquery-ui.custom.min.js"></script>
-		<script src="assets/js/jquery.ui.touch-punch.min.js"></script>
-		<script src="assets/js/jquery.sparkline.index.min.js"></script>
-		<script src="assets/js/jquery.flot.min.js"></script>
-		<script src="assets/js/jquery.flot.resize.min.js"></script>
+		<script src="${baseUrl}/assets/js/bootstrap.min.js"></script>
+		<script src="${baseUrl}/assets/js/jquery-ui.custom.min.js"></script>
+		<script src="${baseUrl}/assets/js/jquery.ui.touch-punch.min.js"></script>
+		<script src="${baseUrl}/assets/js/jquery.sparkline.index.min.js"></script>
+		<script src="${baseUrl}/assets/js/jquery.flot.min.js"></script>
+		<script src="${baseUrl}/assets/js/jquery.flot.resize.min.js"></script>
 		<!-- ace scripts -->
-		<script src="assets/js/ace-elements.min.js"></script>
-		<script src="assets/js/ace.min.js"></script>	
+		<script src="${baseUrl}/assets/js/ace-elements.min.js"></script>
+		<script src="${baseUrl}/assets/js/ace.min.js"></script>	
 	</body>
 </html>
 	

@@ -1,11 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8" isELIgnored="false"
 %><%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"
-%><%@ include file="header.jsp"
-%><%@ include file="menu.jsp" %>
-<script> 
-var div = document.getElementById('navleft5'); 
-div.className = 'active'; 
-</script>
+%><%@ include file="../main/menu.jsp"%>
 <div class="sidebar responsive ace-save-state hide"><!--用于站位  --></div>
 			<div class="main-content">
 				<div class="main-content-inner">
@@ -163,31 +158,33 @@ div.className = 'active';
 					</div><!-- /.page-content -->
 				</div>
 			</div><!-- /.main-content -->
-			
-	<%@ include file="footer.jsp" %>
+<script> 
+document.getElementById('navleft5').className = 'active'; 
+</script>	
+	<%@ include file="../main/footer.jsp" %>
 		</div><!-- /.main-container -->
 
-		<script src="assets/js/jquery-2.1.4.min.js"></script>
+		<script src="${baseUrl}/assets/js/jquery-2.1.4.min.js"></script>
 
 		<script type="text/javascript">
 			if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 		</script>
-		<script src="assets/js/bootstrap.min.js"></script>
-		<script src="assets/js/jquery-ui.custom.min.js"></script>
-		<script src="assets/js/jquery.ui.touch-punch.min.js"></script>
-		<script src="assets/js/jquery.gritter.min.js"></script>
-		<script src="assets/js/bootbox.js"></script>
-		<script src="assets/js/jquery.easypiechart.min.js"></script>
-		<script src="assets/js/bootstrap-datepicker.min.js"></script>
-		<script src="assets/js/jquery.hotkeys.index.min.js"></script>
-		<script src="assets/js/bootstrap-wysiwyg.min.js"></script>
-		<script src="assets/js/select2.min.js"></script>
-		<script src="assets/js/spinbox.min.js"></script>
-		<script src="assets/js/bootstrap-editable.min.js"></script>
-		<script src="assets/js/ace-editable.min.js"></script>
-		<script src="assets/js/jquery.maskedinput.min.js"></script>
-		<script src="assets/js/ace-elements.min.js"></script>
-		<script src="assets/js/ace.min.js"></script>
+		<script src="${baseUrl}/assets/js/bootstrap.min.js"></script>
+		<script src="${baseUrl}/assets/js/jquery-ui.custom.min.js"></script>
+		<script src="${baseUrl}/assets/js/jquery.ui.touch-punch.min.js"></script>
+		<script src="${baseUrl}/assets/js/jquery.gritter.min.js"></script>
+		<script src="${baseUrl}/assets/js/bootbox.js"></script>
+		<script src="${baseUrl}/assets/js/jquery.easypiechart.min.js"></script>
+		<script src="${baseUrl}/assets/js/bootstrap-datepicker.min.js"></script>
+		<script src="${baseUrl}/assets/js/jquery.hotkeys.index.min.js"></script>
+		<script src="${baseUrl}/assets/js/bootstrap-wysiwyg.min.js"></script>
+		<script src="${baseUrl}/assets/js/select2.min.js"></script>
+		<script src="${baseUrl}/assets/js/spinbox.min.js"></script>
+		<script src="${baseUrl}/assets/js/bootstrap-editable.min.js"></script>
+		<script src="${baseUrl}/assets/js/ace-editable.min.js"></script>
+		<script src="${baseUrl}/assets/js/jquery.maskedinput.min.js"></script>
+		<script src="${baseUrl}/assets/js/ace-elements.min.js"></script>
+		<script src="${baseUrl}/assets/js/ace.min.js"></script>
 	</body>
 </html>
 					

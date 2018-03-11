@@ -1,5 +1,6 @@
 package com.tran.report.vo;
 
+import com.tran.report.entity.Custom;
 import com.tran.report.entity.User;
 
 import lombok.AllArgsConstructor;
@@ -12,7 +13,7 @@ import lombok.ToString;
 * @version 1.0   
 * @author TianMengJun
 * @since JDK 1.8.0_20
-* Create at:   2018年2月17日 下午5:27:11   
+* Create at:   2018年3月11日 下午4:08:32   
 * Description:  
 *
 *@param     
@@ -22,8 +23,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @Getter
 @Setter
-public class SessionVo {
-		private UserAndCustomVO userVO;
-	
+public class UserAndCustomVO {
+	private User user;
+	private CustomVO customVO;
 
 }
