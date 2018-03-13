@@ -10,33 +10,30 @@ import org.springframework.web.servlet.ModelAndView;
 import com.tran.report.service.CustomService;
 import com.tran.report.vo.CustomVO;
 
-/**   
-* @version 1.0   
-* @author TianMengJun
-* @since JDK 1.8.0_20
-* Create at:   2018年2月14日 下午1:47:28   
-* Description:  
-*
-*@param     
-*/
+/**
+ * @version 1.0
+ * @author TianMengJun
+ * @since JDK 1.8.0_20 Create at: 2018年2月14日 下午1:47:28 Description:
+ *
+ * @param
+ */
 @Controller
 public class CustomController {
 	@Autowired
 	CustomService customService;
-	
-	@RequestMapping(value="getallcustom")
-public ModelAndView getCustomInfo() {
-	
-	ModelAndView mav =new ModelAndView("custominfo");
-	List<CustomVO> customList=customService.getCustomInfo();
-	mav.addObject("customList", customList);	
-	return mav;
+
+	@RequestMapping(value = "getAllCustom")
+	public ModelAndView getAllCustom() {
+
+		ModelAndView mav = new ModelAndView("customInfo");
+		List<CustomVO> customList = customService.getCustomInfo();
+		mav.addObject("customList", customList);
+		return mav;
 	}
-		
-	@RequestMapping(value="getcustombyid")
+
+	@RequestMapping(value = "getCustomById")
 	public @ResponseBody CustomVO getCustomById() {
 		return customService.getCustomVoById("1");
-		}
-
+	}
 
 }

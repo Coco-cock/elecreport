@@ -32,6 +32,7 @@ public class User extends BaseEntity implements Serializable {
 	private String userName;
 	@Column(nullable = false, length = 30)
     private String password;
+    private String imgPath;
 	@ManyToOne(cascade =CascadeType.REFRESH,fetch=FetchType.EAGER)
 	@JoinColumn(nullable=false)
 	private Role role;

@@ -36,7 +36,7 @@
 											<!-- 窗体头 -->
 											<div class="widget-header widget-header-flat widget-header-small">
 												<h5 class="widget-title">
-													<i class="ace-icon fa fa-signal"></i>
+													<i class="ace-icon fa fa-tachometer"></i>
 													电压
 												</h5>
 
@@ -58,7 +58,7 @@
 											<!-- 窗体头 -->
 											<div class="widget-header widget-header-flat widget-header-small">
 												<h5 class="widget-title">
-													<i class="ace-icon fa fa-signal"></i>
+													<i class="ace-icon fa fa-tachometer"></i>
 													电流
 												</h5>
 
@@ -79,7 +79,7 @@
 											<!-- 窗体头 -->
 											<div class="widget-header widget-header-flat widget-header-small">
 												<h5 class="widget-title">
-													<i class="ace-icon fa fa-signal"></i>
+													<i class="ace-icon fa fa-tachometer"></i>
 													功率
 												</h5>
 

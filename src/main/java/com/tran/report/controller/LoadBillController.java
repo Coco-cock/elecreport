@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.tran.report.service.DynamicDataService;
 import com.tran.report.service.LoadBillService;
 import com.tran.report.vo.LoadBillVO;
-import com.tran.report.vo.SessionVo;
+import com.tran.report.vo.SessionVO;
 
 /**   
 * @version 1.0   
@@ -86,19 +86,16 @@ public class LoadBillController {
 		List<Double> yeardata = new LinkedList<>();
 		
 		for(LoadBillVO customBill:daybill) {
-			System.out.println("--------------------------------#####"+customBill);
 			daydata.add(Double.parseDouble(customBill.getElecAmount()));
 		}
 		mav.addObject("daydata", daydata);
 		
 		for(LoadBillVO customBill:monthbill) {
-			System.out.println("--------------------------------#####"+customBill);
 			monthdata.add(Double.parseDouble(customBill.getElecAmount()));
 		}		
 		mav.addObject("monthdata", monthdata);
 		
 		for(LoadBillVO customBill:yearbill) {
-			System.out.println("--------------------------------#####"+customBill);
 			yeardata.add(Double.parseDouble(customBill.getElecAmount()));
 		}
 		mav.addObject("yeardata", yeardata);
@@ -115,8 +112,8 @@ public class LoadBillController {
 	@RequestMapping(value="dayloadtable")
 	public ModelAndView getDayDataByCustomId(HttpSession session){
 		ModelAndView mav = new ModelAndView("dayloadtable");
-		SessionVo sessionVo=(SessionVo) session.getAttribute("sessionVo");
-		mav.addObject("dayloadlist", customBillService.getDayLoadByCustomId(sessionVo.getUserVO().getCustomVO().getID()));
+		SessionVO sessionVo=(SessionVO) session.getAttribute("sessionVo");
+		mav.addObject("dayloadlist", customBillService.getDayLoadByCustomId(sessionVo.getUserAndCustomVO().getCustomVO().getID()));
 		return mav;	
 	}
 	
@@ -129,8 +126,8 @@ public class LoadBillController {
 	@RequestMapping(value="monthloadtable")
 	public ModelAndView getMonthDataByCustomId(HttpSession session){
 		ModelAndView mav = new ModelAndView("monthloadtable");
-		SessionVo sessionVo=(SessionVo) session.getAttribute("sessionVo");
-		mav.addObject("monthloadlist", customBillService.getMonthLoadByCustomId(sessionVo.getUserVO().getCustomVO().getID()));
+		SessionVO sessionVo=(SessionVO) session.getAttribute("sessionVo");
+		mav.addObject("monthloadlist", customBillService.getMonthLoadByCustomId(sessionVo.getUserAndCustomVO().getCustomVO().getID()));
 		return mav;	
 	}
 	
@@ -142,8 +139,8 @@ public class LoadBillController {
 	@RequestMapping(value="yearloadtable")
 	public ModelAndView getYearDataByCustomId(HttpSession session){
 		ModelAndView mav = new ModelAndView("yearloadtable");
-		SessionVo sessionVo=(SessionVo) session.getAttribute("sessionVo");
-		mav.addObject("yearloadlist", customBillService.getYearLoadByCustomId(sessionVo.getUserVO().getCustomVO().getID()));
+		SessionVO sessionVo=(SessionVO) session.getAttribute("sessionVo");
+		mav.addObject("yearloadlist", customBillService.getYearLoadByCustomId(sessionVo.getUserAndCustomVO().getCustomVO().getID()));
 		return mav;	
 	}
 	

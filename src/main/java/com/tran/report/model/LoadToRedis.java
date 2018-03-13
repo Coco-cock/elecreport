@@ -21,7 +21,6 @@ import lombok.ToString;
 @Setter
 @Getter
 public class LoadToRedis{
-	private int nodeId;
 	private String customId;
 	private Load load;
 	private String createTime;	

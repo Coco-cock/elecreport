@@ -1,7 +1,5 @@
 package com.tran.report.vo;
 
-import com.tran.report.entity.User;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,8 +20,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @Getter
 @Setter
-public class SessionVo {
-		private UserAndCustomVO userVO;
+public class SessionVO {
+		private UserAndCustomVO userAndCustomVO;
 	
 
 }

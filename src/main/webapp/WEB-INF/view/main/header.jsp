@@ -40,7 +40,7 @@
 								<img class="nav-user-photo" src="assets/images/avatars/user.jpg" alt="Jason's Photo" />
 								<span class="user-info">
 									<small>Welcome</small>
-									${sessionScope.sessionVo.getUserVO().getUser().getUserName()}
+									<c:out value="${sessionScope.sessionVO.userAndCustomVO.user.userName}"></c:out>
 								</span>
 
 								<i class="ace-icon fa fa-caret-down"></i>
@@ -50,14 +50,14 @@
 								<li>
 									<a href="#">
 										<i class="ace-icon fa fa-cog"></i>
-										Settings
+										设置
 									</a>
 								</li>
 
 								<li>
-									<a href="profile.html">
+									<a href="${baseUrl}/goProfile">
 										<i class="ace-icon fa fa-user"></i>
-										Profile
+										信息
 									</a>
 								</li>
 
@@ -66,7 +66,7 @@
 								<li>
 									<a href="${baseUrl}/logout">
 										<i class="ace-icon fa fa-power-off"></i>
-										Logout
+										退出
 									</a>
 								</li>
 							</ul>

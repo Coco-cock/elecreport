@@ -29,7 +29,11 @@ public class DynamicDataController {
 	public String index() {		
 		return "dynamicdata";	
 	}
-	@RequestMapping(value="getdynamicdata")
+	/**
+	 * 将Redis中的数据格式化后,传给页面
+	 * @return
+	 */
+	@RequestMapping(value="getDynamicData")
 	public @ResponseBody Map<String,List<?>> getDynamicData(){
 		
 		List<LoadToRedis> datalist=DynamicDataService.getCustomLoadData("1");
@@ -38,8 +42,7 @@ public class DynamicDataController {
 		List<Double> Vdata = new LinkedList<>();
 		List<Double> Adata = new LinkedList<>();
 		List<Double> Pdata = new LinkedList<>();
-     for(LoadToRedis node:datalist) {
-			
+     for(LoadToRedis node:datalist) {	
 			time.add(node.getCreateTime().substring(10, 19));
 			Vdata.add(node.getLoad().getVoltage());
 			Adata.add(node.getLoad().getCurrent());
