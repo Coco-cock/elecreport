@@ -12,7 +12,7 @@
 				</script>
 				<ul class="nav nav-list">
 					<li id="navleft1">
-						<a href="index">
+						<a href="${baseUrl}/index">
 							<i class="menu-icon glyphicon glyphicon-flash"></i>
 							<span class="menu-text"> 实时负荷曲线</span>
 						</a>
@@ -74,7 +74,7 @@
 							</li>
 						</ul>
 					</li>
-		
+			<c:if test="${sessionScope.sessionVO.userAndCustomVO.user.userName=='admin' }">
 					<li id="navleft4">
 						<a href="${baseUrl}/getAllCustom">
 							<i class="menu-icon glyphicon glyphicon-align-center"></i>
@@ -82,6 +82,7 @@
 						</a>
 						<b class="arrow"></b>
 					</li >
+					
 					<li id="navleft5">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon glyphicon glyphicon-wrench"></i>
@@ -110,6 +111,7 @@
 							</li>
 						</ul>
 					</li>
+			</c:if>
 					<li id="navleft6">
 						<a href="${baseUrl}/goProfile">
 							<i class="menu-icon glyphicon glyphicon-user"></i>

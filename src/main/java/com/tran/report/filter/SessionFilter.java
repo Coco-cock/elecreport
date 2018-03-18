@@ -6,8 +6,6 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.http.HttpStatus;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 /**
@@ -24,7 +22,7 @@ public class SessionFilter extends OncePerRequestFilter {
 			throws ServletException, IOException {
 
 		// 不过滤的uri
-		String[] notFilter = new String[] { "/logout", "/login", };
+		String[] notFilter = new String[] { "/loginVerify","/logout", "/login"};
 		// 请求的uri
 		String uri = request.getRequestURI();
 		// 是否过滤

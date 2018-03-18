@@ -1,10 +1,13 @@
 package com.tran.report.service.impl;
 
+
+import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.transaction.Transactional;
-
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.google.common.base.Function;
@@ -40,44 +43,65 @@ public class LoadBillServiceImpl implements LoadBillService {
 	YearLoadBillRepository yearLoadBillRepository;
 
 	@Override
-	public List<LoadBillVO> getDayBill() {
-		List<DayLoadBill> dayList = dayLoadBillRepository.findAll();
-		List<LoadBillVO> voList = Lists.transform(dayList, new Function<DayLoadBill, LoadBillVO>() {
-			@Override
-			public LoadBillVO apply(DayLoadBill bill) {
-				LoadBillVO vo = new LoadBillVO();
-				BeanUtils.copyProperties(bill, vo);
-				return vo;
-			}
-		});
+	public List<Map<String,String>> getDayBill() {
+		List<DayLoadBill> billList = dayLoadBillRepository.findAll();
+		List<Map<String,String>> voList = Lists.transform(billList,
+				new Function<DayLoadBill, Map<String, String>>() {
+					@Override
+					public Map<String, String> apply(DayLoadBill bill) {
+						Map<String, String> voMap = new HashMap<>();				
+						String date = new SimpleDateFormat("yyyy-MM-dd").format(bill.getEditTime());
+						String elecAmount = bill.getElecAmount();
+						voMap.put("time", date);
+						voMap.put("elecAmount", elecAmount);
+						return voMap;
+					}
+				});
 		return voList;
 	}
 
 	@Override
-	public List<LoadBillVO> getMonthBill() {
-		List<MonthLoadBill> billList=monthLoadBillRepository.findAll();
-		List<LoadBillVO> voList = Lists.transform(billList, new Function<MonthLoadBill, LoadBillVO>() {
-			@Override
-			public LoadBillVO apply(MonthLoadBill bill) {
-				LoadBillVO vo = new LoadBillVO();
-				BeanUtils.copyProperties(bill, vo);
-				return vo;
+	public List<Map<String, String>> getMonthBill() {
+		List<MonthLoadBill> billList = monthLoadBillRepository.findAll();
+	
+		List<Map<String,String>> voList = Lists.transform(billList,
+				new Function<MonthLoadBill, Map<String, String>>() {
+					@Override
+					public Map<String, String> apply(MonthLoadBill bill) {
+						Map<String, String> voMap = new HashMap<>();				
+						String date =new SimpleDateFormat("yyyy-MM").format(bill.getEditTime());
+						String elecAmount = bill.getElecAmount();
+						voMap.put("time", date);
+						voMap.put("elecAmount", elecAmount);
+						return voMap;
+					}
+				});
+	/*	for(Map<String,String> map:voList) {
+			Set<String> keys=map.keySet();
+			for(String key:keys) {
+				
 			}
-		});
+			
+		}*/
 		return voList;
 	}
 
 	@Override
-	public List<LoadBillVO> getYearBill() {
-	  List<YearLoadBill> billList=yearLoadBillRepository.findAll();
-		List<LoadBillVO> voList = Lists.transform(billList, new Function<YearLoadBill, LoadBillVO>() {
-			@Override
-			public LoadBillVO apply(YearLoadBill bill) {
-				LoadBillVO vo = new LoadBillVO();
-				BeanUtils.copyProperties(bill, vo);
-				return vo;
-			}
-		});
+	public List<Map<String,String>> getYearBill() {
+		List<YearLoadBill> billList = yearLoadBillRepository.findAll();
+
+		List<Map<String,String>> voList = Lists.transform(billList,
+				new Function<YearLoadBill, Map<String, String>>() {
+					@Override
+					public Map<String, String> apply(YearLoadBill bill) {
+						Map<String, String> voMap = new HashMap<>();				
+						String date = new SimpleDateFormat("yyyy").format(bill.getEditTime());
+						String elecAmount = bill.getElecAmount();
+						voMap.put("time", date);
+						voMap.put("elecAmount", elecAmount);
+						return voMap;
+					}
+				});
 		return voList;
 	}
 

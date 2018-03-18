@@ -12,9 +12,11 @@ package com.tran.report.service.impl;
 import java.util.List;
 
 import javax.transaction.Transactional;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import com.tran.report.entity.Custom;
@@ -61,19 +63,30 @@ public class CustomServiceImpl implements CustomService{
 
 	@Override
 	public boolean saveCustom(CustomVO customVO) {
-		// TODO Auto-generated method stub
+		Custom custom = new Custom();
+		BeanUtils.copyProperties(customVO, custom);
+		
+		if(customRepository.saveAndFlush(custom)!=null)
+			return true;
 		return false;
 	}
 
 	@Override
 	public boolean editCustom(CustomVO customVO) {
-		// TODO Auto-generated method stub
+		if(customRepository.findOne(customVO.getID())!=null) {
+			Custom custom =new Custom();
+			BeanUtils.copyProperties(customVO, custom);
+			customRepository.saveAndFlush(custom);
+			return true;
+		}
 		return false;
 	}
 
 	@Override
 	public boolean deleteCustom(String customId) {
-		// TODO Auto-generated method stub
+		customRepository.delete(customId);
+		if(customRepository.findOne(customId)==null)
+			return true;
 		return false;
 	}
 

@@ -1,6 +1,7 @@
 package com.tran.report.entity;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 import javax.persistence.Column;
@@ -9,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,11 +35,12 @@ public abstract class BaseEntity implements Serializable {
 	@Id
 	@GeneratedValue(generator = "IDGenerator")
 	@GenericGenerator(name = "IDGenerator", strategy = "uuid")
-	@Column(name = "ID", nullable = false, length = 32)
+	@Column(name = "ID", nullable = false, length = 64)
 	protected String ID;
 	/**
 	 * 时间戳
 	 */
-	@Column(nullable=false,length=25)
-	protected String editTime=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(System.currentTimeMillis());
+	@Column(nullable=false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	protected Date editTime;
 }

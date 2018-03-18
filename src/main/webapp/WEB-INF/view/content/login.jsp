@@ -15,9 +15,9 @@
 	<h2>电力负荷报表系统</h2>
 	<div class="login-top">
 		<h1>登录</h1>
-		<form action="${baseUrl}/login" method="post">
-			<input type="text" name="userName" placeholder="用户名" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '用户名';}">
-			<input type="password" name="password" placeholder="密码" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '密码';}">
+		<form action="${baseUrl}/loginVerify" method="post">
+			<input type="text" name="userName" placeholder="用户名" >
+			<input type="password" name="password" placeholder="密码" >
 	    <div class="forgot">
 	    	<a href="#">忘记密码？</a>
 	    	<input type="submit" value="Login" >

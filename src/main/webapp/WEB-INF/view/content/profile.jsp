@@ -30,9 +30,10 @@
 						<div id="user-profile-1" class="user-profile row">
 							<div class="col-xs-12 col-sm-3 center">
 								<div>
-									<span class="profile-picture"> <img id="avatar"
-										class="editable img-responsive" alt="Alex's Avatar"
-										src="assets/images/avatars/profile-pic.jpg" />
+									<span class="profile-picture"> 
+									<img id="avatar" class="editable img-responsive" alt="照片"
+									style="width: 200px;height: 200px"
+										src="<c:out value="${sessionScope.sessionVO.userAndCustomVO.user.imgPath}"/>" />
 									</span>
 
 									<div class="space-4"></div>

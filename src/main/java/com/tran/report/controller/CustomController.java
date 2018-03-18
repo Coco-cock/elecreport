@@ -7,7 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
 import com.tran.report.service.CustomService;
+import com.tran.report.service.UserService;
 import com.tran.report.vo.CustomVO;
 
 /**
@@ -21,15 +23,24 @@ import com.tran.report.vo.CustomVO;
 public class CustomController {
 	@Autowired
 	CustomService customService;
-
+	@Autowired
+	UserService userService;
 	@RequestMapping(value = "getAllCustom")
 	public ModelAndView getAllCustom() {
-
 		ModelAndView mav = new ModelAndView("customInfo");
 		List<CustomVO> customList = customService.getCustomInfo();
 		mav.addObject("customList", customList);
 		return mav;
 	}
+	
+	@RequestMapping(value = "saveCustom")
+	public @ResponseBody boolean saveCustom(CustomVO vo) {			
+		      if( customService.saveCustom(vo)){
+		    	  return true;
+		      }
+		return false;
+	}
+
 
 	@RequestMapping(value = "getCustomById")
 	public @ResponseBody CustomVO getCustomById() {

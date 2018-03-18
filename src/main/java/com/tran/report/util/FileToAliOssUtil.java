@@ -24,7 +24,7 @@ import com.aliyun.oss.model.PutObjectResult;
 
 public class FileToAliOssUtil {
 	/**
-	 * 上传单个文件到阿里云Oss 返回访问地址
+	 * 上传单个文件到阿里云OSS 返回访问地址
 	 * @param multipartFile
 	 * @return
 	 */

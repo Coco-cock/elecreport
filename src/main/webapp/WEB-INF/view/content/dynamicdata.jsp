@@ -496,6 +496,7 @@ window.onresize = function () {
 	 currentChart.resize();
 	 powerChart.resize();
 };
+window.onload=timedata();
 var i=self.setInterval("timedata()",5000);
 function timedata(){
 var Vdata=[];
@@ -504,7 +505,7 @@ var Pdata=[];
 $.ajax({
     type: "post",
     async: true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
-    url: "${pageContext.request.contextPath}/getdynamicdata", 
+    url: "${pageContext.request.contextPath}/getDynamicData", 
     data: {},
     dataType: "json",        //返回数据形式为json
     success: function (result) {
@@ -586,7 +587,7 @@ document.getElementById('navleft1').className = 'active';
 		</div><!-- /.main-container -->
 
 		<script type="text/javascript">
-			if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+			if('ontouchstart' in document.documentElement) document.write("<script src='${baseUrl}/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 		</script>
 		<script src="${baseUrl}/assets/js/bootstrap.min.js"></script>
 

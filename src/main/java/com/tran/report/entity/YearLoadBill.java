@@ -1,7 +1,5 @@
 package com.tran.report.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,7 +20,7 @@ import lombok.ToString;
 @Getter 
 @Setter
 @Entity
-public class YearLoadBill extends BaseLoadBillEntity implements Serializable{
+public class YearLoadBill extends BaseLoadBillEntity{
 
 	private static final long serialVersionUID = 1L;
 

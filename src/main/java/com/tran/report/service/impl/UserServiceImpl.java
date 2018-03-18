@@ -5,14 +5,17 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.tran.report.entity.User;
 import com.tran.report.repository.UserRepository;
 import com.tran.report.service.CustomService;
 import com.tran.report.service.UserService;
 import com.tran.report.vo.CustomVO;
 import com.tran.report.vo.UserAndCustomVO;
+import com.tran.report.vo.UserVO;
 
 /**
  * @version 1.0
@@ -52,7 +55,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean saveUser(User user) {
+	public boolean saveUser(UserVO userVO) {
+		User user =new User();
+		//待处理
+		BeanUtils.copyProperties(userVO, user);
 		if (userRepository.saveAndFlush(user) != null) {
 			return true;
 		}

@@ -22,7 +22,7 @@ import lombok.ToString;
 @Getter 
 @Setter
 @Entity
-public class MonthLoadBill extends BaseLoadBillEntity implements Serializable{
+public class MonthLoadBill extends BaseLoadBillEntity{
 
 	private static final long serialVersionUID = 1L;
 

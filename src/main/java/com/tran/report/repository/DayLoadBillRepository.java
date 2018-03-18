@@ -1,5 +1,7 @@
 package com.tran.report.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -17,5 +19,5 @@ import com.tran.report.entity.DayLoadBill;
 
 @Repository
 public interface DayLoadBillRepository extends JpaRepository<DayLoadBill, String>{
-
+	//List<DayLoadBill>  findAllByOrderByEditTimeAtDesc();
 }

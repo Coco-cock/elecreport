@@ -55,13 +55,13 @@ public class RedisDao {
 		
 		for(String id:idList) {
 			for(String time:timeList) {
-				LoadToRedis nodeLoad=new LoadToRedis();
-				nodeLoad.setCustomId(id);
-				nodeLoad.setCreateTime(time);
+				LoadToRedis ltr=new LoadToRedis();
+				ltr.setCustomId(id);
+				ltr.setCreateTime(time);
 				String loadJson=jedis.hget(id,time);
 				Load load=JSON.parseObject(loadJson, Load.class);
-				nodeLoad.setLoad(load);
-				loadData.add(nodeLoad);
+				ltr.setLoad(load);
+				loadData.add(ltr);
 			}
 		}
 		jedis.close();
@@ -89,12 +89,12 @@ public class RedisDao {
 		
 		int i=0;
 		for(String loadJson:jsonList) {
-			LoadToRedis nodeLoad=new LoadToRedis();
-			nodeLoad.setCustomId(customId);
-			nodeLoad.setCreateTime(times[i++]);
+			LoadToRedis ltr=new LoadToRedis();
+			ltr.setCustomId(customId);
+			ltr.setCreateTime(times[i++]);
 			Load load=JSON.parseObject(loadJson, Load.class);
-			nodeLoad.setLoad(load);
-			loadData.add(nodeLoad);
+			ltr.setLoad(load);
+			loadData.add(ltr);
 		}
 		jedis.close();
 		return loadData;

@@ -4,19 +4,27 @@
 			<!-- 主要内容 -->
 			<div id="main-content" class="main-content">
 				<div  class="main-content-inner">
-			
+					<div class="breadcrumbs ace-save-state" id="breadcrumbs">
+						<ul class="breadcrumb">
+							<li>
+								<i class="ace-icon fa fa-home home-icon"></i>
+								<a href="index">Home</a>
+							</li>					
+							<li class="active">用户信息管理</li>
+						</ul>
+					</div>
 					<div class="page-content">
                        <div class="row">
 							<div class="col-xs-12">
 
 								<div class="row">
 									<div class="col-xs-12">
-									
+						
 										<div class="clearfix">
 											<div class="pull-right tableTools-container"></div>
 										</div>
 										<div class="table-header">
-											用户信息表
+											用户信息表  	<a href="#modal-table" role="button"  data-toggle="modal"> <button class="btn btn-xs btn-warning" ><i class="glyphicon glyphicon-plus"></i>添加</button> </a>
 										</div>
 
 										<!-- div.table-responsive -->
@@ -26,7 +34,7 @@
 											<table id="dynamic-table" class="table table-striped table-bordered table-hover">
 												<thead>
 													<tr>
-                                         			   <th>用户ID</th>
+                                         			   <th>序号</th>
                                            			   <th>姓名</th>
                                            			   <th>联系电话</th>
                                                        <th>地址</th>
@@ -36,9 +44,9 @@
 													</tr>											
 												</thead>
 												<tbody>
-									   <c:forEach var="custom" items="${customList}">
+									   <c:forEach var="custom" items="${customList}" varStatus="vs">
                                         <tr>
-                                            <td><c:out value="${custom.ID}"></c:out></td>
+                                            <td><c:out value="${vs.index+1}"></c:out></td>
                                             <td><c:out value="${custom.customName}"></c:out></td>
                                             <td><c:out value="${custom.customIphone}"></c:out></td>
                                             <td><c:out value="${custom.customAddress}"></c:out></td>
@@ -63,26 +71,39 @@
 														<span class="white">&times;</span>
 													</button>
 													添加课程信息
+									
 												</div>
 											</div>
 
-											<form action="${baseUrl}/saveSubject" method="post">
+											<form id="addForm" onsubmit="return false"  method="post">
 											<div class="modal-body no-padding">
 												<table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
 												<tbody>	
+														
 														<tr>
-															<td>ID:</td>															
-															<td><input name="subjectId" type="text"> </td>
+															<td>用户名：</td>															
+															<td><input name="userName" type="text"> </td>
 														</tr>
 														<tr>
-															<td>课程名:</td>															
-															<td><input name="subjectName" type="text"> </td>
+															<td>密码：</td>															
+															<td><input name="password" type="text"> </td>
 														</tr>
 														<tr>
-															<td>备注:</td>															
-															<td><input type="text"> </td>
+															<td>姓名：</td>															
+															<td><input name="custom" type="text"> </td>
 														</tr>
-																															
+														<tr>
+															<td>联系电话：</td>															
+															<td><input name="Phone" type="text"> </td>
+														</tr>
+														<tr>
+															<td>地址：</td>															
+															<td><input name="customAddress" type="text"> </td>
+														</tr>
+														<tr>
+															<td>地址：</td>															
+															<td><input name="" type="text"> </td>
+														</tr>
 													</tbody>
 												</table>
 											</div>
@@ -101,6 +122,27 @@
 					</div><!-- /.page-content -->
 				</div>
 			</div><!-- /.main-content -->
+ <script type="text/javascript">
+        function login() {
+            $.ajax({
+            //几个参数需要注意一下
+                type: "POST",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "${baseUrl}/saveCustom" ,//url
+                data: $('#addForm').serialize(),
+                success: function (result) {
+                    console.log(result);//打印服务端返回的数据(调试用)
+                    if (result.resultCode == 200) {
+                        alert("SUCCESS");
+                    }
+                    ;
+                },
+                error : function() {
+                    alert("异常！");
+                }
+            });
+        }
+    </script>
 <script> 
 document.getElementById('navleft4').className = 'active'; 
 </script>

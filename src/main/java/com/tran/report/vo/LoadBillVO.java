@@ -9,15 +9,6 @@ package com.tran.report.vo;
 *@param     
 */
 
-import java.text.SimpleDateFormat;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-import com.tran.report.entity.BaseLoadBillEntity;
 import com.tran.report.entity.Custom;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,11 +20,10 @@ import lombok.ToString;
 @AllArgsConstructor
 @Getter
 @Setter
-public class LoadBillVO extends BaseLoadBillEntity{
-	private static final long serialVersionUID = 1L;
+public class LoadBillVO{
 	private String ID;
-	private String editTime;
 	private String elecAmount;
+	private String editTime;
 	private Custom custom;
 
 }
