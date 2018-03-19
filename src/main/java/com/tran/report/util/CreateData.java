@@ -5,7 +5,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 import java.util.TimerTask;
+
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import com.tran.report.dao.RedisDao;
 import com.tran.report.model.Load;
 import com.tran.report.model.LoadToRedis;
@@ -21,7 +25,8 @@ import com.tran.report.model.LoadToRedis;
 */
 @Component
 public class CreateData extends TimerTask {
-	//@Autowired
+	private static final Logger logger = Logger.getLogger(CreateData.class);
+	@Autowired
 	RedisDao redisDao=new RedisDao();
 	@Override
 	public void run() {
@@ -32,12 +37,12 @@ public class CreateData extends TimerTask {
 		Random random = new Random();
 		int current=random.nextInt(10);
 		int voltage=random.nextInt(10)+215;
-	    Load load =new Load(voltage, current, current*voltage);
+	    Load load =new Load(String.valueOf(voltage), String.valueOf(current), String.valueOf(current*voltage));
 		SimpleDateFormat sdf =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String createTime= sdf.format(new Date());		   
 		LoadToRedis nodeLoad =new LoadToRedis("1", load, createTime);		
 		boolean flag=redisDao.saveData(nodeLoad);
-		System.out.println(flag);
+		logger.info("CreateData-->createDate() 保存数据："+flag);
 	}
 	
 

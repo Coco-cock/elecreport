@@ -9,7 +9,10 @@ package com.tran.report.vo;
 *@param     
 */
 
+import java.util.Date;
+
 import com.tran.report.entity.Custom;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,7 +26,7 @@ import lombok.ToString;
 public class LoadBillVO{
 	private String ID;
 	private String elecAmount;
-	private String editTime;
+	private Date editTime;
 	private Custom custom;
 
 }

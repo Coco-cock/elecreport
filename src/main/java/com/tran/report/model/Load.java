@@ -21,7 +21,7 @@ import lombok.ToString;
 @Setter
 @Getter
 public class Load {
-	private double voltage;
-	private double current;
-	private double power;
+	private String voltage;
+	private String current;
+	private String power;
 }

@@ -1,17 +1,14 @@
 package com.tran.report.entity;
 
 import java.io.Serializable;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -42,5 +39,5 @@ public abstract class BaseEntity implements Serializable {
 	 */
 	@Column(nullable=false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	protected Date editTime;
+	protected Date editTime=new Date(System.currentTimeMillis());
 }

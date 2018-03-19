@@ -1,9 +1,9 @@
 package com.tran.report.service;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.tran.report.entity.LoadData;
 import com.tran.report.vo.LoadBillVO;
 
 /**   
@@ -21,11 +21,13 @@ public interface LoadBillService {
 	List<Map<String,String>> getDayBill();
 	List<Map<String,String>> getMonthBill();
 	List<Map<String,String>> getYearBill();
+	List<Map<String,String>> getLoadDate();
 	List<LoadBillVO> getDayBillByCustomId(int CustomId,String startTime,String endTime);
 	List<LoadBillVO> getMonthBillByCustomId(int CustomId,String startTime,String endTime);
 	List<LoadBillVO> getYearBillByCustomId(int CustomId,String startTime,String endTime);
-	List<LoadBillVO> getDayLoadByCustomId(String customId);
-	List<LoadBillVO> getMonthLoadByCustomId(String customId);
-	List<LoadBillVO> getYearLoadByCustomId(String customId);
+	List<Map<String,String>> getDayLoadByCustomId(String customId);
+	List<Map<String,String>> getMonthLoadByCustomId(String customId);
+	List<Map<String,String>> getYearLoadByCustomId(String customId);
+	List<LoadData> getLoadDataByCustomId(String customId);
 
 }

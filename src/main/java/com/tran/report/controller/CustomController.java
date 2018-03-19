@@ -2,6 +2,7 @@ package com.tran.report.controller;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.tran.report.service.CustomService;
 import com.tran.report.service.UserService;
+import com.tran.report.service.impl.DynamicDataServiceImpl;
 import com.tran.report.vo.CustomVO;
 
 /**
@@ -21,6 +23,7 @@ import com.tran.report.vo.CustomVO;
  */
 @Controller
 public class CustomController {
+	private static final Logger logger = Logger.getLogger(CustomController.class);
 	@Autowired
 	CustomService customService;
 	@Autowired

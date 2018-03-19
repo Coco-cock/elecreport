@@ -1,5 +1,6 @@
 package com.tran.report.dao;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -23,12 +24,11 @@ import redis.clients.jedis.Jedis;
  */
 @Repository
 public class RedisDao {
-	private static final String TIMEDATA="timeData";
-	private static final String CUSTOMID="customId";
+	private static final String TIMEDATA = "timeData";
+	private static final String CUSTOMID = "customId";
 	@Autowired
 	RedisDB redisDB;
-	
-	
+
 	/**
 	 * 删除key-value
 	 * 
@@ -37,29 +37,28 @@ public class RedisDao {
 	 */
 	public boolean del(String id) {
 		Jedis jedis = redisDB.getJedis();
-		
+
 		return false;
 	}
-    public List getData(){
-    	
-    	
-		return null;   	
-    }
-    
-    
+
+	public List getData() {
+
+		return null;
+	}
+
 	public List<LoadToRedis> getAllData() {
-		Jedis jedis = redisDB.getJedis();
-		List<LoadToRedis> loadData= new LinkedList<>();
-		List<String> timeList=jedis.lrange(TIMEDATA, 0, -1);		
-		Set<String> idList=jedis.zrange(CUSTOMID, 0, -1);
-		
-		for(String id:idList) {
-			for(String time:timeList) {
-				LoadToRedis ltr=new LoadToRedis();
+		Jedis jedis = RedisDB.getJedis();
+		List<LoadToRedis> loadData = new LinkedList<>();
+		List<String> timeList = jedis.lrange(TIMEDATA, 0, -1);
+		Set<String> idList = jedis.zrange(CUSTOMID, 0, -1);
+
+		for (String id : idList) {
+			for (String time : timeList) {
+				LoadToRedis ltr = new LoadToRedis();
 				ltr.setCustomId(id);
 				ltr.setCreateTime(time);
-				String loadJson=jedis.hget(id,time);
-				Load load=JSON.parseObject(loadJson, Load.class);
+				String loadJson = jedis.hget(id, time);
+				Load load = JSON.parseObject(loadJson, Load.class);
 				ltr.setLoad(load);
 				loadData.add(ltr);
 			}
@@ -69,55 +68,59 @@ public class RedisDao {
 	}
 	
 	
-	
-	public List<LoadToRedis> getDataById(String customId) {
-		Jedis jedis = redisDB.getJedis();
-		List<LoadToRedis> loadData= new LinkedList<>();
-		List<String> timeList=jedis.lrange(TIMEDATA, 0, -1);
-		String[] times=new String[timeList.size()];
-		List<String> jsonList = jedis.hmget(customId,timeList.toArray(times));
+	/**
+	 * 根据客户Id取动态负荷数据
+	 * @param customId
+	 * @return
+	 */
+	public List<LoadToRedis> getDataByCustomId(String customId) {
+		Jedis jedis = RedisDB.getJedis();
+		List<LoadToRedis> loadData = new LinkedList<>();
+		List<String> timeList = jedis.lrange(TIMEDATA, 0, -1);
+		//Collections.sort(timeList);//按照时间排序
+		//Collections.reverse(timeList);
 		
-	/*	for(String time:timeList) {
-			NodeLoad nodeLoad=new NodeLoad();
-			nodeLoad.setCustomId(customId);
-			nodeLoad.setCreateTime(time);
-			String loadJson=jedis.hget(customId,time);
-			Load load=JSON.parseObject(loadJson, Load.class);
-			nodeLoad.setLoad(load);
-			loadData.add(nodeLoad);
-		}*/
-		
-		int i=0;
-		for(String loadJson:jsonList) {
-			LoadToRedis ltr=new LoadToRedis();
+		String[] times = new String[timeList.size()];
+		List<String> jsonList = jedis.hmget(customId, timeList.toArray(times));
+		int i = 0;
+		for (String loadJson : jsonList) {
+			LoadToRedis ltr = new LoadToRedis();
 			ltr.setCustomId(customId);
 			ltr.setCreateTime(times[i++]);
-			Load load=JSON.parseObject(loadJson, Load.class);
+			Load load = JSON.parseObject(loadJson, Load.class);
 			ltr.setLoad(load);
 			loadData.add(ltr);
 		}
 		jedis.close();
 		return loadData;
 	}
-	
-	
+
 	/**
 	 * 
 	 * @param TimeData
 	 * @return
 	 */
-	public boolean  saveData(LoadToRedis nodeLoad) {
-		Jedis jedis = redisDB.getJedis();
-		String ID=nodeLoad.getCustomId();
-		String creatTime=nodeLoad.getCreateTime();
-		String loadinfo=JSON.toJSONString(nodeLoad.getLoad());
-		if(StringUtils.isEmpty(ID)||StringUtils.isEmpty(creatTime)||StringUtils.isEmpty(loadinfo))
+	public boolean saveData(LoadToRedis load) {
+		Jedis jedis = RedisDB.getJedis();
+		String ID = load.getCustomId();
+		String creatTime = load.getCreateTime();
+		String loadinfo = JSON.toJSONString(load.getLoad());
+		if (StringUtils.isEmpty(ID) || StringUtils.isEmpty(creatTime) || StringUtils.isEmpty(loadinfo))
 			return false;
 		jedis.zadd(CUSTOMID, 1, ID);
-		if(jedis.hset(ID, creatTime, loadinfo)>0 && jedis.rpush(TIMEDATA, creatTime)>0)
-		return true;
+		if (jedis.hset(ID, creatTime, loadinfo) > 0 && jedis.rpush(TIMEDATA, creatTime) > 0)
+			return true;
 		jedis.close();
 		return false;
 	}
-
+	
+	public boolean deleteData() {
+		
+		return false;
+		
+	}
+	public boolean deleteDataByCustomId(String customId) {
+		
+		return false;
+	}
 }

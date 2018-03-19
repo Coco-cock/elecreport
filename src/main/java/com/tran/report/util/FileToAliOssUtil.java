@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.util.Properties;
 import java.util.UUID;
 
+import org.apache.log4j.Logger;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,6 +24,7 @@ import com.aliyun.oss.model.PutObjectResult;
  */
 
 public class FileToAliOssUtil {
+	private static final Logger logger = Logger.getLogger(FileToAliOssUtil.class);
 	/**
 	 * 上传单个文件到阿里云OSS 返回访问地址
 	 * @param multipartFile
@@ -33,7 +35,7 @@ public class FileToAliOssUtil {
 		try {
 			props = PropertiesLoaderUtils.loadAllProperties("aliyunoss.properties");
 		} catch (IOException e1) {
-			e1.printStackTrace();
+			logger.error("FileToAliOssUtil-->fileToAliOSS加载配置失败"+e1);
 		}
 		String ENDPOINT = props.getProperty("ENDPOINT");
 		String KEY_ID = props.getProperty("KEY_ID");
@@ -58,12 +60,12 @@ public class FileToAliOssUtil {
 					imgUrl = "http://tianmengjun.oss-cn-shenzhen.aliyuncs.com/" + FOLDER + fileName;
 				}
 			} catch (OSSException | ClientException | IOException e) {
-				e.printStackTrace();
+				logger.error("上传图片到阿里云OSS出现异常"+e);
 			}
 			ossClient.shutdown();
-
 		}
 
+		logger.info("上传图片完成!");
 		return imgUrl;
 
 	}

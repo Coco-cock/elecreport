@@ -2,6 +2,7 @@ package com.tran.report.controller;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +23,8 @@ import com.tran.report.service.RoleService;
 *@param     
 */
 @Controller
-public class PermissionController {
+public class RoleController {
+	private static final Logger logger = Logger.getLogger(RoleController.class);
 	@Autowired
 	PermissionService permissionService;
 	@Autowired

@@ -182,7 +182,7 @@ chartDom.style.width = window.innerWidth-widthDom+'px';
 chartDom.style.height = window.innerHeight-heightDom+'px';
 	return chartDom;
 	};
- var voltageG = echarts.init(domInit("voltageG-chart",0,0));
+ var voltageG = echarts.init(domInit("voltageG-chart",980,330));
                      voltageG.setOption({
                          title: {
                              text: '电压',
@@ -211,7 +211,7 @@ chartDom.style.height = window.innerHeight-heightDom+'px';
 
 
                      voltageG.showLoading(); 
-                     var currentG = echarts.init(domInit("currentG-chart",0,0));
+                     var currentG = echarts.init(domInit("currentG-chart",980,330));
 
                      currentG.setOption({
                          title: {
@@ -241,7 +241,7 @@ chartDom.style.height = window.innerHeight-heightDom+'px';
 
 
                      currentG.showLoading();
-                     var powerG = echarts.init(domInit("powerG-chart",1080,400));
+                     var powerG = echarts.init(domInit("powerG-chart",980,330));
 
                      powerG.setOption({
                          title: {
@@ -271,7 +271,7 @@ chartDom.style.height = window.innerHeight-heightDom+'px';
 
 
                      powerG.showLoading(); 
-var voltageChart = echarts.init(domInit("voltage-chart",350,250));
+var voltageChart = echarts.init(domInit("voltage-chart",250,200));
 voltageChart.setOption({
     title: {
         text: '电压',
@@ -341,7 +341,7 @@ voltageChart.setOption({
 
 voltageChart.showLoading();  
 
-var currentChart = echarts.init(domInit("current-chart",350,250));
+var currentChart = echarts.init(domInit("current-chart",250,200));
 
 currentChart.setOption({
     title: {
@@ -412,7 +412,7 @@ currentChart.setOption({
 
 currentChart.showLoading(); 
 
-var powerChart = echarts.init(domInit("power-chart",350,250));
+var powerChart = echarts.init(domInit("power-chart",250,200));
 
 powerChart.setOption({
     title: {
@@ -483,12 +483,12 @@ powerChart.setOption({
 powerChart.showLoading(); 
 
 window.onresize = function () {
-	domInit("voltageG-chart",1080,400);
-	domInit("currentG-chart",1080,400);
-	domInit("powerG-chart",1080,400)
-	domInit("voltage-chart",350,250);
-	domInit("current-chart",350,250);
-	domInit("power-chart",350,250);
+	domInit("voltageG-chart",980,330);
+	domInit("currentG-chart",980,330);
+	domInit("powerG-chart",980,330)
+	domInit("voltage-chart",250,200);
+	domInit("current-chart",250,200);
+	domInit("power-chart",250,200);
 	voltageG.resize();
 	 currentG.resize();
 	 powerG.resize();

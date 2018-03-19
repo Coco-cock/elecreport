@@ -19,5 +19,5 @@ import com.tran.report.entity.DayLoadBill;
 
 @Repository
 public interface DayLoadBillRepository extends JpaRepository<DayLoadBill, String>{
-	//List<DayLoadBill>  findAllByOrderByEditTimeAtDesc();
+	List<DayLoadBill>  findAllByCustom_ID(String customId);
 }

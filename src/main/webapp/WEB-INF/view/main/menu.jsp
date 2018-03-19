@@ -40,7 +40,7 @@
 
 						<ul class="submenu">
 							<li id="navleft3-1">
-								<a href="${baseUrl}/">
+								<a href="${baseUrl}/getDynamicLoadtableByCustomId">
 									<i class="menu-icon fa fa-caret-right"></i>
 									实时负荷数据记录表
 								</a>
@@ -49,7 +49,7 @@
 							</li>
 
 							<li id="navleft3-2">
-								<a href="${baseUrl}/dayloadtable">
+								<a href="${baseUrl}/getDayLoadTableByCustomId">
 									<i class="menu-icon fa fa-caret-right"></i>
 									日负荷数据记录表
 								</a>
@@ -57,7 +57,7 @@
 								<b class="arrow"></b>
 							</li>
 								<li id="navleft3-3">
-								<a href="${baseUrl}/monthloadtable">
+								<a href="${baseUrl}/getMonthLoadTableByCustomId">
 									<i class="menu-icon fa fa-caret-right"></i>
 									月负荷数据记录表
 								</a>
@@ -65,7 +65,7 @@
 								<b class="arrow"></b>
 							</li>
 								<li id="navleft3-4">
-								<a href="${baseUrl}/yearloadtable">
+								<a href="${baseUrl}/getYearLoadTableByCustomId">
 									<i class="menu-icon fa fa-caret-right"></i>
 									年负荷数据记录表
 								</a>
@@ -126,7 +126,7 @@
 						</a>
 						<b class="arrow"></b>
 					</li>
-				</ul><!-- /.nav-list -->
+				</ul>
 
 				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
 					<i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>

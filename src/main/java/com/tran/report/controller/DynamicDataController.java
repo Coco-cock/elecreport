@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +29,7 @@ import com.tran.report.vo.SessionVO;
  */
 @Controller
 public class DynamicDataController {
+	private static final Logger logger = Logger.getLogger(DynamicDataController.class);
 	@Autowired
 	DynamicDataService DynamicDataService;
 	
@@ -43,7 +45,7 @@ public class DynamicDataController {
 		String customID = null;
 		if (sessionVO != null) {
 			customID = sessionVO.getUserAndCustomVO().getCustomVO().getID();
-			System.out.println(customID);
+			logger.info("getDynamicData-->customID"+customID);
 		}
 		if (StringUtils.isNotBlank(customID)) {
 			List<LoadToRedis> datalist = DynamicDataService.getCustomLoadData(customID);
@@ -54,9 +56,9 @@ public class DynamicDataController {
 			List<Double> Pdata = new LinkedList<>();
 			for (LoadToRedis ltr : datalist) {
 				time.add(ltr.getCreateTime().substring(10, 19));
-				Vdata.add(ltr.getLoad().getVoltage());
-				Adata.add(ltr.getLoad().getCurrent());
-				Pdata.add(ltr.getLoad().getPower());
+				Vdata.add(Double.valueOf(ltr.getLoad().getVoltage()));
+				Adata.add(Double.valueOf(ltr.getLoad().getCurrent()));
+				Pdata.add(Double.valueOf(ltr.getLoad().getPower()));
 			}
 			map.put("time", time);
 			map.put("Vdata", Vdata);

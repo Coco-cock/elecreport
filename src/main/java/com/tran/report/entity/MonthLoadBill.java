@@ -1,7 +1,5 @@
 package com.tran.report.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

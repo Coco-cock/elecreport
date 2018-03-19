@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8" 
 %><%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"
+%><%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"
 %><%@ include file="../main/menu.jsp"%>
 
 <div class="main-content">
@@ -62,7 +63,6 @@
 								<div class="profile-user-info profile-user-info-striped">
 									<div class="profile-info-row">
 										<div class="profile-info-name">登陆名</div>
-
 										<div class="profile-info-value">
 											<span class="editable" id="username"><c:out value="${sessionScope.sessionVO.userAndCustomVO.user.userName}"></c:out></span>
 										</div>
@@ -79,8 +79,7 @@
 
 										<div class="profile-info-value">
 											<i class="fa fa-map-marker light-orange bigger-110"></i> <span
-												class="editable" id="country"></span> <span
-												class="editable" id="city">Amsterdam</span>
+												class="editable" >${sessionScope.sessionVO.userAndCustomVO.customVO.customAddress}</span> 
 										</div>
 									</div>
 
@@ -88,15 +87,15 @@
 										<div class="profile-info-name">注册时间</div>
 
 										<div class="profile-info-value">
-											<span class="editable" id="age">38</span>
+											<span class="editable"><fmt:formatDate value="${sessionScope.sessionVO.userAndCustomVO.customVO.registerTime}" pattern="yyyy-MM-dd HH:mm"/></span>
 										</div>
 									</div>
 
 									<div class="profile-info-row">
-										<div class="profile-info-name">最后修改时间</div>
+										<div class="profile-info-name">最后编辑时间</div>
 
 										<div class="profile-info-value">
-											<span class="editable" id="signup">2010/06/20</span>
+											<span class="editable" id="signup"><fmt:formatDate value="${sessionScope.sessionVO.userAndCustomVO.customVO.editTime}" pattern="yyyy-MM-dd HH:mm"/></span>
 										</div>
 									</div>
 

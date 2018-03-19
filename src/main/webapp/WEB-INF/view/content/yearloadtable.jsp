@@ -27,15 +27,15 @@
 												<thead>
 												<tr>
                                                         <th>用电量</th>
-                                                        <th>创建时间</th>
+                                                        <th>时间</th>
                                                         <th>备注</th>
                                                 </tr>											
 												</thead>
 												<tbody>
-									     <c:forEach var="load" items="${yearloadlist}">
+									     <c:forEach var="load" items="${yearLoadList}">
                                         <tr>
-                                            <td>${load.getElecAmount()}</td>
-                                            <td>${load.getCreateTime()}</td>
+                                            <td>${load.elecAmount}</td>
+                                            <td>${load.time}</td>
                                             <td  </td>
                                         </tr>
                                          </c:forEach>     
@@ -51,7 +51,7 @@
 				</div>
 			</div><!-- /.main-content -->
 <script> 
-document.getElementById('navleft3').className = 'active'; 
+document.getElementById('navleft3').className = 'active open'; 
  document.getElementById('navleft3-4').className = 'active'; 
 </script>
 		<%@ include file="../main/footer.jsp" %>
@@ -161,7 +161,7 @@ document.getElementById('navleft3').className = 'active';
 					$('.dt-button-collection').appendTo('.tableTools-container .dt-buttons')
 				});
 			
-				////
+			
 			
 				setTimeout(function() {
 					$($('.tableTools-container')).find('a.dt-button').each(function() {

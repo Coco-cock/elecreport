@@ -27,16 +27,16 @@
 												<thead>
 												<tr>
                                                         <th>用电量</th>
-                                                        <th>创建时间</th>
-                                                        <th>备注</th>
+                                                        <th>时间</th>
+                                                      
                                                 </tr>											
 												</thead>
 												<tbody>
-									  <c:forEach var="load" items="${monthloadlist}">
+									  <c:forEach var="load" items="${monthLoadList}">
                                         <tr>
-                                            <td> <c:out value="${load.getElecAmount()}"></c:out></td>
-                                            <td> <c:out value="${load.getCreateTime()}"></c:out></td>
-                                            <td  </td>
+                                            <td> <c:out value="${load.elecAmount}"></c:out></td>
+                                            <td> <c:out value="${load.time}"></c:out></td>
+                                       
                                         </tr>
                                          </c:forEach>   
 												</tbody>
@@ -51,7 +51,7 @@
 				</div>
 			</div><!-- /.main-content -->
 <script> 
-document.getElementById('navleft3').className = 'active'; 
+document.getElementById('navleft3').className = 'active open'; 
  document.getElementById('navleft3-3').className = 'active'; 
 </script>
 		<%@ include file="../main/footer.jsp" %>

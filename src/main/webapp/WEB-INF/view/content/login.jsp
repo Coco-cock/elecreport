@@ -5,6 +5,7 @@
 <head>
 <title>登录</title>
  <c:set var="baseUrl" value="${pageContext.request.contextPath}"></c:set>
+ <link rel="icon" href="${baseUrl}/assets/img/favicon.gif" type="image/gif" >
 <link href="${baseUrl}/assets/css/login.css" rel="stylesheet" type="text/css" media="all"/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">

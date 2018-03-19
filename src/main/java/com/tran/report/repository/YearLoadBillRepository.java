@@ -1,8 +1,9 @@
 package com.tran.report.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
 import com.tran.report.entity.YearLoadBill;
 
 /**   
@@ -17,5 +18,5 @@ import com.tran.report.entity.YearLoadBill;
 
 @Repository
 public interface YearLoadBillRepository extends JpaRepository<YearLoadBill, String>{
-
+	List<YearLoadBill>  findAllByCustom_ID(String customId);
 }

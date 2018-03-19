@@ -86,14 +86,33 @@
 				</div>
 			</div><!-- /.main-content -->
 							
-<script>
+
+		<%@ include file="../main/footer.jsp" %>
+		</div><!-- /.main-container -->
+		<script type="text/javascript">
+			if('ontouchstart' in document.documentElement) document.write("<script src='${baseUrl}/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+		</script>
+		<script src="${baseUrl}/assets/js/bootstrap.min.js"></script>
+
+		<!-- page specific plugin scripts -->
+		  <script src="${baseUrl}/assets/js/excanvas.min.js"></script>
+		<script src="${baseUrl}/assets/js/jquery-ui.custom.min.js"></script>
+		<script src="${baseUrl}/assets/js/jquery.ui.touch-punch.min.js"></script>
+		<script src="${baseUrl}/assets/js/jquery.sparkline.index.min.js"></script>
+		<script src="${baseUrl}/assets/js/jquery.flot.min.js"></script>
+		<script src="${baseUrl}/assets/js/jquery.flot.resize.min.js"></script>
+
+		<!-- ace scripts -->
+		<script src="${baseUrl}/assets/js/ace-elements.min.js"></script>
+		<script src="${baseUrl}/assets/js/ace.min.js"></script>	
+		<script>
 function domInit(id,widthDom,heightDom) {
 	var chartDom =document.getElementById(id);
 	chartDom.style.width = window.innerWidth-widthDom+'px';
 	chartDom.style.height = window.innerHeight-heightDom+'px';
 	return chartDom;
 };
-var dayChart = echarts.init(domInit("day-chart",300,200));
+var dayChart = echarts.init(domInit("day-chart",250,200));
 dayChart.setOption({
     title: {
         text: '日负荷数据',
@@ -183,6 +202,7 @@ dayChart.setOption({
         }
     ]
 });
+dayChart.showLoading();
 //self.setInterval("getDayDate()",1000*60*5);
 window.onload=getDayDate();
 function getDayDate(){
@@ -193,9 +213,9 @@ var elecAmount3=[];
 $.ajax({
     type: "post",
     async: false,    
-    url: "${pageContext.request.contextPath}/getDayBill", 
+    url: "${pageContext.request.contextPath}/getDayBillByCustomId", 
     data: {},
-    dataType: "json",        //返回数据形式为json
+    dataType: "json",    
     success: function (result) {
             for (var i = 0; i < result.length; i++) {
             	time.push(result[i].time);
@@ -214,6 +234,7 @@ $.ajax({
                };
             	
             };
+            dayChart.hideLoading();
             dayChart.setOption({                   
                 series: [{
                 	 data: elecAmount1,
@@ -235,110 +256,11 @@ $.ajax({
     }
 });
 }
-//----------------------------------------------------------------------------------
-var yearOldChart = echarts.init(domInit("year-year",350,200));
-yearOldChart.setOption({
-    title: {
-        text: '近三年总负荷走势',
-        //subtext: '纯属虚构'
-    },
-    tooltip: {
-        trigger: 'axis',
-        formatter: "{a} <br/>{b} : {c}KW·H"
-    },
-    toolbox: {
-        show: true,
-        feature: {
-            dataZoom: {
-                yAxisIndex: 'none'
-            },
-            dataView: {readOnly: false},
-            magicType: {type: ['line', 'bar']},
-            restore: {},
-            saveAsImage: {}
-        }
-    },
-    xAxis:  {
-        type: 'category',
-        name:'时间',
-        boundaryGap: false,
-        data: [2016,2017,2018]
-    },
-    yAxis: {
-        type: 'value',
-        name:'电量/KW·H',
-        axisLabel: {
-            formatter: '{value}'
-        }
-    },
-    series: [
-        {
-            
-        	 name:'用电量',
-             type:'line',
-           // data:${yeardata},
-            markPoint: {
-                data: [
-                    {type: 'max', name: '最大值'},
-                    {type: 'min', name: '最小值'}
-                ]
-            },
-            markLine: {
-                data: [
-                    {type: 'average', name: '平均值'},
-                    {type: 'max', name: '最大值'}
-                ]
-            }
-        },
-    ]
-});
-window.onload=getYearDate();
-var i=self.setInterval("getYearDate()",1000*60*5);
-function getYearDate(){
-var time=[];
-var elecAmount=[];
 
-$.ajax({
-    type: "post",
-    async: true,    
-    url: "${pageContext.request.contextPath}/getYearBill", 
-    data: {},
-    dataType: "json",       
-    success: function (result) {
-            for (var i = 0; i < result.length; i++) {
-            	time.push(result[i].time);
-             
-            	elecAmount.push(result[i].elecAmount);
-            	
-            };
-            yearOldChart.setOption({                   
-                series: [{
-                	 data: elecAmount,
-                }]
-            });
-
-    },
-    error: function (errorMsg) {
-        //请求失败时执行该函数
-        alert("图表请求数据失败!");
-      
-    }
-});
-}
-
-window.onresize = function () {
-
-	domInit("month-chart",300,200);
-	domInit("year-chart",300,200);
-	domInit("year-year",300,200);
-    //重置容器高宽
-    monthChart.resize();
-    yearChart.resize();
-    yearOldChart.resize();
-};
 //------------------------------------------------------------
 
-var monthChart =echarts.init(domInit("month-chart",350,200));
+
+var monthChart =echarts.init(domInit("month-chart",250,200));
 
 var option = {
     title: {
@@ -435,7 +357,7 @@ var option = {
     ]
 };
 monthChart.setOption(option);
-
+monthChart.showLoading();
 window.onload=getMonthData();
 self.setInterval("getMonthData()",1000*60*5);
 function getMonthData(){
@@ -446,7 +368,7 @@ var elecAmount2018=[];
 $.ajax({
     type: "post",
     async: true,    
-    url: "${pageContext.request.contextPath}/getMonthBill", 
+    url: "${pageContext.request.contextPath}/getMonthBillByCustomId", 
     data: {},
     dataType: "json",    
     success: function (result) {
@@ -466,6 +388,7 @@ $.ajax({
                    	
                    };
             };
+            monthChart.hideLoading();
             monthChart.setOption({                   
                 series: [
                 	{
@@ -484,33 +407,118 @@ $.ajax({
     },
     error: function (errorMsg) {
         //请求失败时执行该函数
-        alert("图表请求数据失败!");
+        alert("请求数据失败!");
       
     }
 });
 };
    
-//---------------------------------------------------
+
+//----------------------------------------------------------------------------------
+var yearChart = echarts.init(domInit("year-year",250,200));
+yearChart.setOption({
+    title: {
+        text: '近三年总负荷走势',
+        //subtext: '纯属虚构'
+    },
+    tooltip: {
+        trigger: 'axis',
+        formatter: "{a} <br/>{b} : {c}KW·H"
+    },
+    toolbox: {
+        show: true,
+        feature: {
+            dataZoom: {
+                yAxisIndex: 'none'
+            },
+            dataView: {readOnly: false},
+            magicType: {type: ['line', 'bar']},
+            restore: {},
+            saveAsImage: {}
+        }
+    },
+    xAxis:  {
+        type: 'category',
+        name:'时间',
+        boundaryGap: false,
+        data: [2016,2017,2018]
+    },
+    yAxis: {
+        type: 'value',
+        name:'电量/KW·H',
+        axisLabel: {
+            formatter: '{value}'
+        }
+    },
+    series: [
+        {
+            
+        	 name:'用电量',
+             type:'line',
+           // data:${yeardata},
+            markPoint: {
+                data: [
+                    {type: 'max', name: '最大值'},
+                    {type: 'min', name: '最小值'}
+                ]
+            },
+            markLine: {
+                data: [
+                    {type: 'average', name: '平均值'},
+                    {type: 'max', name: '最大值'}
+                ]
+            }
+        },
+    ]
+});
+yearChart.showLoading();
+window.onload=getYearDate();
+var i=self.setInterval("getYearDate()",1000*60*5);
+function getYearDate(){
+var time=[];
+var elecAmount=[];
+
+$.ajax({
+    type: "post",
+    async: true,    
+    url: "${pageContext.request.contextPath}/getYearBillByCustomId", 
+    data: {},
+    dataType: "json",       
+    success: function (result) {
+            for (var i = 0; i < result.length; i++) {
+            	time.push(result[i].time);
+             
+            	elecAmount.push(result[i].elecAmount);
+            	
+            };
+            yearChart.hideLoading();
+            yearChart.setOption({                   
+                series: [{
+                	 data: elecAmount,
+                }]
+            });
+
+    },
+    error: function (errorMsg) {
+        //请求失败时执行该函数
+        alert("请求数据失败!");
+      
+    }
+});
+};
+
+window.onresize = function () {
+	domInit("day-chart",250,200);
+	dayChart.resize();
+	domInit("month-chart",250,200);
+	monthChart.resize();
+	domInit("year-year",250,200);
+	yearChart.resize();
+	
+}; 
+//------------------------------------------------------------
 document.getElementById('navleft2').className = 'active'; 
 </script>
-		<%@ include file="../main/footer.jsp" %>
-		</div><!-- /.main-container -->
-		<script type="text/javascript">
-			if('ontouchstart' in document.documentElement) document.write("<script src='${baseUrl}/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
-		</script>
-		<script src="${baseUrl}/assets/js/bootstrap.min.js"></script>
-
-		<!-- page specific plugin scripts -->
-		  <script src="${baseUrl}/assets/js/excanvas.min.js"></script>
-		<script src="${baseUrl}/assets/js/jquery-ui.custom.min.js"></script>
-		<script src="${baseUrl}/assets/js/jquery.ui.touch-punch.min.js"></script>
-		<script src="${baseUrl}/assets/js/jquery.sparkline.index.min.js"></script>
-		<script src="${baseUrl}/assets/js/jquery.flot.min.js"></script>
-		<script src="${baseUrl}/assets/js/jquery.flot.resize.min.js"></script>
-
-		<!-- ace scripts -->
-		<script src="${baseUrl}/assets/js/ace-elements.min.js"></script>
-		<script src="${baseUrl}/assets/js/ace.min.js"></script>	
 	</body>
 </html>
 	

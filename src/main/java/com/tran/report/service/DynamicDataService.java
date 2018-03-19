@@ -4,18 +4,18 @@ import java.util.List;
 
 import com.tran.report.model.LoadToRedis;
 
-/**   
-* @version 1.0   
-* @author TianMengJun
-* @since JDK 1.8.0_20
-* Create at:   2018年2月14日 下午11:12:19   
-* Description:  
-*
-*@param     
-*/
+/**
+ * @version 1.0
+ * @author TianMengJun
+ * @since JDK 1.8.0_20 Create at: 2018年2月14日 下午11:12:19 Description:
+ *
+ * @param
+ */
 
 public interface DynamicDataService {
 	List<LoadToRedis> getAllLoadData();
-	List  getCustomLoadData(String customId);
+
+	List<LoadToRedis> getCustomLoadData(String customId);
+	void doDataRedisToMysqlTask();
 
 }

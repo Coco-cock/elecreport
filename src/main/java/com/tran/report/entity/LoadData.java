@@ -1,13 +1,10 @@
 package com.tran.report.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -25,7 +22,7 @@ import lombok.Setter;
 @Getter 
 @Setter
 @Entity
-public class LoadData extends BaseEntity implements Serializable{
+public class LoadData extends BaseEntity{
 	private static final long serialVersionUID = 1L;
 	@Column(nullable = false, length = 25)
 	private String voltage;

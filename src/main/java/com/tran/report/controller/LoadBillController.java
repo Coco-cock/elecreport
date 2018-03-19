@@ -1,14 +1,13 @@
 package com.tran.report.controller;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.spi.LoggerFactory;
+import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.tran.report.service.DynamicDataService;
 import com.tran.report.service.LoadBillService;
-import com.tran.report.vo.LoadBillVO;
 import com.tran.report.vo.SessionVO;
 
 /**   
@@ -33,56 +31,16 @@ import com.tran.report.vo.SessionVO;
 
 @Controller
 public class LoadBillController {
+	private static final Logger logger = Logger.getLogger(LoadBillController.class);
 	@Autowired
-	LoadBillService customBillService;
+	LoadBillService loadBillService;
 	@Autowired
 	DynamicDataService DynamicDataService;
-	//private static final Logger log = LoggerFactory.getLogger(LoadBillController.class);
-	public Map<String,Double> getData(List<?> list){
-		for(Object o:list) {
-			
-		}
-		
-		
-		return null;
-		
-	}
+	
 	@RequestMapping(value="historyload")
 	public ModelAndView historyLoad() {
-		ModelAndView mav = new ModelAndView("historydata");
-		/*
-		List<LoadBillVO> daybill =customBillService.getDayBill();
-		List<LoadBillVO> monthbill =customBillService.getMonthBill();
-		List<LoadBillVO> yearbill = customBillService.getYearBill();
-	
-		List<Double> daydata = new LinkedList<>();
-		List<Double> monthdata = new LinkedList<>();
-		List<Double> yeardata = new LinkedList<>();
-		//List<Double> daydata = new LinkedList<>(); 
-		Map<String,Double> map = new HashMap<>();
-		for(LoadBillVO customBill:daybill) {
-			
-			//map.put(customBill.getEditTime(), customBill.getElecAmount());
-		}
 		
-		for(LoadBillVO customBill:daybill) {
-			
-			customBill.getEditTime();
-			daydata.add(Double.parseDouble(customBill.getElecAmount()));
-		}
-		mav.addObject("daydata", daydata);
-		
-		for(LoadBillVO customBill:monthbill) {
-			monthdata.add(Double.parseDouble(customBill.getElecAmount()));
-		}		
-		mav.addObject("monthdata", monthdata);
-		
-		for(LoadBillVO customBill:yearbill) {
-			yeardata.add(Double.parseDouble(customBill.getElecAmount()));
-		}
-		mav.addObject("yeardata", yeardata);*/
-		
-		return mav;		
+		return new ModelAndView("historydata");		
 	}
 	
 	
@@ -94,96 +52,92 @@ public class LoadBillController {
 	@RequestMapping(value="historyloadbyid/{customId}")
 	public ModelAndView historyLoadById(@PathVariable("customId")String customId) {
 		ModelAndView mav = new ModelAndView("historydata");
-		
-		List<LoadBillVO> daybill =customBillService.getDayLoadByCustomId(customId);
-		List<LoadBillVO> monthbill =customBillService.getMonthLoadByCustomId(customId);
-		List<LoadBillVO> yearbill = customBillService.getYearLoadByCustomId(customId);
-	
-		List<Double> daydata = new LinkedList<>();
-		List<Double> monthdata = new LinkedList<>();
-		List<Double> yeardata = new LinkedList<>();
-		
-		for(LoadBillVO customBill:daybill) {
-			daydata.add(Double.parseDouble(customBill.getElecAmount()));
+		if(StringUtils.isNotBlank(customId)) {
+			loadBillService.getDayLoadByCustomId(customId);
+			loadBillService.getMonthLoadByCustomId(customId);
+			loadBillService.getYearLoadByCustomId(customId);	
 		}
-		mav.addObject("daydata", daydata);
-		
-		for(LoadBillVO customBill:monthbill) {
-			monthdata.add(Double.parseDouble(customBill.getElecAmount()));
-		}		
-		mav.addObject("monthdata", monthdata);
-		
-		for(LoadBillVO customBill:yearbill) {
-			yeardata.add(Double.parseDouble(customBill.getElecAmount()));
-		}
-		mav.addObject("yeardata", yeardata);
+
 		
 		return mav;		
 	}
 	
 	
 	
-	/**
-	 * 
-	 * @return
-	 */
-	@RequestMapping(value="dayloadtable")
-	public ModelAndView getDayDataByCustomId(HttpSession session){
-		ModelAndView mav = new ModelAndView("dayloadtable");
-		SessionVO sessionVo=(SessionVO) session.getAttribute("sessionVo");
-		mav.addObject("dayloadlist", customBillService.getDayLoadByCustomId(sessionVo.getUserAndCustomVO().getCustomVO().getID()));
-		return mav;	
+	@RequestMapping(value="getDynamicLoadtableByCustomId")
+	public ModelAndView getDynamicLoadtableByCustomId(HttpSession session){
+		String customId= this.getSessionCustomId(session);
+		return new ModelAndView("dynamicloadtable").addObject("LoadDataList", loadBillService.getLoadDataByCustomId(customId));	
+	}
+	@RequestMapping(value="getDayLoadTableByCustomId")
+	public ModelAndView getDayLoadTableByCustomId(HttpSession session){
+		String customId= this.getSessionCustomId(session);
+		return new ModelAndView("dayloadtable").addObject("dayLoadList", loadBillService.getDayLoadByCustomId(customId));	
 	}
 	
-	
-	/**
-	 * 
-	 * @param session
-	 * @return
-	 */
-	@RequestMapping(value="monthloadtable")
-	public ModelAndView getMonthDataByCustomId(HttpSession session){
-		ModelAndView mav = new ModelAndView("monthloadtable");
-		SessionVO sessionVo=(SessionVO) session.getAttribute("sessionVo");
-		mav.addObject("monthloadlist", customBillService.getMonthLoadByCustomId(sessionVo.getUserAndCustomVO().getCustomVO().getID()));
-		return mav;	
+	@RequestMapping(value="getMonthLoadTableByCustomId")
+	public ModelAndView getMonthLoadTableByCustomId(HttpSession session){
+		String customId= this.getSessionCustomId(session);
+		return new ModelAndView("monthloadtable").addObject("monthLoadList", loadBillService.getMonthLoadByCustomId(customId));	
+	}
+	@RequestMapping(value="getYearLoadTableByCustomId")
+	public ModelAndView getYearLoadTableByCustomId(HttpSession session){
+		String customId= this.getSessionCustomId(session);
+		return new ModelAndView("yearloadtable").addObject("yearLoadList", loadBillService.getYearLoadByCustomId(customId));	
 	}
 	
-	/**
-	 * 
-	 * @param session
-	 * @return
-	 */
-	@RequestMapping(value="yearloadtable")
-	public ModelAndView getYearDataByCustomId(HttpSession session){
-		ModelAndView mav = new ModelAndView("yearloadtable");
-		SessionVO sessionVo=(SessionVO) session.getAttribute("sessionVo");
-		mav.addObject("yearloadlist", customBillService.getYearLoadByCustomId(sessionVo.getUserAndCustomVO().getCustomVO().getID()));
-		return mav;	
-	}
 	
 	@RequestMapping(value="getDayBill")
 	public @ResponseBody List<Map<String, String>> getDayBill(){
-		return customBillService.getDayBill();
-		
+		return loadBillService.getDayBill();
 	}
 	
 	@RequestMapping(value="getMonthBill")
 	public @ResponseBody List<Map<String, String>> getMonthBill(){
-		List<Map<String, String>> list =customBillService.getMonthBill();
+		List<Map<String, String>> list =loadBillService.getMonthBill();
 		return list;
 	}
 	@RequestMapping(value="getYearBill")
 	public @ResponseBody List<Map<String, String>> getYearBill(){
-		return customBillService.getYearBill();
-		
+		logger.info("getYearBill()");
+		return loadBillService.getYearBill();
 	}
 	
+	@RequestMapping(value="getDayBillByCustomId")
+	public @ResponseBody List<Map<String, String>> getDayBillByCustomId(HttpSession session){
+		String customId= this.getSessionCustomId(session);
+		if(customId.isEmpty()) {
+			logger.error("getDayBillByCustomId ->cutomId为空!");
+			return new ArrayList<Map<String, String>>();
+		}
+		return loadBillService.getDayLoadByCustomId(customId);
+	}
+	@RequestMapping(value="getMonthBillByCustomId")
+	public @ResponseBody List<Map<String, String>> getMonthBillByCustomId(HttpSession session){
+		String customId= this.getSessionCustomId(session);
+		if(customId.isEmpty()) {
+			logger.error("getMonthBillByCustomId ->cutomId为空!");
+			return new ArrayList<Map<String, String>>();
+		}
+		return loadBillService.getMonthLoadByCustomId(customId);
+	}
+	@RequestMapping(value="getYearBillByCustomId")
+	public @ResponseBody List<Map<String, String>> getYearBillByCustomId(HttpSession session){
+		String customId= this.getSessionCustomId(session);
+		if(customId.isEmpty()) {
+			logger.error("getYearBillByCustomId ->cutomId为空!");
+			return new ArrayList<Map<String, String>>();
+		}
+		return loadBillService.getYearLoadByCustomId(customId);
+	}
 	
-	
-	@RequestMapping(value="getmonthbillbycustomId")
-	public @ResponseBody List<LoadBillVO> getmonthBillByCustomId(){
-		return customBillService.getMonthBillByCustomId(1, "2017", "2018");		
+	public String getSessionCustomId(HttpSession session){
+		SessionVO sessionVO=(SessionVO) session.getAttribute("sessionVO");
+		if(sessionVO==null) {
+			logger.error("getSessionCustomId-->seesionVO为空!");
+			return null;
+		}
+		return sessionVO.getUserAndCustomVO().getCustomVO().getID();
 	}
 
 }

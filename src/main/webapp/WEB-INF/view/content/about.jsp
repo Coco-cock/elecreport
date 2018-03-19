@@ -16,7 +16,7 @@
 				<h1>
 					最后<small> <i
 						class="ace-icon fa fa-angle-double-right"></i> 
-						祭奠那些年搔掉的秀发和失去的青春!
+						祭奠那些年搔掉的秀发和逝去的青春!
 					</small>
 				</h1>
 			</div>

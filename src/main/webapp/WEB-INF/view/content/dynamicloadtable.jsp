@@ -1,398 +1,264 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8" isELIgnored="false"
-%><%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
-<html>
-<head>
-	 <c:set var="baseUrl" value="${pageContext.request.contextPath}"></c:set>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>电力负荷报表系统</title>
-    <!-- Bootstrap Styles-->
-    <link href="${baseUrl}/assets/css/bootstrap.css" rel="stylesheet" />
-    <!-- FontAwesome Styles-->
-    <link href="${baseUrl}/assets/css/font-awesome.css" rel="stylesheet" />
-    <!-- Morris Chart Styles-->
-    <link href="${baseUrl}/assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
-    <!-- Custom Styles-->
-    <link href="${baseUrl}/assets/css/custom-styles.css" rel="stylesheet" />
-    <!-- Google Fonts-->
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-    <link rel="stylesheet" href="${baseUrl}/assets/js/Lightweight-Chart/cssCharts.css"> 
-      <script type="text/javascript" src="${baseUrl}/assets/js/echarts.js"></script>  
-</head>
+%><%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"
+%><%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"
+%><%@ include file="../main/menu.jsp"%>
+				<!-- 主要内容 -->
+			<div id="main-content" class="main-content">
+				<div  class="main-content-inner">
+			
+				<div class="page-content">
+                       <div class="row">
+							<div class="col-xs-12">
 
-<body>
-    <div id="wrapper">
-       <nav class="navbar navbar-default top-navbar" role="navigation">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target=".sidebar-collapse">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="${baseUrl}/index"><strong><i
-						class="icon glyphicon glyphicon-stats"></i> 数据报表</strong></a>
+								<div class="row">
+									<div class="col-xs-12">
+									
+										<div class="clearfix">
+											<div class="pull-right tableTools-container"></div>
+										</div>
+										<div class="table-header">
+											     年负荷数据记录表
+										</div>
 
-				<div id="sideNav" href="">
-					<i class="fa fa-bars icon"></i>
+										<!-- div.table-responsive -->
+
+										<!-- div.dataTables_borderWrap -->
+										<div>
+											<table id="dynamic-table" class="table table-striped table-bordered table-hover">
+												<thead>
+												<tr>
+                                                        <th>ID</th>
+                                                        <th>电流</th>
+                                                        <th>电压</th>
+                                                        <th>功率</th>
+                                                        <th>时间</th>
+                                                </tr>											
+												</thead>
+												<tbody>
+									     <c:forEach var="load" items="${LoadDataList}">
+                                        <tr>
+                                        	<td>${load.ID}</td>
+                                            <td>${load.current}</td>
+                                            <td>${load.voltage}</td>
+                                            <td>${load.powerValue}</td>
+                                            <td><fmt:formatDate value="${load.editTime}" pattern="yyyy-MM-dd HH:mm"/></td>
+                                        </tr>
+                                         </c:forEach>     
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
 				</div>
-			</div>
+			</div><!-- /.main-content -->
+<script> 
+document.getElementById('navleft3').className = 'active open'; 
+ document.getElementById('navleft3-1').className = 'active'; 
+</script>
+		<%@ include file="../main/footer.jsp" %>
+		</div><!-- /.main-container -->
+		<!--[if !IE]> -->
+		<script src="${baseUrl}/assets/js/jquery-2.1.4.min.js"></script>
+		<script type="text/javascript">
+			if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+		</script>
+		<script src="${baseUrl}/assets/js/bootstrap.min.js"></script>
+		<!-- page specific plugin scripts -->
+		<script src="${baseUrl}/assets/js/jquery.dataTables.min.js"></script>
+		<script src="${baseUrl}/assets/js/jquery.dataTables.bootstrap.min.js"></script>
+		<script src="${baseUrl}/assets/js/dataTables.buttons.min.js"></script>
+		<script src="${baseUrl}/assets/js/buttons.flash.min.js"></script>
+		<script src="${baseUrl}/assets/js/buttons.html5.min.js"></script>
+		<script src="${baseUrl}/assets/js/buttons.print.min.js"></script>
+		<script src="${baseUrl}/assets/js/buttons.colVis.min.js"></script>
+		<script src="${baseUrl}/assets/js/dataTables.select.min.js"></script>
 
-			<ul class="nav navbar-top-links navbar-right">
+		<!-- ace scripts -->
+		<script src="${baseUrl}/assets/js/ace-elements.min.js"></script>
+		<script src="${baseUrl}/assets/js/ace.min.js"></script>
 
-
-				<!-- 消息通知开始 -->
-				<!-- /.dropdown -->
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#" aria-expanded="false"> <i
-						class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
-				</a>
-					<ul class="dropdown-menu dropdown-alerts">
-						<li><a href="#">
-								<div>
-									<i class="fa fa-comment fa-fw"></i> New Comment <span
-										class="pull-right text-muted small">4 min</span>
-								</div>
-						</a></li>
-						<li class="divider"></li>
-						<li><a href="#">
-								<div>
-									<i class="fa fa-twitter fa-fw"></i> 3 New Followers <span
-										class="pull-right text-muted small">12 min</span>
-								</div>
-						</a></li>
-						<li class="divider"></li>
-						<li><a href="#">
-								<div>
-									<i class="fa fa-envelope fa-fw"></i> Message Sent <span
-										class="pull-right text-muted small">4 min</span>
-								</div>
-						</a></li>
-						<li class="divider"></li>
-						<li><a href="#">
-								<div>
-									<i class="fa fa-tasks fa-fw"></i> New Task <span
-										class="pull-right text-muted small">4 min</span>
-								</div>
-						</a></li>
-						<li class="divider"></li>
-						<li><a href="#">
-								<div>
-									<i class="fa fa-upload fa-fw"></i> Server Rebooted <span
-										class="pull-right text-muted small">4 min</span>
-								</div>
-						</a></li>
-						<li class="divider"></li>
-						<li><a class="text-center" href="#"> <strong>See
-									All Alerts</strong> <i class="fa fa-angle-right"></i>
-						</a></li>
-					</ul> <!-- /.dropdown-alerts --></li>
-				<!-- /.dropdown -->
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#" aria-expanded="false"> <i
-						class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
-				</a>
-					<ul class="dropdown-menu dropdown-user">
-						<li><a href="#"><i class="fa fa-user fa-fw"></i>${sessionScope.sessionVo.getUserName()}</a>
-						</li>
-						<li><a href="#"><i class="fa fa-gear fa-fw"></i> 设置</a></li>
-						<li class="divider"></li>
-						<li><a href="${baseUrl}/logout"><i
-								class="fa fa-sign-out fa-fw"></i> 退出</a></li>
-					</ul> <!-- /.dropdown-user --></li>
-				<!-- /.dropdown -->
-			</ul>
-		</nav>
-		<!--/. NAV TOP  -->
-		<nav class="navbar-default navbar-side" role="navigation">
-			<div class="sidebar-collapse">
-				<ul class="nav" id="main-menu">
-					<li><a  href="${baseUrl}/index"><i class="glyphicon glyphicon-flash"></i>实时负荷曲线</a>
-					</li>
-					<li><a  href="${baseUrl}/historyload"><i class="glyphicon glyphicon-signal"></i>历史负荷曲线</a>
-					</li>
-					<li><a href="#"><i class="fa fa-table"></i>历史负荷数据表<span
-							class="fa arrow"></span></a>
-						<ul class="nav nav-second-level">
-						   <li><a class="list-group-item" href="${baseUrl}/"><i class="glyphicon glyphicon-list-alt"></i>实时负荷数据记录表</a></li>
-							<li><a  href="${baseUrl}/dayloadtable"><i class="glyphicon glyphicon-list-alt"></i>日负荷数据记录表</a></li>
-							<li><a href="${baseUrl}/monthloadtable"><i class="glyphicon glyphicon-list-alt"></i>月负荷数据记录表</a></li>
-							<li><a href="${baseUrl}/yearloadtable"><i class="glyphicon glyphicon-list-alt"></i>年负荷数据记录表</a></li>
-						</ul>
-					</li>
+		<!-- inline scripts related to this page -->
+		<script type="text/javascript">
+			jQuery(function($) {
+				//initiate dataTables plugin
+				var myTable = 
+				$('#dynamic-table')
+				//.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
+				.DataTable( {
+					bAutoWidth: false,
+					"aoColumns": [
+					  { "bSortable": false },
+					  null, null,null, null, null,
+					  { "bSortable": false }
+					],
+					"aaSorting": [],
+					select: {
+						style: 'multi'
+					}
+			    } );
+			
 				
-					<li><a  href="${baseUrl}/getallcustom"><i class="glyphicon glyphicon-align-center"></i>用户信息管理</a>
-					</li>
-					<li><a href=""><i class="glyphicon glyphicon-user"></i>用户信息</a>
-					</li>
-					<li><a href=""><i class="glyphicon glyphicon-copyright-mark"></i>关于</a>
-					</li>
-				</ul>
-
-			</div>
-
-		</nav>
-        <!-- /. NAV SIDE  -->
-      
-		<div id="page-wrapper">
-		<div class="header"> 
-                        <h4 class="page-header">
-                            Tables Page <small>Responsive tables</small>
-                        </h4>
-        </div>
-        
-            <div id="page-inner"> 
-              <div class="row">
-                <div class="col-md-12">
-                    <!-- Advanced Tables -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                                                                                  日负荷数据记录表
-                        </div>
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                    <thead>
-                                        <tr>
-                                            <th>用户ID</th>
-                                            <th>姓名</th>
-                                            <th>联系电话</th>
-                                            <th>地址</th>
-                                            <th>状态</th>
-                                            <th>注册时间</th>
-                                            <th>最近编辑时间</th>
-                                            <th>操作</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    <c:forEach var="custom" items="${customList}">
-                                        <tr class="odd gradeX">
-                                            <td>${custom.customId}</td>
-                                            <td>${custom.customName}</td>
-                                            <td>${custom.customIphone}</td>
-                                            <td>${custom.customAddress}</td>
-                                            <td>${custom.customStatus}</td>
-                                            <td>${custom.registerTime}</td>
-                                            <td>${custom.editTime}</td>
-                                            
-                                            <td 
-                                            <button class="btn btn-primary"><i class="fa fa-edit "></i>修改</button>
-                                            </td>
-                                        </tr>
-                                         </c:forEach>                                
-                                       
-                                    </tbody>
-                                </table>
-                            </div>
-                            
-                        </div>
-                    </div>
-                    <!--End Advanced Tables -->
-                </div>
-            </div>
-              <div class="row">
-                <div class="col-md-12">
-                    <!-- Advanced Tables -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                                                                                  实时数据记录
-                        </div>
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                    <thead>
-                                        <tr>
-                                            <th>用户ID</th>
-                                            <th>姓名</th>
-                                            <th>联系电话</th>
-                                            <th>地址</th>
-                                            <th>状态</th>
-                                            <th>注册时间</th>
-                                            <th>最近编辑时间</th>
-                                            <th>操作</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    <c:forEach var="custom" items="${customList}">
-                                        <tr class="odd gradeX">
-                                            <td>${custom.customId}</td>
-                                            <td>${custom.customName}</td>
-                                            <td>${custom.customIphone}</td>
-                                            <td>${custom.customAddress}</td>
-                                            <td>${custom.customStatus}</td>
-                                            <td>${custom.registerTime}</td>
-                                            <td>${custom.editTime}</td>
-                                            
-                                            <td 
-                                            <button class="btn btn-primary"><i class="fa fa-edit "></i>修改</button>
-                                            </td>
-                                        </tr>
-                                         </c:forEach>                                
-                                       
-                                    </tbody>
-                                </table>
-                            </div>
-                            
-                        </div>
-                    </div>
-                    <!--End Advanced Tables -->
-                </div>
-            </div> 
-            <div class="row">
-                <div class="col-md-12">
-                    <!-- Advanced Tables -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                                                                                  实时数据记录
-                        </div>
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                    <thead>
-                                        <tr>
-                                            <th>用户ID</th>
-                                            <th>姓名</th>
-                                            <th>联系电话</th>
-                                            <th>地址</th>
-                                            <th>状态</th>
-                                            <th>注册时间</th>
-                                            <th>最近编辑时间</th>
-                                            <th>操作</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    <c:forEach var="custom" items="${customList}">
-                                        <tr class="odd gradeX">
-                                            <td>${custom.customId}</td>
-                                            <td>${custom.customName}</td>
-                                            <td>${custom.customIphone}</td>
-                                            <td>${custom.customAddress}</td>
-                                            <td>${custom.customStatus}</td>
-                                            <td>${custom.registerTime}</td>
-                                            <td>${custom.editTime}</td>
-                                            
-                                            <td 
-                                            <button class="btn btn-primary"><i class="fa fa-edit "></i>修改</button>
-                                            </td>
-                                        </tr>
-                                         </c:forEach>                                
-                                       
-                                    </tbody>
-                                </table>
-                            </div>
-                            
-                        </div>
-                    </div>
-                    <!--End Advanced Tables -->
-                </div>
-            </div>
-                <!-- /. ROW  -->
-            <div class="row">
-                <div class="col-md-6">
-                  <!--   Kitchen Sink -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Kitchen Sink
-                        </div>
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
-                                            <th>Username</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@twitter</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                     <!-- End  Kitchen Sink -->
-                </div>
-                <div class="col-md-6">
-                     <!--   Basic Table  -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Basic Table
-                        </div>
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
-                                            <th>Username</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@twitter</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                      <!-- End  Basic Table  -->
-                </div>
-            </div>
-         </div>
-            </div>
-        </div>
-    </div>
-     <script src="assets/js/jquery-1.10.2.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/jquery.metisMenu.js"></script>
-    <script src="assets/js/dataTables/jquery.dataTables.js"></script>
-    <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
-        <script>
-            $(document).ready(function () {
-                $('#dataTables-example').dataTable();
-            });
-    </script>
-         <!-- Custom Js -->
-    <script src="assets/js/custom-scripts.js"></script>
-
-</body>
-
+				
+				$.fn.dataTable.Buttons.defaults.dom.container.className = 'dt-buttons btn-overlap btn-group btn-overlap';
+				
+				new $.fn.dataTable.Buttons( myTable, {
+					buttons: [
+					  {
+						"extend": "colvis",
+						"text": "<i class='fa fa-search bigger-110 blue'></i> <span class='hidden'>Show/hide columns</span>",
+						"className": "btn btn-white btn-primary btn-bold",
+						columns: ':not(:first):not(:last)'
+					  },
+					  {
+						"extend": "copy",
+						"text": "<i class='fa fa-copy bigger-110 pink'></i> <span class='hidden'>Copy to clipboard</span>",
+						"className": "btn btn-white btn-primary btn-bold"
+					  },
+					  {
+						"extend": "csv",
+						"text": "<i class='fa fa-database bigger-110 orange'></i> <span class='hidden'>Export to CSV</span>",
+						"className": "btn btn-white btn-primary btn-bold"
+					  },
+					  {
+						"extend": "excel",
+						"text": "<i class='fa fa-file-excel-o bigger-110 green'></i> <span class='hidden'>Export to Excel</span>",
+						"className": "btn btn-white btn-primary btn-bold"
+					  },
+					  {
+						"extend": "pdf",
+						"text": "<i class='fa fa-file-pdf-o bigger-110 red'></i> <span class='hidden'>Export to PDF</span>",
+						"className": "btn btn-white btn-primary btn-bold"
+					  },
+					  {
+						"extend": "print",
+						"text": "<i class='fa fa-print bigger-110 grey'></i> <span class='hidden'>Print</span>",
+						"className": "btn btn-white btn-primary btn-bold",
+						autoPrint: false,
+						message: 'This print was produced using the Print button for DataTables'
+					  }		  
+					]
+				} );
+				myTable.buttons().container().appendTo( $('.tableTools-container') );
+				
+				//style the message box
+				var defaultCopyAction = myTable.button(1).action();
+				myTable.button(1).action(function (e, dt, button, config) {
+					defaultCopyAction(e, dt, button, config);
+					$('.dt-button-info').addClass('gritter-item-wrapper gritter-info gritter-center white');
+				});
+				
+				
+				var defaultColvisAction = myTable.button(0).action();
+				myTable.button(0).action(function (e, dt, button, config) {
+					
+					defaultColvisAction(e, dt, button, config);
+					
+					
+					if($('.dt-button-collection > .dropdown-menu').length == 0) {
+						$('.dt-button-collection')
+						.wrapInner('<ul class="dropdown-menu dropdown-light dropdown-caret dropdown-caret" />')
+						.find('a').attr('href', '#').wrap("<li />")
+					}
+					$('.dt-button-collection').appendTo('.tableTools-container .dt-buttons')
+				});
+			
+			
+			
+				setTimeout(function() {
+					$($('.tableTools-container')).find('a.dt-button').each(function() {
+						var div = $(this).find(' > div').first();
+						if(div.length == 1) div.tooltip({container: 'body', title: div.parent().text()});
+						else $(this).tooltip({container: 'body', title: $(this).text()});
+					});
+				}, 500);
+						
+				myTable.on( 'select', function ( e, dt, type, index ) {
+					if ( type === 'row' ) {
+						$( myTable.row( index ).node() ).find('input:checkbox').prop('checked', true);
+					}
+				} );
+				myTable.on( 'deselect', function ( e, dt, type, index ) {
+					if ( type === 'row' ) {
+						$( myTable.row( index ).node() ).find('input:checkbox').prop('checked', false);
+					}
+				} );
+				/////////////////////////////////
+				//table checkboxes
+				$('th input[type=checkbox], td input[type=checkbox]').prop('checked', false);
+				
+				//select/deselect all rows according to table header checkbox
+				$('#dynamic-table > thead > tr > th input[type=checkbox], #dynamic-table_wrapper input[type=checkbox]').eq(0).on('click', function(){
+					var th_checked = this.checked;//checkbox inside "TH" table header
+					
+					$('#dynamic-table').find('tbody > tr').each(function(){
+						var row = this;
+						if(th_checked) myTable.row(row).select();
+						else  myTable.row(row).deselect();
+					});
+				});
+				
+				//select/deselect a row when the checkbox is checked/unchecked
+				$('#dynamic-table').on('click', 'td input[type=checkbox]' , function(){
+					var row = $(this).closest('tr').get(0);
+					if(this.checked) myTable.row(row).deselect();
+					else myTable.row(row).select();
+				});
+			
+			
+			
+				$(document).on('click', '#dynamic-table .dropdown-toggle', function(e) {
+					e.stopImmediatePropagation();
+					e.stopPropagation();
+					e.preventDefault();
+				});
+				
+				//And for the first simple table, which doesn't have TableTools or dataTables
+				//select/deselect all rows according to table header checkbox
+				var active_class = 'active';
+				$('#simple-table > thead > tr > th input[type=checkbox]').eq(0).on('click', function(){
+					var th_checked = this.checked;//checkbox inside "TH" table header
+					
+					$(this).closest('table').find('tbody > tr').each(function(){
+						var row = this;
+						if(th_checked) $(row).addClass(active_class).find('input[type=checkbox]').eq(0).prop('checked', true);
+						else $(row).removeClass(active_class).find('input[type=checkbox]').eq(0).prop('checked', false);
+					});
+				});
+				
+				//select/deselect a row when the checkbox is checked/unchecked
+				$('#simple-table').on('click', 'td input[type=checkbox]' , function(){
+					var $row = $(this).closest('tr');
+					if($row.is('.detail-row ')) return;
+					if(this.checked) $row.addClass(active_class);
+					else $row.removeClass(active_class);
+				});
+				//add tooltip for small view action buttons in dropdown menu
+				$('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+				
+				//tooltip placement on right or left
+				function tooltip_placement(context, source) {
+					var $source = $(source);
+					var $parent = $source.closest('table')
+					var off1 = $parent.offset();
+					var w1 = $parent.width();
+			
+					var off2 = $source.offset();
+					//var w2 = $source.width();
+			
+					if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
+					return 'left';
+				}
+				/***************/
+				$('.show-details-btn').on('click', function(e) {
+					e.preventDefault();
+					$(this).closest('tr').next().toggleClass('open');
+					$(this).find(ace.vars['.icon']).toggleClass('fa-angle-double-down').toggleClass('fa-angle-double-up');
+				});
+			})
+		</script>
+	</body>
 </html>

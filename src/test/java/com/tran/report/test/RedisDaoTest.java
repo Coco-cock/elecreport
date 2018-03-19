@@ -16,11 +16,11 @@ import com.tran.report.model.LoadToRedis;
 
 public class RedisDaoTest {
 	public static void main(String[] args) {
-		Load load=new Load(220.0, 10, 2200);
-		LoadToRedis node =new LoadToRedis("1", load, "2018-02-15");
-		RedisDao r=new RedisDao();
+		//Load load=new Load(220.0, 10, 2200);
+		//LoadToRedis node =new LoadToRedis("1", load, "2018-02-15");
+		//RedisDao r=new RedisDao();
 		//System.out.println(r.saveData(node));
-		System.out.println(r.getAllData());
+		//System.out.println(r.getAllData());
 		//System.out.println(r.getDataById("1"));
 		
 	}

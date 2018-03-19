@@ -3,6 +3,7 @@ package com.tran.report.controller;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -27,6 +28,7 @@ import com.tran.report.vo.UserAndCustomVO;
 @Controller
 @SessionAttributes("sessionVO")
 public class MainController {
+	private static final Logger logger = Logger.getLogger(MainController.class);
 	@Autowired
 	UserService userService;
 	
@@ -57,6 +59,7 @@ public class MainController {
 				url="redirect:/index";
 			} 
 		}
+		logger.info("用户登陆："+flag);
 		return new ModelAndView(url).addObject("flag", flag);
 	}
 	
@@ -70,6 +73,7 @@ public class MainController {
 	public String logOut(HttpSession session, ModelMap modelMap) {
 		modelMap.remove("sessionVO");
 		session.invalidate();
+		logger.info("退出登陆，清空session");
 		return "login";
 	}
 	

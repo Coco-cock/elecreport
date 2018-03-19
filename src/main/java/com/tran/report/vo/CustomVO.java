@@ -1,8 +1,8 @@
 package com.tran.report.vo;
 
-import javax.persistence.Entity;
+import java.util.Date;
 
-import com.tran.report.util.Status;
+import javax.persistence.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,8 +30,8 @@ public class CustomVO{
 	private String customIphone;
 	private String customAddress;
 	private String customStatus;
-	private String registerTime;
-	private String editTime;
+	private Date registerTime;
+	private Date editTime;
 	
 	
 }
