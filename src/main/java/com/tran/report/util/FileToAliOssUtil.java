@@ -42,7 +42,7 @@ public class FileToAliOssUtil {
 		String KEY_SECRET = props.getProperty("KEY_SECRET");
 		String BACKET_NAME = props.getProperty("BACKET_NAME");
 		String FOLDER = props.getProperty("FOLDER");
-		String imgUrl = "/";
+		String imgUrl =null;
 
 		if (!multipartFile.isEmpty()) {
 			OSS ossClient = new OSSClient(ENDPOINT, KEY_ID, KEY_SECRET);

@@ -1,5 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8" isELIgnored="false"
-%><%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+%><%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"
+%><%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"
+%><%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> 
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -10,6 +12,8 @@
 		<link rel="icon" href="${baseUrl}/assets/img/favicon.gif" type="image/gif" >
 		<!--  CDN 资源 -->
 		<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<!-- 表格插件 -->
+<!-- 		<link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css" rel="stylesheet"> -->
 		<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://cdn.bootcss.com/echarts/4.0.4/echarts.js"></script>
 		<script src="${baseUrl}/assets/js/ace-extra.min.js"></script>	
@@ -37,10 +41,8 @@ background:	#595959;
 						</small>
 					</a>
 				</div>
-
 				<div class="navbar-buttons navbar-header pull-right" role="navigation">
 					<ul class="nav ace-nav">
-
 						<li class="grey dropdown-modal">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
 								<img class="nav-user-photo" style="width: 50px;height:45px" src='<c:out value="${sessionScope.sessionVO.userAndCustomVO.user.imgPath}"/>' alt="Photo" />
@@ -59,16 +61,13 @@ background:	#595959;
 										设置
 									</a>
 								</li>
-
 								<li>
 									<a href="${baseUrl}/goProfile">
 										<i class="ace-icon fa fa-user"></i>
 										信息
 									</a>
 								</li>
-
 								<li class="divider"></li>
-
 								<li>
 									<a href="${baseUrl}/logout">
 										<i class="ace-icon fa fa-power-off"></i>

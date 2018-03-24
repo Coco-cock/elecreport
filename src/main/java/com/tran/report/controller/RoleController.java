@@ -2,6 +2,8 @@ package com.tran.report.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,8 @@ import com.tran.report.entity.Permission;
 import com.tran.report.entity.Role;
 import com.tran.report.service.PermissionService;
 import com.tran.report.service.RoleService;
+import com.tran.report.service.UserAndCustomService;
+import com.tran.report.vo.UserAndCustomVO;
 
 /**   
 * @version 1.0   
@@ -23,12 +27,15 @@ import com.tran.report.service.RoleService;
 *@param     
 */
 @Controller
-public class RoleController {
+public class RoleController extends BaseController{
 	private static final Logger logger = Logger.getLogger(RoleController.class);
 	@Autowired
 	PermissionService permissionService;
 	@Autowired
 	RoleService roleService;
+	@Autowired
+	UserAndCustomService uacService;
+	
 	@RequestMapping(value="getAllRole")
 	public ModelAndView getAllRole(){
 		List<Role> roleList=roleService.getAllRole();
@@ -39,6 +46,11 @@ public class RoleController {
 	public ModelAndView getAllPermission(){
 		List<Permission> roleList=permissionService.getAllPermission();
 		return new ModelAndView("permission").addObject("permissionList", roleList);
+	}
+	@RequestMapping(value="setUserRole")
+	public ModelAndView setUserRole(HttpSession session){
+		List<UserAndCustomVO> userAndCustomList=uacService.getAllUserAndCustomByRoleId(this.getSessionUserRoleId(session));
+		return new ModelAndView("setUserRole").addObject("userAndCustomList", userAndCustomList);
 	}
 
 }

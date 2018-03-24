@@ -75,9 +75,9 @@
 						</ul>
 					</li>
 					<c:set var="role" value="${sessionScope.sessionVO.userAndCustomVO.user.role.role}"/>
-			<c:if test="${role=='admin'||role=='superAdmin'}">
+		       	<c:if test="${role=='admin'||role=='superAdmin'}">
 					<li id="navleft4">
-						<a href="${baseUrl}/getAllCustom">
+						<a href="${baseUrl}/getUserByRoleId">
 							<i class="menu-icon glyphicon glyphicon-align-center"></i>
 							<span class="menu-text"> 用户信息管理</span>
 						</a>
@@ -96,9 +96,9 @@
 
 						<ul class="submenu">
 							<li id="navleft5-1">
-								<a href="${baseUrl}/getAllPermission">
+								<a href="${baseUrl}/setUserRole">
 									<i class="menu-icon fa fa-caret-right"></i>
-									权限表
+									用户角色配置
 								</a>
 
 								<b class="arrow"></b>

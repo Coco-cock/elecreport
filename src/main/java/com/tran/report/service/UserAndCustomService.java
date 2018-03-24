@@ -20,8 +20,10 @@ import com.tran.report.vo.UserVO;
 
 public interface UserAndCustomService {
 	List<UserAndCustomVO> getAllUserAndCustomByRoleId(Integer roleId);
-	boolean findUser(User user);
+	UserAndCustomVO getUserAndCustomById(String Id);
 	UserAndCustomVO getUser(String userName,String password);
+	boolean editUserAndCustom(UserVO uacVO);
+	boolean findUser(User user);
 	List<User> getUserByRoleId(Integer roleId);
 	boolean saveUser(UserVO userVO);
 	boolean saveUserAndCustom(UserVO userVO);

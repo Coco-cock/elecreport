@@ -24,6 +24,8 @@ import com.tran.report.vo.CustomVO;
 import com.tran.report.vo.UserAndCustomVO;
 import com.tran.report.vo.UserVO;
 
+import ch.qos.logback.classic.Logger;
+
 /**
  * @version 1.0
  * @author TianMengJun
@@ -34,7 +36,7 @@ import com.tran.report.vo.UserVO;
 @Service
 @Transactional
 public class UserAndCustomServiceImpl implements UserAndCustomService {
-
+	
 	@Autowired
 	UserRepository userRepository;
 	@Autowired
@@ -196,6 +198,27 @@ public class UserAndCustomServiceImpl implements UserAndCustomService {
 		if(customRepository.findOne(customId)==null)
 			return true;
 		return false;
+	}
+
+	@Override
+	public UserAndCustomVO getUserAndCustomById(String Id) {
+		UserAndCustomVO uac= new UserAndCustomVO();
+		uac.setUser(userRepository.findOne(Id));
+		uac.setCustomVO(this.getCustomVoById(Id));
+		return uac;
+	}
+
+	@Override
+	public boolean editUserAndCustom(UserVO vo) {
+		User user =new User();
+		BeanUtils.copyProperties(vo, user);
+		User u=userRepository.findOne(vo.getID());
+		user.setRole(roleRepository.findOne(vo.getRoleId()));
+		user.setImgPath(u.getImgPath());
+		System.out.println(user);
+		userRepository.save(user);
+		customRepository.editCustom(vo.getCustomName(), vo.getCustomAddress(), vo.getCustomPhone(), new Date(System.currentTimeMillis()), vo.getID());
+		return true;
 	}
 
 }

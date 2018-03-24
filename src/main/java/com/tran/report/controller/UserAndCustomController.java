@@ -4,7 +4,6 @@ package com.tran.report.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,9 +13,7 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.tran.report.entity.Custom;
-import com.tran.report.entity.User;
 import com.tran.report.service.UserAndCustomService;
 import com.tran.report.util.FileToAliOssUtil;
 import com.tran.report.vo.CustomVO;
@@ -36,14 +33,13 @@ public class UserAndCustomController {
 	private static final Logger logger = Logger.getLogger(UserAndCustomController.class);
 	@Autowired
 	UserAndCustomService uacService;
-
 	
 	@RequestMapping("/saveUserAndCustom")
 	public ModelAndView saveUserAndCustom(@RequestPart(value = "imgFile") MultipartFile multipartFile,UserVO vo) {
-		// 上传图片返回访问地址
+		// 上传图片,返回访问地址
 		String imgPath = FileToAliOssUtil.fileToAliOSS(multipartFile);
 		vo.setImgPath(imgPath);
-		vo.setRoleId(3);	
+		vo.setRoleId(3);//设为默认值,3:客户角色Id	
 		uacService.saveUserAndCustom(vo);
 		return new ModelAndView("redirect:/getAllCustom");
 	}
@@ -71,10 +67,23 @@ public class UserAndCustomController {
 	}
 
 
-	@RequestMapping(value = "getCustomById")
-	public @ResponseBody CustomVO getCustomById() {
-		return uacService.getCustomVoById("1");
+	@RequestMapping(value = "goEditCustomForm/{customId}")
+	public ModelAndView goEditCustomForm(@PathVariable("customId")String customId) {
+		UserAndCustomVO uacVO=uacService.getUserAndCustomById(customId);
+		return new ModelAndView("editCustomForm").addObject("userAndCustomVO", uacVO);
 	}
+	@RequestMapping("editUserAndCustom")
+	public ModelAndView editUserAndCustom(UserVO vo) {
+		logger.info(vo);
+		uacService.editUserAndCustom(vo);
+		return new ModelAndView("redirect:/getUserByRoleId");
+	}
+	
+	/**
+	 * 根据用户拥有的角色,查询用户信息,返回权限较低的用户信息
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value = "getUserByRoleId")
 	public ModelAndView  getUserByRoleId(HttpSession session) {
 		SessionVO sessionVO = (SessionVO) session.getAttribute("sessionVO");

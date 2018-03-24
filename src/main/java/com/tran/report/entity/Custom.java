@@ -77,7 +77,7 @@ public class Custom extends BaseEntity implements Serializable{
 	@JsonIgnore
     @MapsId
     @JoinColumn(name = "ID")
-	@OneToOne(cascade = CascadeType.ALL,mappedBy="custom",fetch=FetchType.EAGER)
+	@OneToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
 	private User user;
 	/**
 	 * 一对多 一个客户对应多张负荷单

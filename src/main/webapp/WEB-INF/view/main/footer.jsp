@@ -5,9 +5,7 @@
 						<span class="bigger-120">
 							<span class="blue bolder">中北大学&nbsp</span>&nbsp田孟军 &copy; 2018
 						</span>
-
 						&nbsp; &nbsp;
-						
 					</div>
 				</div>
 			</div>
@@ -25,12 +23,16 @@
 <script src="${baseUrl}/assets/js/jquery.gritter.min.js"></script>
 <script src="${baseUrl}/assets/js/jquery.hotkeys.index.min.js"></script>
 <script src="${baseUrl}/assets/js/jquery.dataTables.min.js"></script>
+<!-- https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js
+https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js -->
 <script src="${baseUrl}/assets/js/jquery.dataTables.bootstrap.min.js"></script>
 <script src="${baseUrl}/assets/js/jquery.maskedinput.min.js"></script>
 <script src="${baseUrl}/assets/js/jquery.ui.touch-punch.min.js"></script>
 <script src="${baseUrl}/assets/js/jquery.flot.min.js"></script>
 <script src="${baseUrl}/assets/js/jquery.flot.resize.min.js"></script> 
 <script src="${baseUrl}/assets/js/jquery.sparkline.index.min.js"></script>
+<script src="${baseUrl}/assets/js/jquery.validate.min.js"></script>
+<script src="${baseUrl}/assets/js/jquery-additional-methods.min.js"></script>
 
 <script src="${baseUrl}/assets/js/bootstrap-datepicker.min.js"></script>
 <script src="${baseUrl}/assets/js/bootstrap-wysiwyg.min.js"></script>
@@ -47,7 +49,15 @@
 <script src="${baseUrl}/assets/js/buttons.colVis.min.js"></script>
 <script src="${baseUrl}/assets/js/dataTables.select.min.js"></script>
 <script src="${baseUrl}/assets/js/excanvas.min.js"></script>
+<script src="${baseUrl}/assets/js/jquery.maskedinput.min.js"></script>
+<script src="${baseUrl}/assets/js/bootbox.js"></script>
+<script src="${baseUrl}/assets/js/wizard.min.js"></script>
 <!-- ace scripts -->
 <script src="${baseUrl}/assets/js/ace-editable.min.js"></script>
 <script src="${baseUrl}/assets/js/ace-elements.min.js"></script>
-<script src="${baseUrl}/assets/js/ace.min.js"></script>		
+<script src="${baseUrl}/assets/js/ace.min.js"></script>
+
+
+
+	
+		
