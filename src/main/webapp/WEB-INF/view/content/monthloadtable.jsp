@@ -4,7 +4,15 @@
 				<!-- 主要内容 -->
 			<div id="main-content" class="main-content">
 				<div  class="main-content-inner">
-			
+					<div class="breadcrumbs ace-save-state" id="breadcrumbs">
+						<ul class="breadcrumb">
+							<li>
+								<i class="ace-icon fa fa-home home-icon"></i>
+								<a href="index">Home</a>
+							</li>	
+							<li class="active">月负荷数据记录表</li>
+						</ul>
+					</div>
 				<div class="page-content">
                        <div class="row">
 							<div class="col-xs-12">
@@ -56,26 +64,6 @@ document.getElementById('navleft3').className = 'active open';
 </script>
 		<%@ include file="../main/footer.jsp" %>
 		</div><!-- /.main-container -->
-		<!--[if !IE]> -->
-		<script src="${baseUrl}/assets/js/jquery-2.1.4.min.js"></script>
-		<script type="text/javascript">
-			if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
-		</script>
-		<script src="${baseUrl}/assets/js/bootstrap.min.js"></script>
-		<!-- page specific plugin scripts -->
-		<script src="${baseUrl}/assets/js/jquery.dataTables.min.js"></script>
-		<script src="${baseUrl}/assets/js/jquery.dataTables.bootstrap.min.js"></script>
-		<script src="${baseUrl}/assets/js/dataTables.buttons.min.js"></script>
-		<script src="${baseUrl}/assets/js/buttons.flash.min.js"></script>
-		<script src="${baseUrl}/assets/js/buttons.html5.min.js"></script>
-		<script src="${baseUrl}/assets/js/buttons.print.min.js"></script>
-		<script src="${baseUrl}/assets/js/buttons.colVis.min.js"></script>
-		<script src="${baseUrl}/assets/js/dataTables.select.min.js"></script>
-
-		<!-- ace scripts -->
-		<script src="${baseUrl}/assets/js/ace-elements.min.js"></script>
-		<script src="${baseUrl}/assets/js/ace.min.js"></script>
-
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
 			jQuery(function($) {

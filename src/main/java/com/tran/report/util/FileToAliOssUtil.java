@@ -53,11 +53,12 @@ public class FileToAliOssUtil {
 				// 获取图片的UUID文件名
 				fileName = UUID.randomUUID().toString() + ".jpg";
 				// 文件put到阿里云OSS
-				PutObjectResult putObjectResult = ossClient.putObject(BACKET_NAME, FOLDER + fileName, inputStream);
+				PutObjectResult putObjectResult = ossClient.putObject(BACKET_NAME, FOLDER +"/"+ fileName, inputStream);
 
 				if (putObjectResult != null) {
-
-					imgUrl = "http://tianmengjun.oss-cn-shenzhen.aliyuncs.com/" + FOLDER + fileName;
+				
+					//例：http://elecreport.oss-cn-beijing.aliyuncs.com/userImg/5ff9ba12-6c35-418f-9631-0758903730c7.jpg
+					imgUrl="http://"+BACKET_NAME+"."+ENDPOINT.substring(6)+"/"+FOLDER +"/"+ fileName;
 				}
 			} catch (OSSException | ClientException | IOException e) {
 				logger.error("上传图片到阿里云OSS出现异常"+e);

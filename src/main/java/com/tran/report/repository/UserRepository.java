@@ -1,5 +1,7 @@
 package com.tran.report.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -20,4 +22,5 @@ import com.tran.report.entity.User;
 public interface UserRepository extends JpaRepository<User, String>{
 	User findByUserName(String userName);
 	User findByUserNameAndPassword(String userName,String password);
+	List<User> findByRole_idGreaterThan(Integer roleId);
 }

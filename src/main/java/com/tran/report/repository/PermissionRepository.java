@@ -14,6 +14,6 @@ import com.tran.report.entity.Permission;
 */
 
 @Repository
-public interface PermissionRepository extends JpaRepository<Permission, String>{
+public interface PermissionRepository extends JpaRepository<Permission, Integer>{
 
 }

@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 /**   
 * @version 1.0   
@@ -18,6 +19,7 @@ import lombok.Setter;
 *
 *@param     
 */
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -27,7 +29,7 @@ public class CustomVO{
 	
 	private String ID;
 	private String customName;
-	private String customIphone;
+	private String customPhone;
 	private String customAddress;
 	private String customStatus;
 	private Date registerTime;

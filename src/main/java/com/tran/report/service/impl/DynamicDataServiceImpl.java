@@ -13,7 +13,7 @@ import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import com.tran.report.dao.RedisDao;
 import com.tran.report.entity.LoadData;
-import com.tran.report.model.LoadToRedis;
+import com.tran.report.pojo.LoadToRedis;
 import com.tran.report.repository.CustomRepository;
 import com.tran.report.repository.LoadRepository;
 import com.tran.report.service.DynamicDataService;
@@ -57,9 +57,9 @@ public class DynamicDataServiceImpl implements DynamicDataService {
 					@Override
 					public LoadData apply(LoadToRedis ltr) {
 						LoadData loadData =new LoadData();
-						loadData.setCurrent(ltr.getLoad().getCurrent());
-						loadData.setVoltage(ltr.getLoad().getVoltage());
-						loadData.setPowerValue(ltr.getLoad().getPower());
+						loadData.setCurrent(String.valueOf(ltr.getLoad().getCurrent()));
+						loadData.setVoltage(String.valueOf(ltr.getLoad().getVoltage()));
+						loadData.setPowerValue(String.valueOf(ltr.getLoad().getPower()));
 						try {
 							Date editTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(ltr.getCreateTime());
 							loadData.setEditTime(editTime);

@@ -24,7 +24,7 @@
 											<div class="pull-right tableTools-container"></div>
 										</div>
 										<div class="table-header">
-											用户信息表  	<a href="#modal-table" role="button"  data-toggle="modal"> <button class="btn btn-xs btn-warning" ><i class="glyphicon glyphicon-plus"></i>添加</button> </a>
+											用户信息表  	<a href="#modal-table" role="button"  data-toggle="modal"> <button class="btn btn-xs btn-warning pull-right" ><i class="glyphicon glyphicon-plus"></i>添加</button> </a>
 										</div>
 
 										<!-- div.table-responsive -->
@@ -41,6 +41,7 @@
                                                        <th>状态</th>
                                                        <th>注册时间</th>
                                                        <th>最近编辑时间</th>
+                                                       <th>操作</th>
 													</tr>											
 												</thead>
 												<tbody>
@@ -48,11 +49,12 @@
                                         <tr>
                                             <td><c:out value="${vs.index+1}"></c:out></td>
                                             <td><c:out value="${custom.customName}"></c:out></td>
-                                            <td><c:out value="${custom.customIphone}"></c:out></td>
+                                            <td><c:out value="${custom.customPhone}"></c:out></td>
                                             <td><c:out value="${custom.customAddress}"></c:out></td>
                                             <td><c:out value="${custom.customStatus}"></c:out></td>
                                             <td><c:out value="${custom.registerTime}"></c:out></td>
                                             <td><c:out value="${custom.editTime}"></c:out></td> 
+                                             <td></td> 
 											</tr>
 											</c:forEach>
 
@@ -70,12 +72,12 @@
 													<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 														<span class="white">&times;</span>
 													</button>
-													添加课程信息
+													添加用户信息
 									
 												</div>
 											</div>
 
-											<form id="addForm" onsubmit="return false"  method="post">
+											<form id="addForm"  action="${baseUrl}/saveUserAndCustom" method="post" enctype="multipart/form-data">
 											<div class="modal-body no-padding">
 												<table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
 												<tbody>	
@@ -90,26 +92,31 @@
 														</tr>
 														<tr>
 															<td>姓名：</td>															
-															<td><input name="custom" type="text"> </td>
+															<td><input name="customName" type="text"> </td>
 														</tr>
 														<tr>
 															<td>联系电话：</td>															
-															<td><input name="Phone" type="text"> </td>
+															<td><input name="customPhone" type="text"> </td>
 														</tr>
 														<tr>
 															<td>地址：</td>															
 															<td><input name="customAddress" type="text"> </td>
 														</tr>
 														<tr>
-															<td>地址：</td>															
-															<td><input name="" type="text"> </td>
+															<td>角色：</td>															
+															<td><input name="role" type="text"> </td>
 														</tr>
+														<tr>
+															<td>头像：</td>															
+															<td><input name="imgFile" type="file"> </td>
+														</tr>
+														
 													</tbody>
 												</table>
 											</div>
 											<div class="modal-footer no-margin-top">
                                                <button data-dismiss="modal" class="btn btn-sm btn-danger" type="button">关闭</button>
-                                               <button class="btn btn-sm btn-primary" type="submit">提交</button>
+                                               <button class="btn btn-sm btn-primary"  type="submit">提交</button>
                                              </div>
 										</form>
 										</div>
@@ -123,15 +130,14 @@
 				</div>
 			</div><!-- /.main-content -->
  <script type="text/javascript">
-        function login() {
+        function save() {
             $.ajax({
-            //几个参数需要注意一下
-                type: "POST",//方法类型
-                dataType: "json",//预期服务器返回的数据类型
-                url: "${baseUrl}/saveCustom" ,//url
+                type: "POST",
+                dataType: "json",
+                url: "${baseUrl}/saveUser" ,
                 data: $('#addForm').serialize(),
                 success: function (result) {
-                    console.log(result);//打印服务端返回的数据(调试用)
+                   // console.log(result);//打印服务端返回的数据(调试用)
                     if (result.resultCode == 200) {
                         alert("SUCCESS");
                     }
@@ -146,8 +152,8 @@
 <script> 
 document.getElementById('navleft4').className = 'active'; 
 </script>
-		<%@ include file="../main/footer.jsp" %>
-		</div><!-- /.main-container -->
+<%@ include file="../main/footer.jsp" %>
+</div><!-- /.main-container -->
 
 	<script type="text/javascript">
 function sendDeleteAction(data) {	
@@ -169,27 +175,6 @@ function sendDeleteAction(data) {
 	});
 	}
 </script>	
-
-		<!--[if !IE]> -->
-		<script src="${baseUrl}/assets/js/jquery-2.1.4.min.js"></script>
-		<script type="text/javascript">
-			if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
-		</script>
-		<script src="${baseUrl}/assets/js/bootstrap.min.js"></script>
-
-		<!-- page specific plugin scripts -->
-		<script src="${baseUrl}/assets/js/jquery.dataTables.min.js"></script>
-		<script src="${baseUrl}/assets/js/jquery.dataTables.bootstrap.min.js"></script>
-		<script src="${baseUrl}/assets/js/dataTables.buttons.min.js"></script>
-		<script src="${baseUrl}/assets/js/buttons.flash.min.js"></script>
-		<script src="${baseUrl}/assets/js/buttons.html5.min.js"></script>
-		<script src="${baseUrl}/assets/js/buttons.print.min.js"></script>
-		<script src="${baseUrl}/assets/js/buttons.colVis.min.js"></script>
-		<script src="${baseUrl}/assets/js/dataTables.select.min.js"></script>
-
-		<!-- ace scripts -->
-		<script src="${baseUrl}/assets/js/ace-elements.min.js"></script>
-		<script src="${baseUrl}/assets/js/ace.min.js"></script>
 
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
@@ -386,24 +371,6 @@ function sendDeleteAction(data) {
 					$(this).closest('tr').next().toggleClass('open');
 					$(this).find(ace.vars['.icon']).toggleClass('fa-angle-double-down').toggleClass('fa-angle-double-up');
 				});
-				/***************/
-				
-				
-				
-				
-				
-				/**
-				//add horizontal scrollbars to a simple table
-				$('#simple-table').css({'width':'2000px', 'max-width': 'none'}).wrap('<div style="width: 1000px;" />').parent().ace_scroll(
-				  {
-					horizontal: true,
-					styleClass: 'scroll-top scroll-dark scroll-visible',//show the scrollbars on top(default is bottom)
-					size: 2000,
-					mouseWheelLock: true
-				  }
-				).css('padding-top', '12px');
-				*/
-			
 			
 			})
 		</script>

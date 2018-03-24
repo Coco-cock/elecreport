@@ -1,4 +1,4 @@
-package com.tran.report.model;
+package com.tran.report.pojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,7 +21,7 @@ import lombok.ToString;
 @Setter
 @Getter
 public class Load {
-	private String voltage;
-	private String current;
-	private String power;
+	private double voltage;
+	private double current;
+	private double power;
 }

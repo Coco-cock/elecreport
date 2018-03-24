@@ -37,7 +37,7 @@ public class SessionFilter extends OncePerRequestFilter {
 		if (flag) {
 			Object obj = request.getSession().getAttribute("sessionVO");
 			if (null == obj) {
-				response.sendRedirect("logout");
+				response.sendRedirect("login");
 				return;
 			} else {
 				// 如果session中存在登录者实体，则继续

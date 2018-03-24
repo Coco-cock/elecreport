@@ -1,8 +1,8 @@
 package com.tran.report.test;
 
 import com.tran.report.dao.RedisDao;
-import com.tran.report.model.Load;
-import com.tran.report.model.LoadToRedis;
+import com.tran.report.pojo.Load;
+import com.tran.report.pojo.LoadToRedis;
 
 /**   
 * @version 1.0   

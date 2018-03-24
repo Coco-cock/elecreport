@@ -45,15 +45,14 @@
          <!--  到指定的包下面找 -->
         <property name="packagesToScan" value="com.tran.report.entity"/>
 
+      
         <property name="jpaProperties">
             <props>
                 <prop key="hibernate.ejb.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
-                
                 <!--格式化sql语句  -->
                 <prop key="hibernate.format_sql">true</prop>
-        
                 <!-- 表没有就自动创建 ，看注解@entity的实体表  -->
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
             </props>

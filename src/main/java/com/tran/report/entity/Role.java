@@ -53,8 +53,8 @@ public class Role implements Serializable{
     /**
      * 一个角色对应多个权限
      */
-    @OneToMany(targetEntity = Permission.class,mappedBy="role",fetch = FetchType.LAZY ,cascade = {CascadeType.PERSIST,CascadeType.REFRESH})
-    private Set<Permission> permission =new HashSet<>();
+  /*  @OneToMany(targetEntity = Permission.class,mappedBy="role",fetch = FetchType.LAZY ,cascade = {CascadeType.PERSIST,CascadeType.REFRESH})
+    private Set<Permission> permission =new HashSet<>();*/
     /**
      * 一个角色对应多个用户
      */

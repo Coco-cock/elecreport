@@ -1,15 +1,25 @@
 package com.tran.report.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,8 +39,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Custom extends BaseEntity {
+public class Custom extends BaseEntity implements Serializable{
 	private static final long serialVersionUID = 1L;
+
 	/**
 	 * 客户名
 	 */
@@ -40,7 +51,7 @@ public class Custom extends BaseEntity {
 	 * 联系电话
 	 */
 	@Column(length = 25)
-	private String customIphone;
+	private String customPhone;
 	/**
 	 * 地址
 	 */
@@ -62,9 +73,11 @@ public class Custom extends BaseEntity {
 	 * 一对一 单向 关联
 	 * 共享user的主键
 	 */
-	// @JoinColumn(name="userId")
-	@OneToOne(cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn(referencedColumnName="ID")
+	
+	@JsonIgnore
+    @MapsId
+    @JoinColumn(name = "ID")
+	@OneToOne(cascade = CascadeType.ALL,mappedBy="custom",fetch=FetchType.EAGER)
 	private User user;
 	/**
 	 * 一对多 一个客户对应多张负荷单

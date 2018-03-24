@@ -1,6 +1,7 @@
 package com.tran.report.service.impl;
 
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,6 +50,8 @@ public class LoadBillServiceImpl implements LoadBillService {
 	@Override
 	public List<Map<String,String>> getDayBill() {
 		List<DayLoadBill> billList = dayLoadBillRepository.findAll();
+		//Collections.sort(billList);//按照时间排序
+		//Collections.reverse(billList);
 		List<Map<String,String>> voList = Lists.transform(billList,
 				new Function<DayLoadBill, Map<String, String>>() {
 					@Override

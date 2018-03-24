@@ -27,7 +27,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @MappedSuperclass
-public abstract class BaseLoadBillEntity extends BaseEntity implements Serializable{
+public abstract class BaseLoadBillEntity extends BaseEntity{
 
 	private static final long serialVersionUID = 1L;
 	

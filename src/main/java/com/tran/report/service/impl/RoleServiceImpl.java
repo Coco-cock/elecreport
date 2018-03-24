@@ -33,10 +33,11 @@ public class RoleServiceImpl implements RoleService{
 	}
 
 	@Override
-	public Role getRoleById(String roleId) {
+	public Role getRoleById(Integer roleId) {
 		return roleRepository.findOne(roleId);
 	}
-
+	
+	@Transactional 
 	@Override
 	public boolean saveRole(Role role) {
 		if(roleRepository.saveAndFlush(role)!=null)
@@ -46,7 +47,7 @@ public class RoleServiceImpl implements RoleService{
 
 	@Override
 	public boolean editRole(Role role) {
-		if(roleRepository.exists(String.valueOf(role.getId()))) {
+		if(roleRepository.exists(role.getId())) {
 			roleRepository.saveAndFlush(role);
 			return true;		
 		}
@@ -54,9 +55,9 @@ public class RoleServiceImpl implements RoleService{
 	}
 
 	@Override
-	public boolean deleteRole(String roleId) {
+	public boolean deleteRole(Integer roleId) {
 		roleRepository.delete(roleId);
-		if(!roleRepository.exists(String.valueOf(roleId)))
+		if(!roleRepository.exists(roleId))
 			return true;
 		return false;
 	}

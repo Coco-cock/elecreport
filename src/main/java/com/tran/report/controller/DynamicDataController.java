@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.tran.report.model.LoadToRedis;
+import com.tran.report.pojo.LoadToRedis;
 import com.tran.report.service.DynamicDataService;
 import com.tran.report.vo.SessionVO;
 
@@ -56,6 +56,7 @@ public class DynamicDataController {
 			List<Double> Pdata = new LinkedList<>();
 			for (LoadToRedis ltr : datalist) {
 				time.add(ltr.getCreateTime().substring(10, 19));
+				logger.info(ltr.getLoad().getVoltage());
 				Vdata.add(Double.valueOf(ltr.getLoad().getVoltage()));
 				Adata.add(Double.valueOf(ltr.getLoad().getCurrent()));
 				Pdata.add(Double.valueOf(ltr.getLoad().getPower()));

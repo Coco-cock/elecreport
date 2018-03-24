@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
-import com.tran.report.service.UserService;
+import com.tran.report.service.UserAndCustomService;
 import com.tran.report.vo.SessionVO;
 import com.tran.report.vo.UserAndCustomVO;
 
@@ -30,11 +30,15 @@ import com.tran.report.vo.UserAndCustomVO;
 public class MainController {
 	private static final Logger logger = Logger.getLogger(MainController.class);
 	@Autowired
-	UserService userService;
+	UserAndCustomService userService;
 	
 	@RequestMapping(value="index")
 	public String index() {		
 		return "dynamicdata";	
+	}
+	@RequestMapping(value="login")
+	public String login() {		
+		return "login";	
 	}
 	
 	/**
@@ -45,22 +49,25 @@ public class MainController {
 	 * @return
 	 */
 	@RequestMapping(value = "loginVerify")
-	public ModelAndView login(@RequestParam("userName") String userName,
+	public String loginVerify(@RequestParam("userName") String userName,
 			@RequestParam("password") String password, ModelMap modelMap) {
 		String flag = "登陆失败！";
-		String url="login";
+		String url="redirect:/login";
 		if (StringUtils.isNotBlank(userName) && StringUtils.isNotBlank(password)) {
 			UserAndCustomVO userVO = userService.getUser(userName, password);		
-			if (userVO.getUser()!=null) {
-				SessionVO sessionVO = new SessionVO();
-				sessionVO.setUserAndCustomVO(userVO);
-				modelMap.addAttribute("sessionVO", sessionVO);
-				flag = "登陆成功！";
-				url="redirect:/index";
+			if (userVO!=null) {
+				if(userVO.getUser()!=null) {
+					logger.info("userVO:"+userVO+"--userVO.getUser():"+userVO.getUser());
+					SessionVO sessionVO = new SessionVO();
+					sessionVO.setUserAndCustomVO(userVO);
+					modelMap.addAttribute("sessionVO", sessionVO);
+					flag = "登陆成功！";
+					url="redirect:/index";
+				}
 			} 
 		}
 		logger.info("用户登陆："+flag);
-		return new ModelAndView(url).addObject("flag", flag);
+		return url;
 	}
 	
 	/**
@@ -74,7 +81,7 @@ public class MainController {
 		modelMap.remove("sessionVO");
 		session.invalidate();
 		logger.info("退出登陆，清空session");
-		return "login";
+		return "redirect:/login";
 	}
 	
 	/**

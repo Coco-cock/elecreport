@@ -11,8 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.tran.report.dao.RedisDao;
-import com.tran.report.model.Load;
-import com.tran.report.model.LoadToRedis;
+import com.tran.report.pojo.Load;
+import com.tran.report.pojo.LoadToRedis;
 
 /**   
 * @version 1.0   
@@ -37,12 +37,15 @@ public class CreateData extends TimerTask {
 		Random random = new Random();
 		int current=random.nextInt(10);
 		int voltage=random.nextInt(10)+215;
-	    Load load =new Load(String.valueOf(voltage), String.valueOf(current), String.valueOf(current*voltage));
+	    Load load =new Load(voltage, current, current*voltage);
 		SimpleDateFormat sdf =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String createTime= sdf.format(new Date());		   
-		LoadToRedis nodeLoad =new LoadToRedis("1", load, createTime);		
+		LoadToRedis nodeLoad =new LoadToRedis("1", load, createTime);
+		LoadToRedis nodeLoad2 =new LoadToRedis("2", load, createTime);
 		boolean flag=redisDao.saveData(nodeLoad);
-		logger.info("CreateData-->createDate() 保存数据："+flag);
+		boolean flag2=redisDao.saveData(nodeLoad2);
+		logger.info("CreateData-->createDate() 保存数据："+"1"+flag);
+		logger.info("CreateData-->createDate() 保存数据："+"2"+flag2);
 	}
 	
 

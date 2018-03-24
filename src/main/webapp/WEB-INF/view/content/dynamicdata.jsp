@@ -176,6 +176,20 @@
 				</div>
 			</div><!-- /.main-content -->
 	<script>
+	window.onresize = function () {
+		domInit("voltageG-chart",980,330);
+		domInit("currentG-chart",980,330);
+		domInit("powerG-chart",980,330)
+		domInit("voltage-chart",250,200);
+		domInit("current-chart",250,200);
+		domInit("power-chart",250,200);
+		voltageG.resize();
+		 currentG.resize();
+		 powerG.resize();
+		 voltageChart.resize();
+		 currentChart.resize();
+		 powerChart.resize();
+	};
 function domInit(id,widthDom,heightDom){
 var chartDom =document.getElementById(id);
 chartDom.style.width = window.innerWidth-widthDom+'px';
@@ -482,20 +496,7 @@ powerChart.setOption({
 
 powerChart.showLoading(); 
 
-window.onresize = function () {
-	domInit("voltageG-chart",980,330);
-	domInit("currentG-chart",980,330);
-	domInit("powerG-chart",980,330)
-	domInit("voltage-chart",250,200);
-	domInit("current-chart",250,200);
-	domInit("power-chart",250,200);
-	voltageG.resize();
-	 currentG.resize();
-	 powerG.resize();
-	 voltageChart.resize();
-	 currentChart.resize();
-	 powerChart.resize();
-};
+
 window.onload=timedata();
 var i=self.setInterval("timedata()",5000);
 function timedata(){
@@ -584,24 +585,7 @@ document.getElementById('navleft1').className = 'active';
 </script>  
 		
 		<%@ include file="../main/footer.jsp" %>
-		</div><!-- /.main-container -->
-
-		<script type="text/javascript">
-			if('ontouchstart' in document.documentElement) document.write("<script src='${baseUrl}/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
-		</script>
-		<script src="${baseUrl}/assets/js/bootstrap.min.js"></script>
-
-		<!-- page specific plugin scripts -->
-		  <script src="${baseUrl}/assets/js/excanvas.min.js"></script>
-		<script src="${baseUrl}/assets/js/jquery-ui.custom.min.js"></script>
-		<script src="${baseUrl}/assets/js/jquery.ui.touch-punch.min.js"></script>
-		<script src="${baseUrl}/assets/js/jquery.sparkline.index.min.js"></script>
-		<script src="${baseUrl}/assets/js/jquery.flot.min.js"></script>
-		<script src="${baseUrl}/assets/js/jquery.flot.resize.min.js"></script>
-
-		<!-- ace scripts -->
-		<script src="${baseUrl}/assets/js/ace-elements.min.js"></script>
-		<script src="${baseUrl}/assets/js/ace.min.js"></script>	
+		</div><!-- /.main-container -->		
 	</body>
 </html>
 	

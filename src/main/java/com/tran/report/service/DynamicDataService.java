@@ -2,7 +2,7 @@ package com.tran.report.service;
 
 import java.util.List;
 
-import com.tran.report.model.LoadToRedis;
+import com.tran.report.pojo.LoadToRedis;
 
 /**
  * @version 1.0

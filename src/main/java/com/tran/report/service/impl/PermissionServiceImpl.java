@@ -30,7 +30,7 @@ public class PermissionServiceImpl implements PermissionService {
 	}
 
 	@Override
-	public Permission getPermissionById(String permissionId) {
+	public Permission getPermissionById(Integer permissionId) {
 		return permissionRepository.findOne(permissionId);
 	}
 
@@ -43,7 +43,7 @@ public class PermissionServiceImpl implements PermissionService {
 
 	@Override
 	public boolean editPermission(Permission permission) {
-		if (permissionRepository.exists(String.valueOf(permission.getId()))) {
+		if (permissionRepository.exists(permission.getId())) {
 			permissionRepository.saveAndFlush(permission);
 			return true;
 		}
@@ -51,7 +51,7 @@ public class PermissionServiceImpl implements PermissionService {
 	}
 
 	@Override
-	public boolean deletePermission(String permissionId) {
+	public boolean deletePermission(Integer permissionId) {
 		permissionRepository.delete(permissionId);
 		if (!permissionRepository.exists(permissionId))
 			return true;

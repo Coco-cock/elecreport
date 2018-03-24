@@ -2,7 +2,9 @@ package com.tran.report.service;
 
 import java.util.List;
 
+import com.tran.report.entity.Custom;
 import com.tran.report.entity.User;
+import com.tran.report.vo.CustomVO;
 import com.tran.report.vo.UserAndCustomVO;
 import com.tran.report.vo.UserVO;
 
@@ -16,12 +18,21 @@ import com.tran.report.vo.UserVO;
 *@param     
 */
 
-public interface UserService {
-	List<UserAndCustomVO> getAllUserAndCustom();
+public interface UserAndCustomService {
+	List<UserAndCustomVO> getAllUserAndCustomByRoleId(Integer roleId);
 	boolean findUser(User user);
 	UserAndCustomVO getUser(String userName,String password);
+	List<User> getUserByRoleId(Integer roleId);
 	boolean saveUser(UserVO userVO);
+	boolean saveUserAndCustom(UserVO userVO);
 	boolean editUser(User user);
 	boolean deleteUser(String userId);
+	
+	List<CustomVO> getCustomInfo();
+	CustomVO getCustomVoById(String customid);
+	Custom getCustomByUserId(String userId);
+	boolean saveCustom(Custom custom);
+	boolean editCustom(Custom custom);
+	boolean deleteCustom(String customId);
 
 }

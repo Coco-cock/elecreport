@@ -1,4 +1,4 @@
-package com.tran.report.model;
+package com.tran.report.pojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -17,10 +17,10 @@ import com.tran.report.entity.Role;
 
 public interface PermissionService {
 	List<Permission> getAllPermission();
-	Permission getPermissionById(String permissionId);
+	Permission getPermissionById(Integer permissionId);
 	boolean savePermission(Permission permission);
 	boolean editPermission(Permission permission);
-	boolean deletePermission(String permissionId);
+	boolean deletePermission(Integer permissionId);
 	
 
 }

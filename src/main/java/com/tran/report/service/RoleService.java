@@ -16,10 +16,10 @@ import com.tran.report.entity.Role;
 
 public interface RoleService {
 	List<Role> getAllRole();
-	Role getRoleById(String roleId);
+	Role getRoleById(Integer roleId);
 	boolean saveRole(Role role);
 	boolean editRole(Role role);
-	boolean deleteRole(String roleId);
+	boolean deleteRole(Integer roleId);
 	
 
 }

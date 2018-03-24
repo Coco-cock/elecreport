@@ -11,11 +11,11 @@
     <context:component-scan base-package="com.tran.report.service.impl"/>
 
     <!--配置事务管理器-->
-    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <!--注入数据库连接池-->
+  <!--   <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        注入数据库连接池
         <property name="dataSource" ref="dataSource"/>
-    </bean>
-    <tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+    </bean> -->
+<!--     <tx:advice id="transactionAdvice" transaction-manager="transactionManager">
         <tx:attributes>
             <tx:method name="delete*" propagation="REQUIRED"/>
             <tx:method name="save*" propagation="REQUIRED"/>
@@ -24,7 +24,7 @@
             <tx:method name="get*" read-only="true"/>
             <tx:method name="select*" read-only="true"/>
         </tx:attributes>
-    </tx:advice>
+    </tx:advice> -->
  <!--    <aop:config>
         第一个"*"代表所有类, 第二个"*"代表所有方法, ".."代表任意参数
         <aop:pointcut id="pointcut" expression="execution(*com.tran.report.service.impl.*.*(..))"/>
@@ -34,6 +34,6 @@
     </aop:config> -->
     <!--配置基于注解的声明式事务
     默认使用注解来管理事务行为-->
-    <tx:annotation-driven transaction-manager="transactionManager"/>
+  <!--   <tx:annotation-driven transaction-manager="transactionManager"/> -->
 
 </beans>

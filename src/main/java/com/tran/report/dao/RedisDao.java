@@ -10,8 +10,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
 import com.alibaba.fastjson.JSON;
-import com.tran.report.model.Load;
-import com.tran.report.model.LoadToRedis;
+import com.tran.report.pojo.Load;
+import com.tran.report.pojo.LoadToRedis;
 
 import redis.clients.jedis.Jedis;
 
@@ -24,8 +24,9 @@ import redis.clients.jedis.Jedis;
  */
 @Repository
 public class RedisDao {
-	private static final String TIMEDATA = "timeData";
-	private static final String CUSTOMID = "customId";
+	//时间序集合
+	private static final String TIMELIST = "timeList";
+	private static final String CUSTOMIDSET = "customIdSet";
 	@Autowired
 	RedisDB redisDB;
 
@@ -49,8 +50,8 @@ public class RedisDao {
 	public List<LoadToRedis> getAllData() {
 		Jedis jedis = RedisDB.getJedis();
 		List<LoadToRedis> loadData = new LinkedList<>();
-		List<String> timeList = jedis.lrange(TIMEDATA, 0, -1);
-		Set<String> idList = jedis.zrange(CUSTOMID, 0, -1);
+		List<String> timeList = jedis.lrange(TIMELIST, 0, -1);
+		Set<String> idList = jedis.zrange(CUSTOMIDSET, 0, -1);
 
 		for (String id : idList) {
 			for (String time : timeList) {
@@ -76,10 +77,7 @@ public class RedisDao {
 	public List<LoadToRedis> getDataByCustomId(String customId) {
 		Jedis jedis = RedisDB.getJedis();
 		List<LoadToRedis> loadData = new LinkedList<>();
-		List<String> timeList = jedis.lrange(TIMEDATA, 0, -1);
-		//Collections.sort(timeList);//按照时间排序
-		//Collections.reverse(timeList);
-		
+		List<String> timeList = jedis.lrange(TIMELIST+customId, 0, -1);
 		String[] times = new String[timeList.size()];
 		List<String> jsonList = jedis.hmget(customId, timeList.toArray(times));
 		int i = 0;
@@ -107,8 +105,8 @@ public class RedisDao {
 		String loadinfo = JSON.toJSONString(load.getLoad());
 		if (StringUtils.isEmpty(ID) || StringUtils.isEmpty(creatTime) || StringUtils.isEmpty(loadinfo))
 			return false;
-		jedis.zadd(CUSTOMID, 1, ID);
-		if (jedis.hset(ID, creatTime, loadinfo) > 0 && jedis.rpush(TIMEDATA, creatTime) > 0)
+		jedis.zadd(CUSTOMIDSET, 1, ID);
+		if (jedis.hset(ID, creatTime, loadinfo) > 0 && jedis.rpush(TIMELIST+ID, creatTime) > 0)
 			return true;
 		jedis.close();
 		return false;

@@ -74,7 +74,8 @@
 							</li>
 						</ul>
 					</li>
-			<c:if test="${sessionScope.sessionVO.userAndCustomVO.user.userName=='admin' }">
+					<c:set var="role" value="${sessionScope.sessionVO.userAndCustomVO.user.role.role}"/>
+			<c:if test="${role=='admin'||role=='superAdmin'}">
 					<li id="navleft4">
 						<a href="${baseUrl}/getAllCustom">
 							<i class="menu-icon glyphicon glyphicon-align-center"></i>
@@ -82,7 +83,8 @@
 						</a>
 						<b class="arrow"></b>
 					</li >
-					
+					</c:if>
+					<c:if test="${role=='superAdmin'}">
 					<li id="navleft5">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon glyphicon glyphicon-wrench"></i>
