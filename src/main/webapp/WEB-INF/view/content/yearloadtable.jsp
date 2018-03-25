@@ -35,9 +35,8 @@
 											<table id="dynamic-table" class="table table-striped table-bordered table-hover">
 												<thead>
 												<tr>
-                                                        <th>用电量</th>
+                                                        <th>用电量(KW·H)</th>
                                                         <th>时间</th>
-                                                        <th>备注</th>
                                                 </tr>											
 												</thead>
 												<tbody>
@@ -45,7 +44,6 @@
                                         <tr>
                                             <td>${load.elecAmount}</td>
                                             <td>${load.time}</td>
-                                            <td  </td>
                                         </tr>
                                          </c:forEach>     
 												</tbody>

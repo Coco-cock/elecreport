@@ -58,7 +58,7 @@ public class FileToAliOssUtil {
 				if (putObjectResult != null) {
 				
 					//例：http://elecreport.oss-cn-beijing.aliyuncs.com/userImg/5ff9ba12-6c35-418f-9631-0758903730c7.jpg
-					imgUrl="http://"+BACKET_NAME+"."+ENDPOINT.substring(6)+"/"+FOLDER +"/"+ fileName;
+					imgUrl="https://"+BACKET_NAME+"."+ENDPOINT.substring(6)+"/"+FOLDER +"/"+ fileName;
 				}
 			} catch (OSSException | ClientException | IOException e) {
 				logger.error("上传图片到阿里云OSS出现异常"+e);

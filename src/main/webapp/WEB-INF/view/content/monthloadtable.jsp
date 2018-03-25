@@ -34,7 +34,7 @@
 											<table id="dynamic-table" class="table table-striped table-bordered table-hover">
 												<thead>
 												<tr>
-                                                        <th>用电量</th>
+                                                        <th>用电量(KW·H)</th>
                                                         <th>时间</th>
                                                 </tr>											
 												</thead>

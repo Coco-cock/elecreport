@@ -57,7 +57,7 @@
 
 							</div>
 
-							<div class="col-xs-12 col-sm-9">
+							<div class="col-xs-12 col-sm-5">
 								<div class="space-12"></div>
 
 								<div class="profile-user-info profile-user-info-striped">
@@ -72,6 +72,13 @@
 
 										<div class="profile-info-value">
 											<span class="editable" id="role"><c:out value="${sessionScope.sessionVO.userAndCustomVO.user.role.role}"/></span>
+										</div>
+									</div>
+									<div class="profile-info-row">
+										<div class="profile-info-name">电话</div>
+
+										<div class="profile-info-value">
+											<span class="editable" id="login"><c:out value="${sessionScope.sessionVO.userAndCustomVO.customVO.customPhone}"/></span>
 										</div>
 									</div>
 									<div class="profile-info-row">
@@ -98,22 +105,15 @@
 											<span class="editable" id="signup"><fmt:formatDate value="${sessionScope.sessionVO.userAndCustomVO.customVO.editTime}" pattern="yyyy-MM-dd HH:mm"/></span>
 										</div>
 									</div>
-
-									<div class="profile-info-row">
-										<div class="profile-info-name">Last Online</div>
-
-										<div class="profile-info-value">
-											<span class="editable" id="login">3 hours ago</span>
-										</div>
-									</div>
-
+								
+<!-- 
 									<div class="profile-info-row">
 										<div class="profile-info-name">About Me</div>
 
 										<div class="profile-info-value">
 											<span class="editable" id="about">Editable as WYSIWYG</span>
 										</div>
-									</div>
+									</div> -->
 								</div>
 
 								<div class="space-20"></div>

@@ -61,18 +61,17 @@
                                             <td><fmt:formatDate value="${uac.customVO.registerTime}" pattern="yyyy-MM-dd HH:mm"/></td>
                                             <td><fmt:formatDate value="${uac.customVO.editTime}" pattern="yyyy-MM-dd HH:mm"/></td> 
                                              <td>
-                                             <a href="goSeeCustomDynamicData/${uac.customVO.ID}"> <button class="btn btn-xs btn-warning" ><i class="ace-icon glyphicon glyphicon-signal bigger-120"></i>实时</button> </a>
-                                             <a href="goSeeCustomHistoryData/${uac.customVO.ID}"> <button class="btn btn-xs btn-warning" ><i class="ace-icon glyphicon glyphicon-signal bigger-120"></i>历史</button> </a>
+                                             <a href="goSeeCustomDynamicData/${uac.customVO.ID}"> <button class="btn btn-xs btn-primary" ><i class="ace-icon fa fa-tachometer bigger-120"></i>实时</button> </a>
+                                             <a href="goSeeCustomHistoryData/${uac.customVO.ID}"> <button class="btn btn-xs btn-primary" ><i class="ace-icon glyphicon glyphicon-signal bigger-120"></i>历史</button> </a>
                                             </td>
                                              <td>
                                              <a href=""> <button class="btn btn-xs btn-warning" ><i class="glyphicon glyphicon-wrench bigger-120"></i>重置密码</button> </a>
-                                             <a href="goEditCustomForm/${uac.customVO.ID}"> <button class="btn btn-xs btn-info" ><i class="ace-icon fa fa-pencil bigger-120"></i>编辑</button> </a>
-                                              <a ><button class="btn btn-xs btn-danger" onclick="sendDeleteAction(${uac.user.ID});"><i class="glyphicon glyphicon-plus"></i>删除</button></a>
+                                             <a href="goEditCustomForm/${uac.customVO.ID}"> <button class="btn btn-xs btn-warning" ><i class="ace-icon fa fa-pencil bigger-120"></i>编辑</button> </a>
+                                              <a><button class="btn btn-xs btn-danger" onclick="sendDeleteAction(${uac.user.ID});"><i class="glyphicon glyphicon-trash bigger-120"></i>删除</button></a>
                                              </td> 
 											</tr>
 											</c:forEach>
-
-												</tbody>
+											</tbody>
 											</table>
 										</div>
 									</div>

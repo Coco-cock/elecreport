@@ -36,9 +36,9 @@
 												<thead>
 												<tr>
                                                         <th>ID</th>
-                                                        <th>电流</th>
-                                                        <th>电压</th>
-                                                        <th>功率</th>
+                                                        <th>电流(A)</th>
+                                                        <th>电压(V)</th>
+                                                        <th>功率(W)</th>
                                                         <th>时间</th>
                                                 </tr>											
 												</thead>

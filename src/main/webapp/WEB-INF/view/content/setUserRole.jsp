@@ -38,12 +38,10 @@
                                          			   <th>用户名</th>
                                          			   <th>角色</th>
                                            			   <th>姓名</th>
-                                           			
                                                        <th>操作</th>
 													</tr>											
 												</thead>
 												<tbody>
-												${customList}
 									   <c:forEach var="uac" items="${userAndCustomList}" varStatus="vs">
                                         <tr>
                                             <td><c:out value="${vs.index+1}"></c:out></td>
@@ -51,8 +49,10 @@
                                             <td><c:out value="${uac.user.role.description}"></c:out></td>
                                             <td><c:out value="${uac.customVO.customName}"></c:out></td>
                                            
-                                             <td><a href="#modal-table${vs.index+1}" role="button"  data-toggle="modal"> <button class="btn btn-xs btn-warning pull-right" ><i class="glyphicon glyphicon-plus"></i>添加</button> </a></td> 
+                                             <td><a href="#modal-table${vs.index+1}" role="button"  data-toggle="modal"> <button class="btn btn-xs btn-warning" ><i class="glyphicon glyphicon-cog"></i>配置角色</button> </a></td> 
 											</tr>
+											
+								
 								
 											</c:forEach>
 											</tbody>
@@ -60,7 +60,8 @@
 										</div>
 									</div>
 								</div>
-						<div id="modal-table${vs.index+1}" class="modal fade" tabindex="-1">
+								<c:forEach var="uac" items="${userAndCustomList}" varStatus="vs">
+										<div id="modal-table${vs.index+1}" class="modal fade" tabindex="-1">
 									<div class="modal-dialog">
 										<div class="modal-content">
 											<div class="modal-header no-padding">
@@ -79,7 +80,7 @@
 														
 														<tr>
 															<td>用户名：${uac.user.userName}</td>															
-															<input name="ID" type="hide"> 
+															<input name="ID" type="hidden"> 
 														</tr>
 														<tr>
 															<td>角色：</td>															
@@ -96,9 +97,8 @@
 										</form>
 										</div>
 									</div>
-								</div>				
-							
-
+								</div>	
+                            </c:forEach>
 								<!-- PAGE CONTENT ENDS -->
 							</div><!-- /.col -->
 						</div><!-- /.row -->
@@ -126,7 +126,8 @@
         }
     </script>
 <script> 
-document.getElementById('navleft4').className = 'active'; 
+document.getElementById('navleft5').className = 'active open'; 
+document.getElementById('navleft5-1').className = 'active'; 
 </script>
 <%@ include file="../main/footer.jsp" %>
 </div><!-- /.main-container -->
