@@ -18,10 +18,10 @@ import redis.clients.jedis.JedisPoolConfig;
 public class RedisDB {
 	  
 	     //Redis服务器IP  
-	     private static final String HOST = "120.79.59.72";  
+	     private static final String HOST = "127.0.0.1";  
 	      //Redis的端口号  
 	     private static final int PORT = 6379;
-	     private static final String PASSWORD= "1111";
+	     private static final String PASSWORD= "";
 	     
 	     //timeout 连接空闲多少秒关闭，默认值是0 代表不关闭
 	     private static final int TIMEOUT = 0; 
